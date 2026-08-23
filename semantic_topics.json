@@ -38,7 +38,7 @@
     },
     "halo_cgm": {
       "description": "High-velocity clouds and gaseous halos, including Milky Way HVCs and IVCs, the Magellanic Stream, neutral and ionized gas in the Galactic halo, multiphase halo gas, the circumgalactic medium around the Milky Way and external galaxies, gas accretion and outflows, cloud survival, ram-pressure interaction, and the baryon cycle at the galaxy-halo interface.",
-      "lexical_terms": ["HVC", "high velocity cloud", "high-velocity cloud", "IVC", "intermediate velocity cloud", "intermediate-velocity cloud", "Magellanic Stream", "Galactic halo", "halo gas", "circumgalactic medium", "CGM", "cool CGM", "multiphase CGM", "gas accretion", "galactic fountain"]
+      "lexical_terms": ["HVC", "high velocity cloud", "high-velocity cloud", "IVC", "intermediate velocity cloud", "intermediate-velocity cloud", "Magellanic Stream", "Galactic halo gas", "gas in the Galactic halo", "halo gas", "circumgalactic medium", "CGM", "cool CGM", "multiphase CGM", "gas accretion", "galactic fountain"]
     },
     "ism_methods": {
       "description": "Observational, statistical, computational, and radiative-transfer methods directly useful for interstellar-medium and star-formation research, including spectral decomposition, gas tomography, map reconstruction, and molecular or atomic line analysis.",

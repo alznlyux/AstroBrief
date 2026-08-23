@@ -112,6 +112,18 @@ def test_semantic_scope() -> None:
             "The stars were ejected from the Galactic center by a black-hole gravitational slingshot. We constrain their stellar formation history and orbital dynamics in the nuclear star cluster.",
             "astro-ph.GA",
         ),
+        paper(
+            "test.0006",
+            "Multiphase gas in the circumgalactic medium of nearby galaxies",
+            "We combine ultraviolet absorption and H I observations to measure cool and warm CGM gas, cloud kinematics, ionization, gas accretion, and the baryon cycle around low-redshift galaxies.",
+            "astro-ph.GA",
+        ),
+        paper(
+            "test.0007",
+            "Intergalactic hydrogen during cosmic reionization",
+            "We model the ionization state of the intergalactic medium and the cosmic web at redshift seven using cosmological simulations and 21-cm statistics.",
+            "astro-ph.CO",
+        ),
     ]
 
     scored, summary = score_papers(papers)
@@ -131,7 +143,9 @@ def test_semantic_scope() -> None:
     assert by_id["test.0003"]["priority"] in {"C", "SKIP"}, by_id["test.0003"]
     assert by_id["test.0004"]["priority"] in {"C", "SKIP"}, by_id["test.0004"]
     assert by_id["test.0005"]["priority"] in {"C", "SKIP"}, by_id["test.0005"]
-    assert summary["candidate_count"] == 5
+    assert by_id["test.0006"]["priority"] in {"A", "B"}, by_id["test.0006"]
+    assert by_id["test.0007"]["priority"] in {"C", "SKIP"}, by_id["test.0007"]
+    assert summary["candidate_count"] == 7
 
 
 def main() -> None:

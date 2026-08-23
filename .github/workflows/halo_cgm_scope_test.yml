@@ -7,6 +7,7 @@ on:
       - '.github/workflows/halo_cgm_scope_test.yml'
 
 # One-time validation workflow for the HVC / halo gas / CGM scope extension.
+# Re-triggered after tightening Galactic-halo gas evidence.
 jobs:
   regression:
     runs-on: ubuntu-latest

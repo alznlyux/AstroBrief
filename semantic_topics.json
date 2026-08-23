@@ -36,6 +36,10 @@
       "description": "The Galactic interstellar medium on large scales, including Milky Way gas and dust, the Central Molecular Zone, Galactic-center gas, H I and molecular-line surveys, local cavities and shells, and three-dimensional dust and gas structure.",
       "lexical_terms": ["Milky Way", "Galactic plane", "Central Molecular Zone", "CMZ", "Galactic Centre", "Galactic Center", "Fermi Bubbles", "3D dust", "gas survey", "Galactic structure"]
     },
+    "halo_cgm": {
+      "description": "High-velocity clouds and gaseous halos, including Milky Way HVCs and IVCs, the Magellanic Stream, neutral and ionized gas in the Galactic halo, multiphase halo gas, the circumgalactic medium around the Milky Way and external galaxies, gas accretion and outflows, cloud survival, ram-pressure interaction, and the baryon cycle at the galaxy-halo interface.",
+      "lexical_terms": ["HVC", "high velocity cloud", "high-velocity cloud", "IVC", "intermediate velocity cloud", "intermediate-velocity cloud", "Magellanic Stream", "Galactic halo", "halo gas", "circumgalactic medium", "CGM", "cool CGM", "multiphase CGM", "gas accretion", "galactic fountain"]
+    },
     "ism_methods": {
       "description": "Observational, statistical, computational, and radiative-transfer methods directly useful for interstellar-medium and star-formation research, including spectral decomposition, gas tomography, map reconstruction, and molecular or atomic line analysis.",
       "lexical_terms": ["spectral decomposition", "radiative transfer", "tomography", "map reconstruction", "Gaussian decomposition", "ISM survey", "molecular line survey"]
@@ -46,13 +50,13 @@
     "stellar_evolution": "Individual-star atmospheres, photospheres, interiors, stellar evolution, evolved stars, red giants, red supergiants, AGB stars, rotation, or stellar variability when the ISM is only background context.",
     "planetary_disks": "Planet formation, protoplanetary and debris disks, exoplanets, planetesimals, planetary atmospheres, and planetary systems when the natal cloud or star-forming environment is not the main science target.",
     "compact_objects": "Black holes, neutron stars, pulsars, X-ray binaries, gamma-ray bursts, relativistic jets, gravitational waves, and compact-object accretion not centered on interstellar gas.",
-    "relativistic_plasma": "Collisionless or relativistic plasma physics, particle-in-cell simulations, collisionless shocks, tidal disruption events, fast blue optical transients, and high-energy plasma processes without an ISM target.",
-    "generic_mhd": "Generic plasma, shock, turbulence, dynamo, or MHD theory applicable broadly but not specifically focused on interstellar gas, molecular clouds, or star formation.",
-    "galaxy_evolution": "Galaxy evolution, AGN, high-redshift galaxy populations, galaxy morphology, cosmological galaxy simulations, and metallicity calibration where the primary target is the galaxy rather than Galactic or local ISM physics.",
-    "cgm_igm": "Circumgalactic or intergalactic gas around external galaxies, baryon-cycle studies, reionization, and cosmological 21-cm science rather than the Galactic or local ISM.",
-    "cosmology": "Cosmology and large-scale structure, dark matter, dark energy, CMB, lensing, galaxy clustering, and early-universe physics unrelated to local interstellar matter.",
-    "nuclear_particle": "Dense nuclear and quark matter, compact-star equations of state, hadronic matter, and particle or nuclear physics without an interstellar-medium objective.",
-    "generic_instrumentation": "General telescope, detector, calibration, pipeline, or instrumentation development whose scientific application is broad and not specifically motivated by ISM or star-formation measurements."
+    "relativistic_plasma": "Collisionless or relativistic plasma physics, particle-in-cell simulations, collisionless shocks, tidal disruption events, fast blue optical transients, and high-energy plasma processes without an ISM or gaseous-halo target.",
+    "generic_mhd": "Generic plasma, shock, turbulence, dynamo, or MHD theory applicable broadly but not specifically focused on interstellar gas, molecular clouds, star formation, or gaseous halos.",
+    "galaxy_evolution": "Galaxy evolution, AGN, high-redshift galaxy populations, galaxy morphology, cosmological galaxy simulations, and metallicity calibration where the primary target is the galaxy rather than its interstellar or circumgalactic gas.",
+    "igm_reionization": "Intergalactic gas, the cosmic web, Ly-alpha forest, reionization, and cosmological 21-cm science when the primary target is not the circumgalactic medium of galaxies.",
+    "cosmology": "Cosmology and large-scale structure, dark matter, dark energy, CMB, lensing, galaxy clustering, and early-universe physics unrelated to interstellar or circumgalactic gas.",
+    "nuclear_particle": "Dense nuclear and quark matter, compact-star equations of state, hadronic matter, and particle or nuclear physics without an interstellar-medium or gaseous-halo objective.",
+    "generic_instrumentation": "General telescope, detector, calibration, pipeline, or instrumentation development whose scientific application is broad and not specifically motivated by ISM, star-formation, or gaseous-halo measurements."
   },
   "nli_positive_labels": [
     "interstellar atomic and molecular gas",
@@ -60,16 +64,17 @@
     "neutral hydrogen, cold neutral gas, H I shells, and the atomic interstellar medium",
     "expanding H II regions, bubbles, shells, and stellar feedback acting on surrounding atomic or molecular gas",
     "interstellar turbulence, magnetic fields, and astrochemistry",
-    "Galactic gas and dust structure, the Central Molecular Zone, local cavities, and interstellar-medium surveys"
+    "Galactic gas and dust structure, the Central Molecular Zone, local cavities, and interstellar-medium surveys",
+    "high-velocity clouds, Galactic halo gas, the Magellanic Stream, and the circumgalactic medium of galaxies"
   ],
   "nli_negative_labels": [
     "solar physics and the solar atmosphere",
     "individual stellar atmospheres, interiors, and stellar evolution",
     "planet formation, circumstellar disks, and planetary systems",
     "compact objects, relativistic transients, and high-energy plasma physics",
-    "generic plasma, shock, turbulence, and MHD theory without an interstellar-medium target",
-    "galaxy evolution, active galactic nuclei, and high-redshift galaxy populations",
-    "circumgalactic and intergalactic gas around external galaxies",
+    "generic plasma, shock, turbulence, and MHD theory without an interstellar or gaseous-halo target",
+    "galaxy evolution and active galactic nuclei when interstellar or circumgalactic gas is not the main target",
+    "intergalactic gas, the cosmic web, and the Ly-alpha forest",
     "reionization and cosmological 21-cm physics",
     "cosmology and large-scale structure",
     "nuclear and particle physics of dense matter",

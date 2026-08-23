@@ -1,0 +1,52 @@
+name: AstroBrief Smoke Test
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'daily.py'
+      - 'semantic_*.py'
+      - 'semantic_topics.json'
+      - 'github_issue.py'
+      - 'requirements.txt'
+      - '.github/workflows/*.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'daily.py'
+      - 'semantic_*.py'
+      - 'semantic_topics.json'
+      - 'github_issue.py'
+      - 'requirements.txt'
+      - '.github/workflows/*.yml'
+  workflow_dispatch: {}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Restore semantic model cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: astrobrief-models-${{ runner.os }}-v1
+          restore-keys: |
+            astrobrief-models-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Compile production code
+        run: python -m py_compile daily.py semantic_daily.py semantic_recommender.py semantic_smoke_test.py github_issue.py
+
+      - name: Run semantic smoke test
+        run: python semantic_smoke_test.py

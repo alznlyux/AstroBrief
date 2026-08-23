@@ -1,0 +1,8 @@
+requests>=2.31
+markdown>=3.6
+pymdown-extensions>=10.8
+numpy>=1.26
+torch>=2.2
+transformers>=4.45
+adapters==1.2.0
+sentencepiece>=0.2

@@ -1,0 +1,78 @@
+{
+  "positive_topics": {
+    "atomic_ism": {
+      "description": "Cold and warm atomic interstellar gas in the Milky Way and nearby star-forming environments, including H I 21 cm emission and absorption, HISA, HINSA, CNM and WNM, neutral clouds, H I shells, and the atomic-to-molecular transition.",
+      "lexical_terms": ["H I", "HI 21 cm", "21 cm", "21-cm", "neutral hydrogen", "neutral cloud", "atomic hydrogen", "atomic gas", "HISA", "HINSA", "CNM", "WNM", "H I shell", "atomic-to-molecular"]
+    },
+    "molecular_clouds": {
+      "description": "Molecular clouds and molecular gas: cloud formation, structure, evolution, kinematics, CO and other molecular-line observations, dense gas, filaments, clumps, and cores.",
+      "lexical_terms": ["molecular cloud", "molecular gas", "GMC", "13CO", "C18O", "dense gas", "filament", "clump", "dense core", "cloud structure"]
+    },
+    "star_formation": {
+      "description": "Star formation from cloud to core and young stellar object, including gravitational collapse, protostars, prestellar cores, protostellar envelopes, accretion, young clusters, and interactions between young stars and natal gas.",
+      "lexical_terms": ["star formation", "star-forming region", "young stellar object", "YSO", "protostar", "protostellar", "prestellar", "natal cloud"]
+    },
+    "feedback_bubbles": {
+      "description": "Stellar feedback acting on interstellar matter, including OB stars, H II regions, bubbles, cavities, shells, stellar winds, supernova feedback, feedback on atomic or molecular clouds, triggered star formation, and Galactic superbubbles.",
+      "lexical_terms": ["stellar feedback", "OB star", "H II region", "HII region", "bubble", "shell", "ionization front", "stellar wind", "superbubble", "triggered star formation", "expanding shell"]
+    },
+    "turbulence": {
+      "description": "Turbulence and gas dynamics in the interstellar medium and molecular clouds, including velocity statistics, power spectra, structure functions, linewidths, density and column-density PDFs, and turbulent driving.",
+      "lexical_terms": ["turbulence", "turbulent", "velocity dispersion", "velocity statistics", "power spectrum", "structure function", "linewidth", "density PDF", "column density PDF", "N-PDF"]
+    },
+    "magnetic_fields": {
+      "description": "Magnetic fields in the interstellar medium and star-forming clouds, including dust polarization, Zeeman measurements, MHD in interstellar gas, magnetic support, field morphology, and interstellar magnetic reconnection.",
+      "lexical_terms": ["magnetic field", "dust polarization", "Zeeman", "magnetized cloud", "Alfven", "magnetic support", "interstellar magnetic reconnection"]
+    },
+    "astrochemistry": {
+      "description": "Astrochemistry and molecular tracers in interstellar and star-forming gas, including chemical evolution, abundances, deuteration, ionization, cosmic-ray chemistry, and diagnostic molecular species in clouds and cores.",
+      "lexical_terms": ["astrochemistry", "chemical evolution", "molecular abundance", "deuteration", "ionization", "cosmic ray ionization", "molecular tracer", "chemical network"]
+    },
+    "massive_star_formation": {
+      "description": "Massive star and cluster formation in dense molecular environments, including infrared dark clouds, massive clumps, high-mass protostars, hot cores, massive young stellar objects, and clustered star formation.",
+      "lexical_terms": ["IRDC", "infrared dark cloud", "massive clump", "high-mass star", "massive star formation", "hot core", "massive protostar", "clustered star formation"]
+    },
+    "galactic_ism": {
+      "description": "The Galactic interstellar medium on large scales, including Milky Way gas and dust, the Central Molecular Zone, Galactic-center gas, H I and molecular-line surveys, local cavities and shells, and three-dimensional dust and gas structure.",
+      "lexical_terms": ["Milky Way", "Galactic plane", "Central Molecular Zone", "CMZ", "Galactic Centre", "Galactic Center", "Fermi Bubbles", "3D dust", "gas survey", "Galactic structure"]
+    },
+    "ism_methods": {
+      "description": "Observational, statistical, computational, and radiative-transfer methods directly useful for interstellar-medium and star-formation research, including spectral decomposition, gas tomography, map reconstruction, and molecular or atomic line analysis.",
+      "lexical_terms": ["spectral decomposition", "radiative transfer", "tomography", "map reconstruction", "Gaussian decomposition", "ISM survey", "molecular line survey"]
+    }
+  },
+  "negative_topics": {
+    "solar_physics": "Solar physics, solar flares, coronal heating, the solar atmosphere, sunspots, helioseismology, or Solar Orbiter work without an interstellar-medium objective.",
+    "stellar_evolution": "Individual-star atmospheres, photospheres, interiors, stellar evolution, evolved stars, red giants, red supergiants, AGB stars, rotation, or stellar variability when the ISM is only background context.",
+    "planetary_disks": "Planet formation, protoplanetary and debris disks, exoplanets, planetesimals, planetary atmospheres, and planetary systems when the natal cloud or star-forming environment is not the main science target.",
+    "compact_objects": "Black holes, neutron stars, pulsars, X-ray binaries, gamma-ray bursts, relativistic jets, gravitational waves, and compact-object accretion not centered on interstellar gas.",
+    "relativistic_plasma": "Collisionless or relativistic plasma physics, particle-in-cell simulations, collisionless shocks, tidal disruption events, fast blue optical transients, and high-energy plasma processes without an ISM target.",
+    "generic_mhd": "Generic plasma, shock, turbulence, dynamo, or MHD theory applicable broadly but not specifically focused on interstellar gas, molecular clouds, or star formation.",
+    "galaxy_evolution": "Galaxy evolution, AGN, high-redshift galaxy populations, galaxy morphology, cosmological galaxy simulations, and metallicity calibration where the primary target is the galaxy rather than Galactic or local ISM physics.",
+    "cgm_igm": "Circumgalactic or intergalactic gas around external galaxies, baryon-cycle studies, reionization, and cosmological 21-cm science rather than the Galactic or local ISM.",
+    "cosmology": "Cosmology and large-scale structure, dark matter, dark energy, CMB, lensing, galaxy clustering, and early-universe physics unrelated to local interstellar matter.",
+    "nuclear_particle": "Dense nuclear and quark matter, compact-star equations of state, hadronic matter, and particle or nuclear physics without an interstellar-medium objective.",
+    "generic_instrumentation": "General telescope, detector, calibration, pipeline, or instrumentation development whose scientific application is broad and not specifically motivated by ISM or star-formation measurements."
+  },
+  "nli_positive_labels": [
+    "interstellar atomic and molecular gas",
+    "molecular clouds, dense cores, and star formation",
+    "neutral hydrogen, cold neutral gas, H I shells, and the atomic interstellar medium",
+    "expanding H II regions, bubbles, shells, and stellar feedback acting on surrounding atomic or molecular gas",
+    "interstellar turbulence, magnetic fields, and astrochemistry",
+    "Galactic gas and dust structure, the Central Molecular Zone, local cavities, and interstellar-medium surveys"
+  ],
+  "nli_negative_labels": [
+    "solar physics and the solar atmosphere",
+    "individual stellar atmospheres, interiors, and stellar evolution",
+    "planet formation, circumstellar disks, and planetary systems",
+    "compact objects, relativistic transients, and high-energy plasma physics",
+    "generic plasma, shock, turbulence, and MHD theory without an interstellar-medium target",
+    "galaxy evolution, active galactic nuclei, and high-redshift galaxy populations",
+    "circumgalactic and intergalactic gas around external galaxies",
+    "reionization and cosmological 21-cm physics",
+    "cosmology and large-scale structure",
+    "nuclear and particle physics of dense matter",
+    "generic telescope instrumentation, calibration, and data-processing methods"
+  ]
+}

@@ -4,7 +4,7 @@
 
 AstroBrief automatically retrieves recent `astro-ph` submissions from the **official arXiv Atom API**, evaluates each paper against a configurable research scope, ranks the candidates with scientific-language models and explicit domain guards, then delivers a compact research brief by GitHub and, optionally, email.
 
-The default profile is tuned for **Galactic/local interstellar medium (ISM), molecular clouds, cold atomic and molecular gas, dense structures, star formation, turbulence, magnetic fields, chemistry, feedback, and related observational work**. The research scope is configurable through `semantic_topics.json`.
+The default profile is tuned for **Galactic/local interstellar medium (ISM), molecular clouds, cold atomic and molecular gas, dense structures, star formation, turbulence, magnetic fields, chemistry, feedback, high-velocity clouds (HVCs), gaseous halos, and the circumgalactic medium (CGM)**. The research scope is configurable through `semantic_topics.json`.
 
 AstroBrief runs entirely in **GitHub Actions**. It does not require a continuously running local computer or a paid LLM/model API.
 
@@ -12,7 +12,7 @@ AstroBrief runs entirely in **GitHub Actions**. It does not require a continuous
 
 A simple keyword alert often has two problems:
 
-1. **False positives:** generic terms such as *shock*, *turbulence*, *feedback*, or *magnetic field* also occur in solar, planetary, compact-object, plasma, and extragalactic papers that may be outside the group's scope.
+1. **False positives:** generic terms such as *shock*, *turbulence*, *feedback*, *magnetic field*, or *halo* also occur in solar, planetary, compact-object, stellar-dynamics, plasma, and unrelated extragalactic papers that may be outside the group's scope.
 2. **False negatives:** a relevant paper may describe the science using different terminology, appear as a cross-list, or have a primary category that does not obviously match the target topic.
 
 AstroBrief therefore treats paper selection as a **semantic ranking and scope-classification problem**, rather than substring matching alone.
@@ -24,7 +24,7 @@ flowchart TD
     A[Official arXiv Atom API] --> B[Recent astro-ph submissions]
     B --> C[SPECTER2 scientific embeddings]
     C --> D[Positive vs. negative topic contrast]
-    D --> E[Lexical and direct ISM-object evidence]
+    D --> E[Lexical and direct target-object evidence]
     E --> F[Category and domain gates]
     F --> G[Zero-shot NLI re-check for ambiguous cases]
     G --> H[Research-scope calibration]
@@ -64,6 +64,8 @@ This avoids depending on the HTML structure of the `/list/astro-ph/new` webpage.
 - **negative/background domains** — common nearby fields that should not be promoted merely because they share generic terminology;
 - **scope information** — rules used to calibrate the final priorities for the intended research group.
 
+The default positive profile currently includes atomic ISM, molecular clouds, star formation, feedback and bubbles, turbulence, magnetic fields, astrochemistry, massive-star formation, Galactic ISM, **HVC / halo gas / CGM**, and directly relevant ISM methods.
+
 This configuration is a **stable semantic profile**, not a daily training set. For a group with reasonably stable interests, it normally needs attention only when research directions change or when repeated false positives/negatives reveal a useful adjustment.
 
 ### 3. SPECTER2 semantic representation
@@ -74,27 +76,27 @@ The system uses semantic similarity together with a positive-vs-negative contras
 
 ### 4. Lexical and object-level evidence
 
-Semantic similarity is supplemented by explicit domain evidence such as molecular clouds, neutral hydrogen, HISA/HINSA, dense cores, IRDCs, H II regions, the CMZ, molecular-line observations, and other ISM/star-formation indicators.
+Semantic similarity is supplemented by explicit domain evidence such as molecular clouds, neutral hydrogen, HISA/HINSA, dense cores, IRDCs, H II regions, the CMZ, HVCs/IVCs, the Magellanic Stream, halo gas, the CGM, molecular-line observations, and other target-domain indicators.
 
-This layer is intentionally different from a traditional keyword filter: lexical evidence **supports or constrains** a semantic decision rather than being the sole selection mechanism.
+This layer is intentionally different from a traditional keyword filter: lexical evidence **supports or constrains** a semantic decision rather than being the sole selection mechanism. Ambiguous phrases are treated conservatively; for example, `Galactic halo` by itself is not considered halo-gas evidence unless the title also contains an explicit gas context.
 
 ### 5. Category and negative-domain gates
 
-AstroBrief examines the primary arXiv category and the strongest competing domain. Papers dominated by areas such as solar physics, stellar evolution, planetary disks, compact objects, generic MHD/plasma physics, or instrumentation require stronger direct ISM/star-formation evidence before they can be promoted.
+AstroBrief examines the primary arXiv category and the strongest competing domain. Papers dominated by areas such as solar physics, stellar evolution, planetary disks, compact objects, generic MHD/plasma physics, IGM/reionization, or instrumentation require stronger direct target-object evidence before they can be promoted.
 
 This is designed to suppress papers that are semantically close only because they share broad physical vocabulary.
 
 ### 6. Zero-shot NLI for ambiguous cases
 
-A small local **zero-shot natural-language-inference (NLI)** model re-checks uncertain candidates. It compares whether the abstract is better supported by the target ISM/star-formation interpretation or a competing non-target interpretation.
+A small local **zero-shot natural-language-inference (NLI)** model re-checks uncertain candidates. It compares whether the abstract is better supported by the configured ISM/star-formation/halo-gas interpretation or a competing non-target interpretation.
 
 The NLI stage can demote ambiguous false positives and rescue conservative near-misses when there is strong direct scientific evidence.
 
 ### 7. Final scope calibration
 
-The last stage applies research-group scope rules. This is where a scientifically valid astronomy paper can still be treated as secondary if it falls outside the group's intended working domain, while high-value Galactic/local ISM cases can be preserved.
+The last stage applies research-group scope rules. This is where a scientifically valid astronomy paper can still be treated as secondary if it falls outside the group's intended working domain, while high-value Galactic/local ISM, HVC, halo-gas, and CGM cases can be preserved.
 
-The current default profile is deliberately centered on ISM and star formation; users should revise `semantic_topics.json` when adapting AstroBrief to another field.
+The current default profile is deliberately centered on ISM, star formation, and gaseous-halo/CGM science; users should revise `semantic_topics.json` when adapting AstroBrief to another field.
 
 ## Priority system
 
@@ -212,7 +214,7 @@ AstroBrief is a research-assistance system, not a complete bibliographic databas
 
 - Ranking thresholds are empirically tuned and should be revalidated when the scientific scope changes substantially.
 - Semantic models can still produce false positives and false negatives.
-- The default scope contains deliberate ISM/star-formation assumptions and should not be reused unchanged for an unrelated field.
+- The default scope contains deliberate ISM/star-formation/halo-gas assumptions and should not be reused unchanged for an unrelated field.
 - arXiv metadata and submission-date behaviour define the candidate pool; AstroBrief does not independently verify journal publication status.
 - The current system does not learn automatically from user clicks or reading behaviour. Feedback-driven personalization is a possible future extension.
 
@@ -239,4 +241,4 @@ AstroBrief also relies on and gratefully acknowledges **arXiv**, **AllenAI SPECT
 
 ## Project status
 
-AstroBrief is an independent, non-fork repository. Its semantic recommendation pipeline, official arXiv Atom ingestion, GitHub Actions automation, score archiving, GitHub Issue generation, and SMTP delivery have been exercised in the development repository and are being prepared here for group use.
+AstroBrief is an independent, non-fork repository. Its production pipeline has been exercised end-to-end with official arXiv ingestion, semantic recommendation, score archiving, GitHub Issue generation, and SMTP delivery. The HVC / halo-gas / CGM scope extension includes explicit regression coverage for target papers versus common halo/IGM false positives.

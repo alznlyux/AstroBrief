@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/historical_250210897_test.yml'
 
+# One-time exact-date validation for arXiv:2502.10897.
 jobs:
   historical-test:
     runs-on: ubuntu-latest

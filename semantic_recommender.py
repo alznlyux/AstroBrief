@@ -53,7 +53,8 @@ DOMAIN_PATTERNS = [
     (r"\bintermediate[- ]velocity clouds?\b", 2.5),
     (r"\bIVCs?\b", 2.5),
     (r"\bMagellanic Stream\b", 3.0),
-    (r"\bGalactic halo\b", 2.5),
+    (r"\bGalactic halo (?:gas|medium|H\s*I|clouds?)\b", 2.5),
+    (r"\b(?:gas|H\s*I|neutral|ionized|clouds?) (?:in|of) the Galactic halo\b", 2.5),
     (r"\bhalo gas\b", 2.0),
     (r"\bcircumgalactic medium\b", 3.0),
     (r"\bCGM\b", 2.5),
@@ -93,7 +94,9 @@ DIRECT_TITLE_PATTERNS = [
     r"\bHISA\b", r"\bHINSA\b", r"\bneutral gas\b", r"\bneutral clouds?\b",
     r"\bhigh[- ]velocity clouds?\b", r"\bHVCs?\b",
     r"\bintermediate[- ]velocity clouds?\b", r"\bIVCs?\b",
-    r"\bMagellanic Stream\b", r"\bGalactic halo\b", r"\bhalo gas\b",
+    r"\bMagellanic Stream\b", r"\bhalo gas\b",
+    r"\bGalactic halo\b.*\b(?:gas|H\s*I|neutral|ionized|clouds?|medium)\b",
+    r"\b(?:gas|H\s*I|neutral|ionized|clouds?|medium)\b.*\bGalactic halo\b",
     r"\bcircumgalactic medium\b", r"\bCGM\b", r"\bgalactic fountain\b",
     r"\bstar formation\b", r"\bstar[- ]forming\b", r"\bprotostars?\b",
     r"\bprotostellar\b", r"\bprestellar\b", r"\bIRDCs?\b",
@@ -302,10 +305,17 @@ def _scope_calibrate(p: dict) -> tuple[str, str]:
     if old in {"SKIP", "C"} and (fermi_hi or cmz_gas or interstellar_magnetic or explicit_hi_title):
         return "B", "scope rescue: explicit Galactic/local ISM object"
 
-    halo_cgm_title = re.search(
-        r"\b(?:high[- ]velocity clouds?|HVCs?|intermediate[- ]velocity clouds?|IVCs?|Magellanic Stream|Galactic halo|halo gas|circumgalactic medium|CGM|galactic fountain)\b",
-        title, flags=re.I,
-    ) is not None
+    galactic_halo_gas_title = (
+        re.search(r"\bGalactic halo\b", title, flags=re.I) is not None
+        and re.search(r"\b(?:gas|H\s*I|neutral|ionized|clouds?|medium)\b", title, flags=re.I) is not None
+    )
+    halo_cgm_title = (
+        re.search(
+            r"\b(?:high[- ]velocity clouds?|HVCs?|intermediate[- ]velocity clouds?|IVCs?|Magellanic Stream|halo gas|circumgalactic medium|CGM|galactic fountain)\b",
+            title, flags=re.I,
+        ) is not None
+        or galactic_halo_gas_title
+    )
     if old in {"SKIP", "C"} and halo_cgm_title and float(p.get("domain_evidence_score", 0.0)) >= 4.0:
         return "B", "halo/CGM target rescue: explicit target object"
 
@@ -314,10 +324,13 @@ def _scope_calibrate(p: dict) -> tuple[str, str]:
         return "C", "scope cap: high-redshift galaxy-evolution focus"
 
     plural_galaxies = re.search(r"\bgalaxies\b", title, flags=re.I) is not None and re.search(r"\bGalactic\b", title, flags=re.I) is None
-    direct_target_title = re.search(
-        r"\b(?:molecular cloud|interstellar medium|neutral hydrogen|H\s*I\s+(?:gas|cloud|emission)|dense core|H\s*II region|star[- ]forming region|high[- ]velocity cloud|HVC|circumgalactic medium|CGM|halo gas)\b",
-        title, flags=re.I,
-    ) is not None
+    direct_target_title = (
+        re.search(
+            r"\b(?:molecular cloud|interstellar medium|neutral hydrogen|H\s*I\s+(?:gas|cloud|emission)|dense core|H\s*II region|star[- ]forming region|high[- ]velocity cloud|HVC|circumgalactic medium|CGM|halo gas)\b",
+            title, flags=re.I,
+        ) is not None
+        or galactic_halo_gas_title
+    )
     if plural_galaxies and not direct_target_title and old in {"A", "B"}:
         return "C", "scope cap: broad external-galaxy sample"
     return old, "scope calibration unchanged"

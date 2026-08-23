@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/halo_cgm_scope_test.yml'
 
+# One-time validation workflow for the HVC / halo gas / CGM scope extension.
 jobs:
   regression:
     runs-on: ubuntu-latest

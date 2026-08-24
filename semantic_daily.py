@@ -18,9 +18,182 @@ ARXIV_API = "https://export.arxiv.org/api/query"
 ATOM = "{http://www.w3.org/2005/Atom}"
 ARXIV = "{http://arxiv.org/schemas/atom}"
 
+_SUPERSCRIPT_TRANS = str.maketrans(
+    "0123456789+-=()",
+    "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾",
+)
+_SUBSCRIPT_TRANS = str.maketrans(
+    "0123456789+-=()",
+    "₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎",
+)
+_LATEX_SYMBOLS = {
+    r"\lesssim": "≲",
+    r"\gtrsim": "≳",
+    r"\simeq": "≃",
+    r"\approx": "≈",
+    r"\sim": "≈",
+    r"\leq": "≤",
+    r"\geq": "≥",
+    r"\le": "≤",
+    r"\ge": "≥",
+    r"\neq": "≠",
+    r"\pm": "±",
+    r"\mp": "∓",
+    r"\times": "×",
+    r"\cdot": "·",
+    r"\propto": "∝",
+    r"\infty": "∞",
+    r"\odot": "☉",
+    r"\oplus": "⊕",
+    r"\circ": "°",
+    r"\mu": "μ",
+    r"\nu": "ν",
+    r"\lambda": "λ",
+    r"\alpha": "α",
+    r"\beta": "β",
+    r"\gamma": "γ",
+    r"\delta": "δ",
+    r"\epsilon": "ε",
+    r"\zeta": "ζ",
+    r"\eta": "η",
+    r"\theta": "θ",
+    r"\kappa": "κ",
+    r"\rho": "ρ",
+    r"\sigma": "σ",
+    r"\tau": "τ",
+    r"\phi": "φ",
+    r"\chi": "χ",
+    r"\psi": "ψ",
+    r"\omega": "ω",
+    r"\Gamma": "Γ",
+    r"\Delta": "Δ",
+    r"\Theta": "Θ",
+    r"\Lambda": "Λ",
+    r"\Sigma": "Σ",
+    r"\Phi": "Φ",
+    r"\Psi": "Ψ",
+    r"\Omega": "Ω",
+}
+
 
 def _clean(text: str) -> str:
     return re.sub(r"\s+", " ", text or "").strip()
+
+
+def _unicode_script(value: str, superscript: bool) -> str:
+    """Render simple numeric scripts as Unicode and preserve named scripts readably."""
+    value = value.strip()
+    table = _SUPERSCRIPT_TRANS if superscript else _SUBSCRIPT_TRANS
+    if value and all(ch in "0123456789+-=()" for ch in value):
+        return value.translate(table)
+    return ("^" if superscript else "_") + value
+
+
+def _math_fragment_to_email_text(fragment: str) -> str:
+    """Convert common arXiv inline LaTeX into email-safe Unicode/plain text.
+
+    Email clients generally do not execute MathJax.  This intentionally targets
+    the compact notation common in abstracts rather than trying to be a full TeX
+    renderer.  The archived Markdown/report remains untouched; only email display
+    uses this conversion.
+    """
+    value = fragment.strip()
+    value = re.sub(r"\\left|\\right", "", value)
+    value = re.sub(r"\^\s*\{?\\circ\}?", "°", value)
+
+    # Resolve nested wrappers/scripts from the inside out.  A few passes cover
+    # common constructs such as N_{\mathrm{HI,CNM}} and \mathrm{km~s^{-1}}.
+    for _ in range(6):
+        before = value
+        value = re.sub(
+            r"\\(?:mathrm|textrm|text|mathbf|mathit|mathsf|mathtt)\{([^{}]*)\}",
+            r"\1",
+            value,
+        )
+        value = re.sub(r"\\(?:rm|bf|it)\s*", "", value)
+        value = re.sub(
+            r"\\frac\{([^{}]*)\}\{([^{}]*)\}",
+            lambda m: f"({m.group(1)})/({m.group(2)})",
+            value,
+        )
+        value = re.sub(
+            r"\\sqrt\{([^{}]*)\}",
+            lambda m: f"√({m.group(1)})",
+            value,
+        )
+        value = re.sub(
+            r"\^\{([^{}]*)\}",
+            lambda m: _unicode_script(m.group(1), True),
+            value,
+        )
+        value = re.sub(
+            r"_\{([^{}]*)\}",
+            lambda m: _unicode_script(m.group(1), False),
+            value,
+        )
+        value = re.sub(
+            r"\^([+-]?\d+)",
+            lambda m: _unicode_script(m.group(1), True),
+            value,
+        )
+        value = re.sub(
+            r"_([+-]?\d+)",
+            lambda m: _unicode_script(m.group(1), False),
+            value,
+        )
+        if value == before:
+            break
+
+    for latex, unicode_value in sorted(
+        _LATEX_SYMBOLS.items(), key=lambda item: len(item[0]), reverse=True
+    ):
+        value = value.replace(latex, unicode_value)
+
+    value = value.replace(r"\,", " ")
+    value = value.replace(r"\:", " ")
+    value = value.replace(r"\;", " ")
+    value = value.replace(r"\!", "")
+    value = value.replace(r"\ ", " ")
+    value = value.replace(r"\%", "%")
+    value = value.replace(r"\&", "&")
+    value = value.replace(r"\_", "_")
+    value = value.replace("~", " ")
+
+    # Named solar/Earth subscripts are conventionally written without a literal
+    # underscore in running prose.
+    value = value.replace("_☉", "☉").replace("_⊕", "⊕")
+
+    # Strip remaining grouping braces and degrade unknown commands gracefully.
+    value = value.replace("{", "").replace("}", "")
+    value = re.sub(r"\\([A-Za-z]+)", r"\1", value)
+
+    # Add readable spacing around comparison/approximation operators.
+    value = re.sub(r"\s*([≈≃≲≳≤≥≠±∓=<>])\s*", r" \1 ", value)
+    value = re.sub(r"\s+", " ", value).strip()
+    return value
+
+
+def latex_to_email_text(text: str) -> str:
+    """Convert TeX math delimiters in report text for robust email rendering."""
+    converted = re.sub(
+        r"\\\[(.+?)\\\]",
+        lambda m: _math_fragment_to_email_text(m.group(1)),
+        text,
+        flags=re.S,
+    )
+    converted = re.sub(
+        r"\\\((.+?)\\\)",
+        lambda m: _math_fragment_to_email_text(m.group(1)),
+        converted,
+        flags=re.S,
+    )
+    converted = re.sub(
+        r"(?<!\\)\$(.+?)(?<!\\)\$",
+        lambda m: _math_fragment_to_email_text(m.group(1)),
+        converted,
+        flags=re.S,
+    )
+    return converted
 
 
 def _user_agent() -> str:
@@ -255,8 +428,11 @@ def send_email(markdown_text: str, n_selected: int) -> None:
         print("[WARN] SMTP not configured; skip email")
         return
 
+    # Convert common TeX notation only for the email payload.  The Markdown files
+    # committed to the repository retain the original arXiv abstract verbatim.
+    email_text = latex_to_email_text(markdown_text)
     html_body = markdown.markdown(
-        markdown_text,
+        email_text,
         extensions=["extra", "nl2br", "sane_lists", "toc", "pymdownx.magiclink"],
     )
     html = f"""<!doctype html><html><head><meta charset="utf-8"><style>
@@ -270,7 +446,7 @@ def send_email(markdown_text: str, n_selected: int) -> None:
     )
     msg["From"] = sender
     msg["To"] = recipients
-    msg.set_content(markdown_text)
+    msg.set_content(email_text)
     msg.add_alternative(html, subtype="html")
 
     if port == 465:

@@ -4,10 +4,17 @@ on:
   schedule:
     # Primary: weekdays, Beijing 09:30 (UTC 01:30)
     - cron: '30 1 * * 1-5'
-    # Fallback: weekdays, Beijing 10:00 (UTC 02:00).
+    # Fallback: weekdays, Beijing 10:17 (UTC 02:17).
+    # Avoid the top of the UTC hour, where GitHub documents heavier scheduler load.
     # daily.py exits immediately if the day's successful-send marker exists.
-    - cron: '0 2 * * 1-5'
+    - cron: '17 2 * * 1-5'
   workflow_dispatch: {}
+
+# Scheduled events can be delayed. If primary and fallback are released together,
+# serialize them so only one can reach the mail-sending section at a time.
+concurrency:
+  group: astrobrief-daily-production
+  cancel-in-progress: false
 
 jobs:
   run:

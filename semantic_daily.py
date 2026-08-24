@@ -7,6 +7,7 @@ import os
 import re
 import smtplib
 import ssl
+import unicodedata
 import xml.etree.ElementTree as ET
 from email.message import EmailMessage
 
@@ -73,6 +74,38 @@ _LATEX_SYMBOLS = {
     r"\Phi": "Φ",
     r"\Psi": "Ψ",
     r"\Omega": "Ω",
+}
+_LATEX_ACCENTS = {
+    "'": "\u0301",   # acute
+    "`": "\u0300",   # grave
+    '"': "\u0308",   # diaeresis / umlaut
+    "^": "\u0302",   # circumflex
+    "~": "\u0303",   # tilde
+    "=": "\u0304",   # macron
+    ".": "\u0307",   # dot above
+    "u": "\u0306",   # breve
+    "v": "\u030c",   # caron
+    "H": "\u030b",   # double acute
+    "c": "\u0327",   # cedilla
+    "k": "\u0328",   # ogonek
+    "r": "\u030a",   # ring above
+    "b": "\u0331",   # macron below
+    "d": "\u0323",   # dot below
+}
+_LATEX_TEXT_LETTERS = {
+    r"\aa": "å",
+    r"\AA": "Å",
+    r"\ae": "æ",
+    r"\AE": "Æ",
+    r"\oe": "œ",
+    r"\OE": "Œ",
+    r"\o": "ø",
+    r"\O": "Ø",
+    r"\ss": "ß",
+    r"\l": "ł",
+    r"\L": "Ł",
+    r"\i": "ı",
+    r"\j": "ȷ",
 }
 
 
@@ -173,8 +206,69 @@ def _math_fragment_to_email_text(fragment: str) -> str:
     return value
 
 
+def _accent_target_to_text(target: str) -> str:
+    """Resolve a one-letter TeX accent target such as z, {z}, or \\i."""
+    target = target.strip()
+    if target in {r"\i", r"\j"}:
+        return _LATEX_TEXT_LETTERS[target]
+    return target
+
+
+def _compose_latex_accent(accent: str, target: str) -> str:
+    """Compose a TeX text accent into a precomposed Unicode character when possible."""
+    base = _accent_target_to_text(target)
+    combining = _LATEX_ACCENTS.get(accent)
+    if not combining or len(base) != 1:
+        return base
+    return unicodedata.normalize("NFC", base + combining)
+
+
+def _latex_text_accents_to_unicode(text: str) -> str:
+    """Render common TeX author-name/text accents as normal Unicode.
+
+    arXiv author metadata can contain forms such as Sne{\\v{z}}ana,
+    Stanimirovi{\\'c}, or D{\\'e}nes.  These are valid TeX but look broken in
+    email clients, so convert them only in the email presentation layer.
+    """
+    target = r"(?:[A-Za-z]|\\[ij])"
+    accent = r"['`\"\^~=\.uvHckrbd]"
+
+    patterns = [
+        # {\v{z}}, {\'\i}
+        rf"\{{\\({accent})\{{({target})\}}\}}",
+        # \v{z}, \'{c}
+        rf"\\({accent})\{{({target})\}}",
+        # {\'c}, {\'\i}
+        rf"\{{\\({accent})({target})\}}",
+        # \'c, \v z (without braces; whitespace tolerated)
+        rf"\\({accent})\s*({target})",
+    ]
+    value = text
+    for pattern in patterns:
+        value = re.sub(
+            pattern,
+            lambda m: _compose_latex_accent(m.group(1), m.group(2)),
+            value,
+        )
+
+    # TeX special letters used in personal and place names.  Require that the
+    # command is not followed by another alphabetic character so \o does not
+    # accidentally consume the beginning of an unrelated command such as \omega.
+    for latex, unicode_value in sorted(
+        _LATEX_TEXT_LETTERS.items(), key=lambda item: len(item[0]), reverse=True
+    ):
+        command = re.escape(latex)
+        value = re.sub(
+            rf"\{{{command}\}}|{command}(?![A-Za-z])",
+            unicode_value,
+            value,
+        )
+
+    return value
+
+
 def latex_to_email_text(text: str) -> str:
-    """Convert TeX math delimiters in report text for robust email rendering."""
+    """Convert TeX math and text accents in report text for robust email rendering."""
     converted = re.sub(
         r"\\\[(.+?)\\\]",
         lambda m: _math_fragment_to_email_text(m.group(1)),
@@ -193,7 +287,7 @@ def latex_to_email_text(text: str) -> str:
         converted,
         flags=re.S,
     )
-    return converted
+    return _latex_text_accents_to_unicode(converted)
 
 
 def _user_agent() -> str:

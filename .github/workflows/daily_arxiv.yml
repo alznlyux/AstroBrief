@@ -8,7 +8,13 @@ on:
     # Avoid the top of the UTC hour, where GitHub documents heavier scheduler load.
     # daily.py exits immediately if the day's successful-send marker exists.
     - cron: '17 2 * * 1-5'
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force a run even if today already has a sent marker'
+        required: false
+        default: false
+        type: boolean
 
 # Scheduled events can be delayed. If primary and fallback are released together,
 # serialize them so only one can reach the mail-sending section at a time.
@@ -54,7 +60,12 @@ jobs:
           SMTP_FROM: ${{ secrets.SMTP_FROM }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           ASTROBRIEF_CONTACT: ${{ vars.ASTROBRIEF_CONTACT }}
-        run: python daily.py -t "${{ github.token }}"
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force }}" = "true" ]; then
+            python daily.py -t "${{ github.token }}" --force
+          else
+            python daily.py -t "${{ github.token }}"
+          fi
 
       - name: Commit generated briefs and send state
         if: always()

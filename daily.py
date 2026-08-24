@@ -9,12 +9,12 @@ import os
 import pathlib
 import re
 
+from email_cleanup import send_email
 from github_issue import make_github_issue
 from semantic_daily import (
     apply_final_scope_guard,
     build_reports,
     fetch_daily_papers,
-    send_email,
 )
 from semantic_recommender import score_papers
 

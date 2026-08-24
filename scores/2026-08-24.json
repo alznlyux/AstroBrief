@@ -1,4 +1,6 @@
 {
+  "run_date": "2026-08-24",
+  "arxiv_batch_date": "2026-08-21",
   "summary": {
     "candidate_count": 47,
     "nli_evaluated": 15,

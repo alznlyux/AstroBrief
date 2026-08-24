@@ -35,9 +35,39 @@ def _cleanup_simple_charge_scripts(text: str) -> str:
     )
 
 
+def _cleanup_tex_spacing(text: str) -> str:
+    """Turn common TeX spacing commands in ordinary text into email-safe spacing."""
+    value = text
+    for command in (r"\,", r"\;", r"\:", r"\ "):
+        value = value.replace(command, " ")
+    value = value.replace(r"\!", "")
+    # Avoid doubled spaces introduced by source markup while preserving newlines.
+    value = re.sub(r"[ \t]{2,}", " ", value)
+    return value
+
+
+def _cleanup_magnitude_superscripts(text: str) -> str:
+    """Render the common astronomical magnitude superscript m as Unicode ᵐ.
+
+    arXiv abstracts sometimes write magnitudes as $4^{m}$ or $6^m$.
+    This is only a presentation cleanup; it does not reinterpret arbitrary
+    variables or normalize A_V/Av notation.
+    """
+
+    def convert_math(match: re.Match[str]) -> str:
+        fragment = match.group(1)
+        fragment = re.sub(r"\^\{m\}", "ᵐ", fragment)
+        fragment = re.sub(r"\^m(?![A-Za-z])", "ᵐ", fragment)
+        return f"${fragment}$"
+
+    return re.sub(r"(?<!\\)\$(.+?)(?<!\\)\$", convert_math, text, flags=re.S)
+
+
 def cleanup_email_markdown(text: str) -> str:
     value = _cleanup_author_lines(text)
     value = _cleanup_simple_charge_scripts(value)
+    value = _cleanup_magnitude_superscripts(value)
+    value = _cleanup_tex_spacing(value)
     return value
 
 

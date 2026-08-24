@@ -1,18 +1,15 @@
-name: AstroBrief One-Time 2026-08-24 10:20 CST
+name: AstroBrief One-Time 2026-08-24 11:10 CST
 
 on:
   schedule:
-    # One-time test target: 2026-08-24 10:20 Beijing time = 02:20 UTC.
-    # GitHub cron has no year/month/day field, so the job is limited to the first
-    # scheduled run and the exact UTC date is verified before any mail is sent.
-    - cron: '20 2 * * *'
+    # One-time test target: 2026-08-24 11:10 Beijing time = 03:10 UTC.
+    # This gives GitHub's scheduler substantially more lead time than the
+    # previous 10:20 test, whose workflow was committed only ~10 minutes earlier.
+    - cron: '10 3 * * *'
   workflow_dispatch: {}
 
 jobs:
   run-once:
-    # For scheduled executions, only the first run of this workflow is eligible.
-    # Manual dispatch remains available for debugging.
-    if: ${{ github.event_name == 'workflow_dispatch' || github.run_number == 1 }}
     runs-on: ubuntu-latest
     permissions:
       contents: write

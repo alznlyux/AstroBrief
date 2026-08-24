@@ -1,23 +1,23 @@
 name: AstroBrief Daily
 
 on:
+  # Production timing is driven by the always-on Tsinghua server via
+  # workflow_dispatch.  Keep one deliberately late GitHub-native schedule only
+  # as an emergency fallback in case the external trigger/token/server fails.
   schedule:
-    # Primary: weekdays, Beijing 09:30 (UTC 01:30)
-    - cron: '30 1 * * 1-5'
-    # Fallback: weekdays, Beijing 10:17 (UTC 02:17).
-    # Avoid the top of the UTC hour, where GitHub documents heavier scheduler load.
-    # daily.py exits immediately if the day's successful-send marker exists.
-    - cron: '17 2 * * 1-5'
+    # Weekdays, Beijing 10:43 (UTC 02:43).  The batch-date sent marker prevents
+    # duplicate mail when the server-triggered run has already succeeded.
+    - cron: '43 2 * * 1-5'
   workflow_dispatch:
     inputs:
       force:
-        description: 'Force a run even if today already has a sent marker'
+        description: 'Force a run even if the retrieved arXiv batch already has a sent marker'
         required: false
         default: false
         type: boolean
 
-# Scheduled events can be delayed. If primary and fallback are released together,
-# serialize them so only one can reach the mail-sending section at a time.
+# Serialize server-triggered, manual, and emergency-fallback runs so only one can
+# reach the mail-sending section at a time.
 concurrency:
   group: astrobrief-daily-production
   cancel-in-progress: false

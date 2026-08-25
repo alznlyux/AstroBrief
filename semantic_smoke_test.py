@@ -1,10 +1,11 @@
 # coding: utf-8
-"""Regression checks for AstroBrief ingestion and semantic scope decisions."""
+"""Regression checks for AstroBrief ingestion, semantic scope, and email UI."""
 from __future__ import annotations
 
 import datetime as dt
 
 import semantic_daily
+from email_ui import render_email_html, render_email_text
 from semantic_daily import _fetch_arxiv_day, apply_final_scope_guard
 from semantic_recommender import score_papers
 
@@ -148,9 +149,60 @@ def test_semantic_scope() -> None:
     assert summary["candidate_count"] == 7
 
 
+def test_email_ui() -> None:
+    """Keep production email concise, structured, and faithful to semantic output."""
+    scored = [
+        {
+            **paper(
+                "2608.12345",
+                "Cold H I and Molecular Cloud Formation",
+                "This complete abstract must remain visible in the production email, including $N_{HI}$ and $10^{20}$ units.",
+                "astro-ph.GA",
+            ),
+            "authors": ["A. Author", "B. Author"],
+            "categories": ["astro-ph.GA", "astro-ph.SR"],
+            "priority": "A",
+            "top_topics": ["atomic_ism", "molecular_clouds", "star_formation"],
+        },
+        {
+            **paper(
+                "2608.12346",
+                "Magnetic Fields in Dense Molecular Gas",
+                "A second complete abstract used to exercise the B card.",
+                "astro-ph.GA",
+            ),
+            "priority": "B",
+            "top_topics": ["magnetic_fields", "turbulence"],
+        },
+        {
+            **paper("2608.99999", "Boundary control", "Not emailed.", "astro-ph.CO"),
+            "priority": "C",
+            "top_topics": ["galactic_ism"],
+        },
+    ]
+    summary = {"A": 1, "B": 1, "C": 1, "SKIP": 0, "candidate_count": 3}
+    rich = render_email_html("2026-08-25", scored, summary)
+    plain = render_email_text("2026-08-25", scored, summary)
+
+    assert ">AstroBrief<" in rich, rich[:500]
+    assert "DAILY LITERATURE BRIEF" in rich
+    assert "MATCHED TOPICS" in rich
+    assert "Atomic ISM · Molecular clouds · Star formation" in rich
+    assert "Magnetic fields · Turbulence" in rich
+    assert "This complete abstract must remain visible" in rich
+    assert "N_HI" in rich or "N<" not in rich
+    assert "Boundary control" not in rich
+    assert "Why recommended" not in rich
+    assert "Score:" not in plain
+    assert "Matched topics:" in plain
+    assert "Boundary control" not in plain
+    assert "#627C8A" in rich and "#8B9D93" in rich
+
+
 def main() -> None:
     test_atom_ingestion()
     test_semantic_scope()
+    test_email_ui()
     print("[OK] AstroBrief smoke test passed")
 
 

@@ -196,7 +196,8 @@ def test_email_ui() -> None:
     assert "Score:" not in plain
     assert "Matched topics:" in plain
     assert "Boundary control" not in plain
-    assert "#627C8A" in rich and "#806A75" in rich
+    assert "#9B835F" in rich and "#627C8A" in rich
+    assert "#806A75" not in rich
 
 
 def main() -> None:

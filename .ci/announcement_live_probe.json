@@ -1,9 +1,9 @@
 {
   "batch_date": "2026-08-24",
   "counts": {
-    "new": 95,
-    "cross": 0,
-    "total": 95
+    "new": 53,
+    "cross": 14,
+    "total": 67
   },
   "first_ids": [
     "2608.20415",
@@ -16,7 +16,5 @@
     "2608.20469",
     "2608.20470",
     "2608.20544"
-  ],
-  "headings": [],
-  "cross_fragment": "ss Enter to search &middot; <a href=\"https://arxiv.org/search/advanced\">Advanced search</a>\n    </div>\n  </div>\n</div>\n    <main>\n      <div id=\"content\">\n<div id='content-inner'>\n<div id='dlpage'>\n  <h1>Astrophysics</h1>\n\n<ul>\n  <li><a href=\"#item0\">New submissions</a></li>\n  <li><a href=\"#item54\">Cross-lists</a></li>\n  <li><a href=\"#item68\">Replacements</a></li>\n</ul>\n\n<p>See <a id=\"recent-astro-ph\" aria-labelledby=\"recent-astro-ph\" href=\"/list/astro-ph/recent\">recent</a> articles</p>\n<h3>Showing new listings for Monday, 24 August 2026</h3>\n\n      <div class='paging'>Total of 95 entries \n    </div>\n    <div class='morefewer'>Showing up to 2000 entries per page:\n          <a href=/list/astro-ph/new?skip=0&amp;show=1000 rel=\"nofollow\">\n      fewer</a>\n |\n          <span style=\"color: #4545"
+  ]
 }

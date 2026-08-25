@@ -23,6 +23,7 @@ def _item(paper_id: str, title: str, authors: str, subjects: str, abstract: str,
 
 
 def test_complete_announcement_page() -> None:
+    # Mirror the real arXiv page structure: each section has its own <dl>.
     html = f"""
     <html><body><div id="content">
       <ul>
@@ -32,10 +33,17 @@ def test_complete_announcement_page() -> None:
       </ul>
       <h3>Showing new listings for Monday, 24 August 2026</h3>
       <div class="paging">Total of 4 entries</div>
+      <h3>New submissions</h3>
       <dl>
         {_item('2608.20415', 'Cold neutral gas in a Galactic halo cloud', 'Example Author, Second Author', 'Astrophysics of Galaxies (astro-ph.GA); Solar and Stellar Astrophysics (astro-ph.SR)', 'We study H I structure and turbulence.')}
         {_item('2608.20436', 'Dense cores and magnetic fields', 'Core Author', 'Solar and Stellar Astrophysics (astro-ph.SR)', 'We study prestellar dense cores.')}
+      </dl>
+      <h3>Cross-lists</h3>
+      <dl>
         {_item('2608.19999', 'Cross-listed interstellar gas study', 'Cross List', 'Fluid Dynamics (physics.flu-dyn); Astrophysics of Galaxies (astro-ph.GA)', 'A cross-listed paper with interstellar gas.', version='v2')}
+      </dl>
+      <h3>Replacements</h3>
+      <dl>
         {_item('2608.10000', 'Replacement paper', 'Old Author', 'Astrophysics of Galaxies (astro-ph.GA)', 'This replacement must not enter screening.', version='v3')}
       </dl>
     </div></body></html>
@@ -67,8 +75,12 @@ def test_page_without_replacements() -> None:
       </ul>
       <h3>Showing new listings for Tuesday, 25 August 2026</h3>
       <div class="paging">Total of 2 entries</div>
+      <h3>New submissions</h3>
       <dl>
         {_item('2608.21000', 'New molecular cloud paper', 'New Author', 'Solar and Stellar Astrophysics (astro-ph.SR)', 'Molecular cloud abstract.')}
+      </dl>
+      <h3>Cross-lists</h3>
+      <dl>
         {_item('2608.20000', 'Cross-listed turbulence paper', 'Fluid Author', 'Fluid Dynamics (physics.flu-dyn); Astrophysics of Galaxies (astro-ph.GA)', 'Interstellar turbulence abstract.')}
       </dl>
     </div></body></html>

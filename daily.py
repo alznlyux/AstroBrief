@@ -10,7 +10,7 @@ import pathlib
 import re
 
 from arxiv_batch import fetch_daily_papers
-from email_cleanup import send_email
+from email_ui import send_email
 from github_issue import make_github_issue
 from semantic_daily import apply_final_scope_guard, build_reports
 from semantic_recommender import score_papers
@@ -56,7 +56,7 @@ def main(token: str, force: bool = False) -> None:
     scored, summary = score_papers(papers)
     scored, summary = apply_final_scope_guard(scored, summary)
     selected = [p for p in scored if p["priority"] in {"A", "B"}]
-    full_report, email_report = build_reports(issue_title, scored, summary)
+    full_report, _email_report = build_reports(issue_title, scored, summary)
 
     run_date = dt.datetime.now(dt.timezone.utc).date().isoformat()
     brief_dir = pathlib.Path("briefs")
@@ -84,7 +84,9 @@ def main(token: str, force: bool = False) -> None:
     if not _smtp_is_configured():
         raise RuntimeError("SMTP is not fully configured; refusing to mark batch as sent")
 
-    send_email(email_report, len(selected))
+    # Email rendering is presentation-only: the structured A/B decisions and
+    # matched topics come directly from the existing semantic pipeline.
+    send_email(batch_date, scored, summary)
 
     # Persist the marker immediately after a successful SMTP send. The workflow's
     # final commit step runs with `if: always()`, so this marker is still pushed if

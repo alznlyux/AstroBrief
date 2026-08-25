@@ -1023,7 +1023,7 @@
       "priority": "C",
       "score": 47.5,
       "best_positive_topic": "astrochemistry",
-      "best_positive_semantic": 0.7384,
+      "best_positive_semantic": 0.7383,
       "best_negative_topic": "galaxy_evolution",
       "best_negative_semantic": 0.7382,
       "semantic_margin": 0.0002,

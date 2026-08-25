@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/announcement_live_probe.yml'
 
+# One-time production-ingestion validation; no SMTP and no repository secrets.
 jobs:
   probe:
     runs-on: ubuntu-latest

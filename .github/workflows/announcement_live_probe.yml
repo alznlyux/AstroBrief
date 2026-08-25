@@ -7,7 +7,7 @@ on:
       - '.github/workflows/announcement_live_probe.yml'
 
 # One-time production-ingestion validation; no SMTP and no repository secrets.
-# Re-run after switching section parsing to arXiv's #itemN boundaries.
+# Final check: manifest parsing plus Atom id_list metadata retrieval.
 jobs:
   probe:
     runs-on: ubuntu-latest
@@ -25,18 +25,20 @@ jobs:
       - name: Install lightweight dependency
         run: pip install requests
 
-      - name: Read live arXiv announcement manifest
+      - name: Read live arXiv announcement and metadata
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-          from arxiv_batch import fetch_announcement_manifest
+          from arxiv_batch import fetch_announcement_manifest, fetch_metadata_for_ids
 
           batch_date, ids, counts = fetch_announcement_manifest()
+          papers = fetch_metadata_for_ids(ids)
           result = {
               'batch_date': batch_date,
               'counts': counts,
-              'first_ids': ids[:10],
+              'metadata_count': len(papers),
+              'first_ids': [p['id'] for p in papers[:10]],
           }
           Path('.ci').mkdir(exist_ok=True)
           Path('.ci/announcement_live_probe.json').write_text(

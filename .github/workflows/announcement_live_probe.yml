@@ -1,0 +1,52 @@
+name: AstroBrief Announcement Live Probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/announcement_live_probe.yml'
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - name: Install lightweight dependency
+        run: pip install requests
+
+      - name: Read live arXiv announcement manifest
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from arxiv_batch import fetch_announcement_manifest
+
+          batch_date, ids, counts = fetch_announcement_manifest()
+          result = {
+              'batch_date': batch_date,
+              'counts': counts,
+              'first_ids': ids[:10],
+          }
+          Path('.ci').mkdir(exist_ok=True)
+          Path('.ci/announcement_live_probe.json').write_text(
+              json.dumps(result, indent=2) + '\n', encoding='utf-8'
+          )
+          print(json.dumps(result, indent=2))
+          PY
+
+      - name: Record probe result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .ci/announcement_live_probe.json
+          git commit -m "Record live arXiv announcement probe"
+          git push

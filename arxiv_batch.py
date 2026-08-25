@@ -1,29 +1,22 @@
 # coding: utf-8
-"""Resolve the real arXiv astro-ph announcement batch and fetch its metadata.
+"""Ingest the real arXiv astro-ph announcement directly from its daily listing.
 
-The arXiv `/list/astro-ph/new` page defines the public announcement batch.
-`submittedDate` in the Atom API is a submission timestamp and is not equivalent
-to an announcement date, especially across weekends, moderation delays, and
-cross-lists. This module therefore uses the list page only as a manifest of
-arXiv IDs, then retrieves structured metadata for those IDs from the Atom API.
+AstroBrief is a daily announcement consumer, not a historical arXiv database.
+The public `/list/astro-ph/new` page is therefore the source of truth for both
+batch membership and paper metadata.  One page request provides the announced
+batch date, section boundaries, arXiv IDs, titles, authors, subjects, and
+abstracts.  The production path intentionally does not depend on the Atom API.
 """
 from __future__ import annotations
 
 import datetime as dt
 import os
 import re
-import time
-import xml.etree.ElementTree as ET
-from html.parser import HTMLParser
 
 import requests
+from bs4 import BeautifulSoup
 
 ARXIV_NEW_LIST = "https://arxiv.org/list/astro-ph/new"
-ARXIV_API = "https://export.arxiv.org/api/query"
-ATOM = "{http://www.w3.org/2005/Atom}"
-ARXIV = "{http://arxiv.org/schemas/atom}"
-_TRANSIENT_HTTP = {429, 500, 502, 503, 504}
-_BACKOFF_SECONDS = (15, 30, 60, 120)
 
 
 def _clean(text: str) -> str:
@@ -40,179 +33,210 @@ def _user_agent() -> str:
     return "AstroBrief/1.0"
 
 
-def _get_atom_with_backoff(params: dict, timeout: int = 120) -> requests.Response:
-    """GET the Atom API with bounded retries for transient rate/server errors."""
-    attempts = len(_BACKOFF_SECONDS) + 1
-    last_response: requests.Response | None = None
-
-    for attempt in range(attempts):
-        try:
-            response = requests.get(
-                ARXIV_API,
-                params=params,
-                headers={"User-Agent": _user_agent()},
-                timeout=timeout,
-            )
-        except requests.RequestException as exc:
-            if attempt >= attempts - 1:
-                raise
-            wait = _BACKOFF_SECONDS[attempt]
-            print(
-                f"[WARN] arXiv Atom request failed ({exc.__class__.__name__}); "
-                f"retrying in {wait}s ({attempt + 1}/{attempts - 1})"
-            )
-            time.sleep(wait)
+def _parse_batch_date(soup: BeautifulSoup) -> str:
+    for heading in soup.find_all("h3"):
+        text = _clean(heading.get_text(" ", strip=True))
+        match = re.match(r"Showing new listings for (.+)$", text, flags=re.I)
+        if not match:
             continue
+        date_text = match.group(1).strip()
+        try:
+            parsed = dt.datetime.strptime(date_text, "%A, %d %B %Y").date()
+        except ValueError as exc:
+            raise RuntimeError(
+                f"Could not parse arXiv announcement date {date_text!r}"
+            ) from exc
+        weekday = date_text.split(",", 1)[0].strip()
+        if parsed.strftime("%A") != weekday:
+            raise RuntimeError(
+                f"arXiv announcement weekday/date mismatch: {date_text!r}"
+            )
+        return parsed.isoformat()
+    raise RuntimeError("arXiv new-list page did not expose an announcement date")
 
-        last_response = response
-        if response.status_code not in _TRANSIENT_HTTP:
-            response.raise_for_status()
-            return response
 
-        if attempt >= attempts - 1:
-            response.raise_for_status()
+def _parse_section_starts(soup: BeautifulSoup) -> dict[str, int]:
+    starts: dict[str, int] = {}
+    for anchor in soup.find_all("a", href=re.compile(r"^#item\d+$")):
+        href = str(anchor.get("href") or "")
+        text = _clean(anchor.get_text(" ", strip=True)).lower()
+        item = int(href.removeprefix("#item"))
+        if text.startswith("new submissions"):
+            starts["new"] = item
+        elif text.startswith("cross-lists"):
+            starts["cross"] = item
+        elif text.startswith("replacements"):
+            starts["replacement"] = item
 
-        retry_after = response.headers.get("Retry-After", "").strip()
-        if retry_after:
-            try:
-                wait = max(3, min(180, int(float(retry_after))))
-            except ValueError:
-                wait = _BACKOFF_SECONDS[attempt]
-        else:
-            wait = _BACKOFF_SECONDS[attempt]
+    if "new" not in starts:
+        raise RuntimeError("arXiv new-list page did not expose the New submissions boundary")
+    return starts
 
-        print(
-            f"[WARN] arXiv Atom API returned HTTP {response.status_code}; "
-            f"retrying in {wait}s ({attempt + 1}/{attempts - 1})"
+
+def _extract_categories(subjects_text: str) -> list[str]:
+    """Extract ordered arXiv category codes from the listing's Subjects text."""
+    categories: list[str] = []
+    for value in re.findall(r"\(([^()]+)\)", subjects_text):
+        code = value.strip()
+        if not re.fullmatch(r"[A-Za-z0-9.-]+", code):
+            continue
+        if "." not in code and "-" not in code:
+            continue
+        if code not in categories:
+            categories.append(code)
+    return categories
+
+
+def _extract_authors(authors_div) -> list[str]:
+    # arXiv normally renders each author as a link.  Prefer those atomic names so
+    # reporting can continue to join a real list rather than parsing punctuation.
+    linked = [
+        _clean(anchor.get_text(" ", strip=True))
+        for anchor in authors_div.find_all("a")
+        if _clean(anchor.get_text(" ", strip=True))
+    ]
+    if linked:
+        return linked
+
+    text = _clean(authors_div.get_text(" ", strip=True))
+    text = re.sub(r"^Authors?:\s*", "", text, flags=re.I)
+    return [part.strip() for part in text.split(",") if part.strip()]
+
+
+def _parse_listing_entries(soup: BeautifulSoup) -> list[dict]:
+    content = soup.find("div", id="content") or soup
+    listing = content.find("dl")
+    if listing is None:
+        raise RuntimeError("arXiv new-list page did not contain the article listing")
+
+    dt_list = listing.find_all("dt", recursive=False)
+    dd_list = listing.find_all("dd", recursive=False)
+    if len(dt_list) != len(dd_list):
+        raise RuntimeError(
+            f"arXiv listing dt/dd mismatch: {len(dt_list)} ids vs {len(dd_list)} metadata blocks"
         )
-        time.sleep(wait)
+    if not dt_list:
+        raise RuntimeError("arXiv article listing was empty")
 
-    if last_response is not None:
-        last_response.raise_for_status()
-    raise RuntimeError("arXiv Atom API request failed without a response")
+    # `?show=2000` should expose the entire daily page.  If arXiv reports a total,
+    # fail closed rather than silently screening a truncated listing.
+    page_text = _clean(content.get_text(" ", strip=True))
+    total_match = re.search(r"Total of\s+(\d+)\s+entries", page_text, flags=re.I)
+    if total_match and int(total_match.group(1)) != len(dt_list):
+        raise RuntimeError(
+            f"arXiv listing appears incomplete: page says {total_match.group(1)} entries "
+            f"but {len(dt_list)} were parsed"
+        )
+
+    entries: list[dict] = []
+    for index, (dt_node, dd_node) in enumerate(zip(dt_list, dd_list), start=1):
+        abs_anchor = dt_node.find("a", attrs={"title": "Abstract"})
+        if abs_anchor is None:
+            abs_anchor = dt_node.find("a", href=re.compile(r"^/abs/"))
+        href = str(abs_anchor.get("href") or "") if abs_anchor is not None else ""
+        match = re.fullmatch(r"/abs/([^?#/]+)", href)
+        if not match:
+            raise RuntimeError(f"Could not parse arXiv ID for listing item {index}")
+        paper_id = re.sub(r"v\d+$", "", match.group(1))
+
+        title_div = dd_node.select_one("div.list-title")
+        authors_div = dd_node.select_one("div.list-authors")
+        subjects_div = dd_node.select_one("div.list-subjects")
+        abstract_node = dd_node.select_one("p.mathjax") or dd_node.find("p")
+        if None in (title_div, authors_div, subjects_div, abstract_node):
+            raise RuntimeError(
+                f"Incomplete arXiv metadata block for {paper_id}: "
+                "title/authors/subjects/abstract are all required"
+            )
+
+        title = _clean(title_div.get_text(" ", strip=True))
+        title = re.sub(r"^Title:\s*", "", title, flags=re.I)
+        authors = _extract_authors(authors_div)
+        subjects_text = _clean(subjects_div.get_text(" ", strip=True))
+        subjects_text = re.sub(r"^Subjects?:\s*", "", subjects_text, flags=re.I)
+        categories = _extract_categories(subjects_text)
+        abstract = _clean(abstract_node.get_text(" ", strip=True))
+
+        if not title or not authors or not abstract or not categories:
+            raise RuntimeError(
+                f"Incomplete parsed metadata for {paper_id}: "
+                f"title={bool(title)} authors={bool(authors)} "
+                f"categories={bool(categories)} abstract={bool(abstract)}"
+            )
+        if not any(cat.startswith("astro-ph.") for cat in categories):
+            raise RuntimeError(
+                f"Listing item {paper_id} has no astro-ph category: {categories}"
+            )
+
+        entries.append(
+            {
+                "id": paper_id,
+                "title": title,
+                "authors": authors,
+                "subjects": "; ".join(categories),
+                "categories": categories,
+                "primary_category": categories[0],
+                "abstract": abstract,
+                "main_page": f"https://arxiv.org/abs/{paper_id}",
+                "pdf": f"https://arxiv.org/pdf/{paper_id}.pdf",
+            }
+        )
+    return entries
 
 
-class _AnnouncementListParser(HTMLParser):
-    """Extract listing date, section boundaries, and ordered arXiv IDs."""
+def parse_announcement_page(html: str) -> tuple[str, list[dict], dict[str, int]]:
+    """Parse one complete `/list/astro-ph/new` page into production candidates."""
+    soup = BeautifulSoup(html, "html.parser")
+    batch_date = _parse_batch_date(soup)
+    starts = _parse_section_starts(soup)
+    all_entries = _parse_listing_entries(soup)
 
-    def __init__(self) -> None:
-        super().__init__(convert_charrefs=True)
-        self._in_h3 = False
-        self._h3_parts: list[str] = []
-        self._nav_href: str | None = None
-        self._nav_parts: list[str] = []
-        self.batch_date: str | None = None
-        self.section_starts: dict[str, int] = {}
-        self.all_ids: list[str] = []
+    new_start = starts["new"]
+    cross_start = starts.get("cross")
+    replacement_start = starts.get("replacement")
 
-    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        tag = tag.lower()
-        if tag == "h3":
-            self._in_h3 = True
-            self._h3_parts = []
-            return
-        if tag != "a":
-            return
+    # arXiv's navigation uses #item0 as the New-submission sentinel while later
+    # boundaries point at the first displayed item in that section.  For example,
+    # #item54 means items 1..53 are New submissions.
+    if new_start != 0:
+        raise RuntimeError(f"Unexpected arXiv New submissions boundary: #item{new_start}")
 
-        href = dict(attrs).get("href") or ""
-        nav_match = re.fullmatch(r"#item(\d+)", href)
-        if nav_match:
-            self._nav_href = href
-            self._nav_parts = []
-            return
+    if replacement_start is None:
+        candidate_total = len(all_entries)
+    else:
+        candidate_total = replacement_start - 1
+    if candidate_total < 1 or candidate_total > len(all_entries):
+        raise RuntimeError(
+            f"Invalid replacement boundary {replacement_start!r} for {len(all_entries)} entries"
+        )
 
-        abs_match = re.fullmatch(r"/abs/([^?#]+)", href)
-        if not abs_match:
-            return
-        paper_id = re.sub(r"v\d+$", "", abs_match.group(1))
-        if paper_id and paper_id not in self.all_ids:
-            self.all_ids.append(paper_id)
+    if cross_start is None:
+        new_count = candidate_total
+    else:
+        new_count = cross_start - 1
+        if new_count < 0 or new_count > candidate_total:
+            raise RuntimeError(
+                f"Invalid cross-list boundary {cross_start!r} for {candidate_total} candidates"
+            )
+    cross_count = candidate_total - new_count
 
-    def handle_data(self, data: str) -> None:
-        if self._in_h3:
-            self._h3_parts.append(data)
-        if self._nav_href is not None:
-            self._nav_parts.append(data)
+    candidates = all_entries[:candidate_total]
+    ids = [paper["id"] for paper in candidates]
+    if len(ids) != len(set(ids)):
+        raise RuntimeError("Duplicate arXiv IDs appeared inside the new/cross-list candidate set")
 
-    def handle_endtag(self, tag: str) -> None:
-        tag = tag.lower()
-        if tag == "h3" and self._in_h3:
-            text = _clean("".join(self._h3_parts))
-            self._in_h3 = False
-            self._h3_parts = []
-            date_match = re.match(r"Showing new listings for (.+)$", text, flags=re.I)
-            if date_match:
-                date_text = date_match.group(1).strip()
-                try:
-                    parsed = dt.datetime.strptime(date_text, "%A, %d %B %Y").date()
-                except ValueError as exc:
-                    raise RuntimeError(
-                        f"Could not parse arXiv announcement date {date_text!r}"
-                    ) from exc
-                self.batch_date = parsed.isoformat()
-            return
-
-        if tag == "a" and self._nav_href is not None:
-            text = _clean("".join(self._nav_parts)).lower()
-            item_number = int(self._nav_href.removeprefix("#item"))
-            if text.startswith("new submissions"):
-                self.section_starts["new"] = item_number
-            elif text.startswith("cross-lists"):
-                self.section_starts["cross"] = item_number
-            elif text.startswith("replacements"):
-                self.section_starts["replacement"] = item_number
-            self._nav_href = None
-            self._nav_parts = []
+    counts = {"new": new_count, "cross": cross_count, "total": candidate_total}
+    return batch_date, candidates, counts
 
 
 def parse_announcement_manifest(html: str) -> tuple[str, list[str], dict[str, int]]:
-    """Parse `/list/astro-ph/new` into batch date and new/cross-list IDs.
-
-    arXiv numbers the displayed entries continuously. Its navigation links expose
-    exact item boundaries such as `#item54` for Cross-lists and `#item68` for
-    Replacements. We use those boundaries so replacements are excluded even when
-    the surrounding HTML heading structure changes.
-    """
-    parser = _AnnouncementListParser()
-    parser.feed(html)
-    parser.close()
-
-    if not parser.batch_date:
-        raise RuntimeError("arXiv new-list page did not expose an announcement date")
-    if not parser.all_ids:
-        raise RuntimeError(
-            f"arXiv announcement batch {parser.batch_date} contained no arXiv IDs"
-        )
-
-    replacement_start = parser.section_starts.get("replacement")
-    if replacement_start is None:
-        candidate_total = len(parser.all_ids)
-    else:
-        candidate_total = max(0, min(len(parser.all_ids), replacement_start - 1))
-
-    ids = parser.all_ids[:candidate_total]
-    if not ids:
-        raise RuntimeError(
-            f"arXiv announcement batch {parser.batch_date} contained no new/cross-list IDs"
-        )
-
-    cross_start = parser.section_starts.get("cross")
-    if cross_start is None:
-        new_count = len(ids)
-    else:
-        new_count = max(0, min(len(ids), cross_start - 1))
-    cross_count = len(ids) - new_count
-
-    counts = {
-        "new": new_count,
-        "cross": cross_count,
-        "total": len(ids),
-    }
-    return parser.batch_date, ids, counts
+    """Compatibility helper returning only candidate IDs and section counts."""
+    batch_date, papers, counts = parse_announcement_page(html)
+    return batch_date, [paper["id"] for paper in papers], counts
 
 
-def fetch_announcement_manifest() -> tuple[str, list[str], dict[str, int]]:
-    """Fetch the current public astro-ph announcement manifest from arXiv."""
+def fetch_announcement_page() -> tuple[str, list[dict], dict[str, int]]:
+    """Fetch and fully parse the current public astro-ph announcement in one GET."""
     response = requests.get(
         ARXIV_NEW_LIST,
         params={"show": 2000},
@@ -220,87 +244,24 @@ def fetch_announcement_manifest() -> tuple[str, list[str], dict[str, int]]:
         timeout=120,
     )
     response.raise_for_status()
-    batch_date, ids, counts = parse_announcement_manifest(response.text)
+    batch_date, papers, counts = parse_announcement_page(response.text)
     print(
         f"[INFO] arXiv announcement batch {batch_date}: "
-        f"{counts['new']} new + {counts['cross']} cross-list = {counts['total']} candidates"
+        f"{counts['new']} new + {counts['cross']} cross-list = "
+        f"{counts['total']} candidates (metadata parsed from listing page)"
     )
-    return batch_date, ids, counts
+    return batch_date, papers, counts
 
 
-def _parse_atom_entries(content: bytes) -> dict[str, dict]:
-    root = ET.fromstring(content)
-    papers: dict[str, dict] = {}
-    for entry in root.findall(f"{ATOM}entry"):
-        raw_id = _clean(entry.findtext(f"{ATOM}id", default=""))
-        paper_id = raw_id.rsplit("/", 1)[-1]
-        paper_id = re.sub(r"v\d+$", "", paper_id)
-        if not paper_id:
-            continue
-
-        title = _clean(entry.findtext(f"{ATOM}title", default=""))
-        abstract = _clean(entry.findtext(f"{ATOM}summary", default=""))
-        authors = [
-            _clean(author.findtext(f"{ATOM}name", default=""))
-            for author in entry.findall(f"{ATOM}author")
-        ]
-        categories = [
-            node.attrib.get("term", "")
-            for node in entry.findall(f"{ATOM}category")
-            if node.attrib.get("term", "")
-        ]
-        primary_node = entry.find(f"{ARXIV}primary_category")
-        primary = primary_node.attrib.get("term", "") if primary_node is not None else ""
-
-        papers[paper_id] = {
-            "id": paper_id,
-            "title": title,
-            "authors": authors,
-            "subjects": "; ".join(categories),
-            "categories": categories,
-            "primary_category": primary,
-            "abstract": abstract,
-            "main_page": f"https://arxiv.org/abs/{paper_id}",
-            "pdf": f"https://arxiv.org/pdf/{paper_id}.pdf",
-        }
-    return papers
-
-
-def fetch_metadata_for_ids(ids: list[str], chunk_size: int = 100) -> list[dict]:
-    """Retrieve complete structured Atom metadata for an announcement manifest."""
-    if not ids:
-        return []
-
-    by_id: dict[str, dict] = {}
-    for start in range(0, len(ids), chunk_size):
-        chunk = ids[start : start + chunk_size]
-        response = _get_atom_with_backoff(
-            {
-                "id_list": ",".join(chunk),
-                "start": 0,
-                "max_results": len(chunk),
-            }
-        )
-        by_id.update(_parse_atom_entries(response.content))
-        if start + chunk_size < len(ids):
-            time.sleep(3)
-
-    missing = [paper_id for paper_id in ids if paper_id not in by_id]
-    if missing:
-        preview = ", ".join(missing[:10])
-        suffix = " ..." if len(missing) > 10 else ""
-        raise RuntimeError(
-            f"Atom API returned incomplete metadata: missing {len(missing)} of "
-            f"{len(ids)} announcement IDs ({preview}{suffix})"
-        )
-
-    return [by_id[paper_id] for paper_id in ids]
+def fetch_announcement_manifest() -> tuple[str, list[str], dict[str, int]]:
+    """Fetch the current announcement and expose only its candidate IDs."""
+    batch_date, papers, counts = fetch_announcement_page()
+    return batch_date, [paper["id"] for paper in papers], counts
 
 
 def fetch_daily_papers() -> tuple[str, list[dict]]:
-    """Return the current astro-ph announcement batch and structured metadata."""
-    batch_date, ids, _counts = fetch_announcement_manifest()
-    papers = fetch_metadata_for_ids(ids)
+    """Return the current announcement batch without using the Atom API."""
+    batch_date, papers, _counts = fetch_announcement_page()
     issue_title = f"Latest astro-ph submissions for {batch_date}"
-    print(f"[INFO] Retrieved metadata for all {len(papers)} announcement candidates")
+    print(f"[INFO] Parsed complete listing metadata for all {len(papers)} candidates")
     return issue_title, papers

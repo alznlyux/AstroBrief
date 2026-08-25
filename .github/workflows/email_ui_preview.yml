@@ -1,0 +1,49 @@
+name: AstroBrief Email UI Preview
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/email_ui_preview.yml'
+
+jobs:
+  send-preview:
+    if: github.event.head_commit.message == 'Send one-off AstroBrief UI preview'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Send current AstroBrief email preview
+        env:
+          SMTP_HOST: smtp.gmail.com
+          SMTP_PORT: '465'
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_FROM: ${{ secrets.SMTP_FROM }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from email_ui import send_email
+
+          score_path = Path('scores/2026-08-25.json')
+          payload = json.loads(score_path.read_text(encoding='utf-8'))
+          send_email(
+              payload['arxiv_batch_date'],
+              payload['papers'],
+              payload['summary'],
+          )
+          PY

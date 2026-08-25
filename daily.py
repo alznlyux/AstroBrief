@@ -9,18 +9,15 @@ import os
 import pathlib
 import re
 
+from arxiv_batch import fetch_daily_papers
 from email_cleanup import send_email
 from github_issue import make_github_issue
-from semantic_daily import (
-    apply_final_scope_guard,
-    build_reports,
-    fetch_daily_papers,
-)
+from semantic_daily import apply_final_scope_guard, build_reports
 from semantic_recommender import score_papers
 
 
 def _extract_batch_date(issue_title: str) -> str:
-    """Extract the arXiv calendar-day identifier from the ingestion title."""
+    """Extract the arXiv announcement-batch date from the ingestion title."""
     match = re.search(r"\b(\d{4}-\d{2}-\d{2})\b", issue_title)
     if not match:
         raise RuntimeError(f"Could not determine arXiv batch date from: {issue_title!r}")
@@ -39,10 +36,10 @@ def _smtp_is_configured() -> bool:
 
 
 def main(token: str, force: bool = False) -> None:
-    # Always query arXiv first.  Deduplication is tied to the actual batch we
-    # retrieved, not to the wall-clock date on which this workflow happened to run.
-    # This is important around weekends, holidays, delayed publication, and the
-    # US daylight-saving-time transition.
+    # Always resolve arXiv's real public announcement batch first. Deduplication
+    # is tied to that batch, not to a UTC submission timestamp or workflow date.
+    # This is important around weekends, holidays, moderation delays, cross-lists,
+    # delayed announcements, and US daylight-saving-time transitions.
     issue_title, papers = fetch_daily_papers()
     batch_date = _extract_batch_date(issue_title)
 
@@ -89,7 +86,7 @@ def main(token: str, force: bool = False) -> None:
 
     send_email(email_report, len(selected))
 
-    # Persist the marker immediately after a successful SMTP send.  The workflow's
+    # Persist the marker immediately after a successful SMTP send. The workflow's
     # final commit step runs with `if: always()`, so this marker is still pushed if
     # a later non-email step (for example issue creation) fails.
     state_dir.mkdir(exist_ok=True)

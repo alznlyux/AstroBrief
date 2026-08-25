@@ -3,9 +3,9 @@
 
 AstroBrief is a daily announcement consumer, not a historical arXiv database.
 The public `/list/astro-ph/new` page is therefore the source of truth for both
-batch membership and paper metadata.  One page request provides the announced
+batch membership and paper metadata. One page request provides the announced
 batch date, section boundaries, arXiv IDs, titles, authors, subjects, and
-abstracts.  The production path intentionally does not depend on the Atom API.
+abstracts. The production path intentionally does not depend on the Atom API.
 """
 from __future__ import annotations
 
@@ -88,8 +88,6 @@ def _extract_categories(subjects_text: str) -> list[str]:
 
 
 def _extract_authors(authors_div) -> list[str]:
-    # arXiv normally renders each author as a link.  Prefer those atomic names so
-    # reporting can continue to join a real list rather than parsing punctuation.
     linked = [
         _clean(anchor.get_text(" ", strip=True))
         for anchor in authors_div.find_all("a")
@@ -104,32 +102,39 @@ def _extract_authors(authors_div) -> list[str]:
 
 
 def _parse_listing_entries(soup: BeautifulSoup) -> list[dict]:
+    """Parse every displayed article across New, Cross-list, and Replacement dl blocks."""
     content = soup.find("div", id="content") or soup
-    listing = content.find("dl")
-    if listing is None:
-        raise RuntimeError("arXiv new-list page did not contain the article listing")
+    listings = content.find_all("dl")
+    if not listings:
+        raise RuntimeError("arXiv new-list page did not contain the article listings")
 
-    dt_list = listing.find_all("dt", recursive=False)
-    dd_list = listing.find_all("dd", recursive=False)
-    if len(dt_list) != len(dd_list):
-        raise RuntimeError(
-            f"arXiv listing dt/dd mismatch: {len(dt_list)} ids vs {len(dd_list)} metadata blocks"
-        )
-    if not dt_list:
-        raise RuntimeError("arXiv article listing was empty")
+    pairs = []
+    for section_index, listing in enumerate(listings, start=1):
+        dt_list = listing.find_all("dt", recursive=False)
+        dd_list = listing.find_all("dd", recursive=False)
+        if len(dt_list) != len(dd_list):
+            raise RuntimeError(
+                f"arXiv listing section {section_index} dt/dd mismatch: "
+                f"{len(dt_list)} ids vs {len(dd_list)} metadata blocks"
+            )
+        pairs.extend(zip(dt_list, dd_list))
 
-    # `?show=2000` should expose the entire daily page.  If arXiv reports a total,
-    # fail closed rather than silently screening a truncated listing.
+    if not pairs:
+        raise RuntimeError("arXiv article listings were empty")
+
+    # `?show=2000` should expose the entire daily page. The page-level total
+    # includes New submissions, Cross-lists, and Replacements, so validate only
+    # after concatenating all listing sections.
     page_text = _clean(content.get_text(" ", strip=True))
     total_match = re.search(r"Total of\s+(\d+)\s+entries", page_text, flags=re.I)
-    if total_match and int(total_match.group(1)) != len(dt_list):
+    if total_match and int(total_match.group(1)) != len(pairs):
         raise RuntimeError(
             f"arXiv listing appears incomplete: page says {total_match.group(1)} entries "
-            f"but {len(dt_list)} were parsed"
+            f"but {len(pairs)} were parsed across {len(listings)} sections"
         )
 
     entries: list[dict] = []
-    for index, (dt_node, dd_node) in enumerate(zip(dt_list, dd_list), start=1):
+    for index, (dt_node, dd_node) in enumerate(pairs, start=1):
         abs_anchor = dt_node.find("a", attrs={"title": "Abstract"})
         if abs_anchor is None:
             abs_anchor = dt_node.find("a", href=re.compile(r"^/abs/"))
@@ -195,9 +200,6 @@ def parse_announcement_page(html: str) -> tuple[str, list[dict], dict[str, int]]
     cross_start = starts.get("cross")
     replacement_start = starts.get("replacement")
 
-    # arXiv's navigation uses #item0 as the New-submission sentinel while later
-    # boundaries point at the first displayed item in that section.  For example,
-    # #item54 means items 1..53 are New submissions.
     if new_start != 0:
         raise RuntimeError(f"Unexpected arXiv New submissions boundary: #item{new_start}")
 
@@ -230,13 +232,11 @@ def parse_announcement_page(html: str) -> tuple[str, list[dict], dict[str, int]]
 
 
 def parse_announcement_manifest(html: str) -> tuple[str, list[str], dict[str, int]]:
-    """Compatibility helper returning only candidate IDs and section counts."""
     batch_date, papers, counts = parse_announcement_page(html)
     return batch_date, [paper["id"] for paper in papers], counts
 
 
 def fetch_announcement_page() -> tuple[str, list[dict], dict[str, int]]:
-    """Fetch and fully parse the current public astro-ph announcement in one GET."""
     response = requests.get(
         ARXIV_NEW_LIST,
         params={"show": 2000},
@@ -254,13 +254,11 @@ def fetch_announcement_page() -> tuple[str, list[dict], dict[str, int]]:
 
 
 def fetch_announcement_manifest() -> tuple[str, list[str], dict[str, int]]:
-    """Fetch the current announcement and expose only its candidate IDs."""
     batch_date, papers, counts = fetch_announcement_page()
     return batch_date, [paper["id"] for paper in papers], counts
 
 
 def fetch_daily_papers() -> tuple[str, list[dict]]:
-    """Return the current announcement batch without using the Atom API."""
     batch_date, papers, _counts = fetch_announcement_page()
     issue_title = f"Latest astro-ph submissions for {batch_date}"
     print(f"[INFO] Parsed complete listing metadata for all {len(papers)} candidates")

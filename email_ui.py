@@ -25,7 +25,7 @@ PRIMARY = "#293139"
 SECONDARY = "#6F716D"
 BORDER = "#DDD9D2"
 A_ACCENT = "#627C8A"  # muted blue-gray
-B_ACCENT = "#8B9D93"  # muted sage
+B_ACCENT = "#806A75"  # dusty plum; intentionally distinct from the A blue
 LINK = "#5F7889"
 
 TOPIC_LABELS = {

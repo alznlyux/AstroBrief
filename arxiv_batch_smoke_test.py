@@ -8,18 +8,16 @@ from arxiv_batch import _parse_atom_entries, parse_announcement_manifest
 def test_announcement_manifest() -> None:
     html = """
     <html><body>
+      <ul>
+        <li><a href="#item0">New submissions</a></li>
+        <li><a href="#item3">Cross-lists</a></li>
+        <li><a href="#item4">Replacements</a></li>
+      </ul>
       <h3>Showing new listings for Monday, 24 August 2026</h3>
-      <h3>New submissions (showing 2 of 2 entries)</h3>
       <dl>
         <dt>[1] <a href="/abs/2608.20415">arXiv:2608.20415</a></dt>
         <dt>[2] <a href="/abs/2608.20436">arXiv:2608.20436</a></dt>
-      </dl>
-      <h3>Cross-lists (showing 1 of 1 entries)</h3>
-      <dl>
         <dt>[3] <a href="/abs/2608.19999v2">arXiv:2608.19999</a></dt>
-      </dl>
-      <h3>Replacements (showing 1 of 1 entries)</h3>
-      <dl>
         <dt>[4] <a href="/abs/2608.10000v3">arXiv:2608.10000</a></dt>
       </dl>
     </body></html>
@@ -29,6 +27,24 @@ def test_announcement_manifest() -> None:
     assert ids == ["2608.20415", "2608.20436", "2608.19999"], ids
     assert counts == {"new": 2, "cross": 1, "total": 3}, counts
     assert "2608.10000" not in ids
+
+
+def test_manifest_without_replacements() -> None:
+    html = """
+    <html><body>
+      <ul>
+        <li><a href="#item0">New submissions</a></li>
+        <li><a href="#item2">Cross-lists</a></li>
+      </ul>
+      <h3>Showing new listings for Tuesday, 25 August 2026</h3>
+      <a href="/abs/2608.21000">arXiv:2608.21000</a>
+      <a href="/abs/2608.20000">arXiv:2608.20000</a>
+    </body></html>
+    """
+    batch_date, ids, counts = parse_announcement_manifest(html)
+    assert batch_date == "2026-08-25"
+    assert ids == ["2608.21000", "2608.20000"]
+    assert counts == {"new": 1, "cross": 1, "total": 2}
 
 
 def test_atom_metadata_parser() -> None:
@@ -63,6 +79,7 @@ def test_atom_metadata_parser() -> None:
 
 def main() -> None:
     test_announcement_manifest()
+    test_manifest_without_replacements()
     test_atom_metadata_parser()
     print("[OK] arXiv announcement-batch ingestion smoke test passed")
 

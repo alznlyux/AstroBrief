@@ -18,14 +18,16 @@ from email.message import EmailMessage
 from semantic_daily import latex_to_email_text
 
 
-# Low-saturation, Morandi-inspired palette chosen for long-form daily reading.
+# Low-saturation, editorial palette chosen for long-form daily reading.
+# A uses a restrained antique gold to signal the highest-priority selection;
+# B keeps AstroBrief's established muted blue-gray for regular recommendations.
 BACKGROUND = "#F5F3EF"
 CARD = "#FBFAF7"
 PRIMARY = "#293139"
 SECONDARY = "#6F716D"
 BORDER = "#DDD9D2"
-A_ACCENT = "#627C8A"  # muted blue-gray
-B_ACCENT = "#806A75"  # dusty plum; intentionally distinct from the A blue
+A_ACCENT = "#9B835F"  # muted antique gold / warm brass
+B_ACCENT = "#627C8A"  # muted blue-gray
 LINK = "#5F7889"
 
 TOPIC_LABELS = {

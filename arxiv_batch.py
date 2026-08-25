@@ -3,8 +3,8 @@
 
 The arXiv `/list/astro-ph/new` page defines the public announcement batch.
 `submittedDate` in the Atom API is a submission timestamp and is not equivalent
- to an announcement date, especially across weekends, moderation delays, and
-cross-lists.  This module therefore uses the list page only as a manifest of
+to an announcement date, especially across weekends, moderation delays, and
+cross-lists. This module therefore uses the list page only as a manifest of
 arXiv IDs, then retrieves structured metadata for those IDs from the Atom API.
 """
 from __future__ import annotations
@@ -39,91 +39,122 @@ def _user_agent() -> str:
 
 
 class _AnnouncementListParser(HTMLParser):
-    """Extract the listing date plus new-submission/cross-list arXiv IDs."""
+    """Extract listing date, section boundaries, and ordered arXiv IDs."""
 
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
         self._in_h3 = False
         self._h3_parts: list[str] = []
-        self.section: str | None = None
+        self._nav_href: str | None = None
+        self._nav_parts: list[str] = []
         self.batch_date: str | None = None
-        self.ids: list[str] = []
-        self.new_count = 0
-        self.cross_count = 0
+        self.section_starts: dict[str, int] = {}
+        self.all_ids: list[str] = []
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        if tag.lower() == "h3":
+        tag = tag.lower()
+        if tag == "h3":
             self._in_h3 = True
             self._h3_parts = []
             return
-
-        if tag.lower() != "a" or self.section not in {"new", "cross"}:
+        if tag != "a":
             return
 
         href = dict(attrs).get("href") or ""
-        match = re.fullmatch(r"/abs/([^?#]+)", href)
-        if not match:
+        nav_match = re.fullmatch(r"#item(\d+)", href)
+        if nav_match:
+            self._nav_href = href
+            self._nav_parts = []
             return
-        paper_id = re.sub(r"v\d+$", "", match.group(1))
-        if not paper_id or paper_id in self.ids:
+
+        abs_match = re.fullmatch(r"/abs/([^?#]+)", href)
+        if not abs_match:
             return
-        self.ids.append(paper_id)
-        if self.section == "new":
-            self.new_count += 1
-        else:
-            self.cross_count += 1
+        paper_id = re.sub(r"v\d+$", "", abs_match.group(1))
+        if paper_id and paper_id not in self.all_ids:
+            self.all_ids.append(paper_id)
 
     def handle_data(self, data: str) -> None:
         if self._in_h3:
             self._h3_parts.append(data)
+        if self._nav_href is not None:
+            self._nav_parts.append(data)
 
     def handle_endtag(self, tag: str) -> None:
-        if tag.lower() != "h3" or not self._in_h3:
+        tag = tag.lower()
+        if tag == "h3" and self._in_h3:
+            text = _clean("".join(self._h3_parts))
+            self._in_h3 = False
+            self._h3_parts = []
+            date_match = re.match(r"Showing new listings for (.+)$", text, flags=re.I)
+            if date_match:
+                date_text = date_match.group(1).strip()
+                try:
+                    parsed = dt.datetime.strptime(date_text, "%A, %d %B %Y").date()
+                except ValueError as exc:
+                    raise RuntimeError(
+                        f"Could not parse arXiv announcement date {date_text!r}"
+                    ) from exc
+                self.batch_date = parsed.isoformat()
             return
-        text = _clean("".join(self._h3_parts))
-        self._in_h3 = False
-        self._h3_parts = []
 
-        date_match = re.match(r"Showing new listings for (.+)$", text, flags=re.I)
-        if date_match:
-            date_text = date_match.group(1).strip()
-            try:
-                parsed = dt.datetime.strptime(date_text, "%A, %d %B %Y").date()
-            except ValueError as exc:
-                raise RuntimeError(
-                    f"Could not parse arXiv announcement date {date_text!r}"
-                ) from exc
-            self.batch_date = parsed.isoformat()
-            return
-
-        lower = text.lower()
-        if lower.startswith("new submissions"):
-            self.section = "new"
-        elif lower.startswith("cross-lists"):
-            self.section = "cross"
-        elif lower.startswith("replacements"):
-            self.section = "replacement"
+        if tag == "a" and self._nav_href is not None:
+            text = _clean("".join(self._nav_parts)).lower()
+            item_number = int(self._nav_href.removeprefix("#item"))
+            if text.startswith("new submissions"):
+                self.section_starts["new"] = item_number
+            elif text.startswith("cross-lists"):
+                self.section_starts["cross"] = item_number
+            elif text.startswith("replacements"):
+                self.section_starts["replacement"] = item_number
+            self._nav_href = None
+            self._nav_parts = []
 
 
 def parse_announcement_manifest(html: str) -> tuple[str, list[str], dict[str, int]]:
-    """Parse one `/list/astro-ph/new` page into batch date and candidate IDs."""
+    """Parse `/list/astro-ph/new` into batch date and new/cross-list IDs.
+
+    arXiv numbers the displayed entries continuously. Its navigation links expose
+    exact item boundaries such as `#item54` for Cross-lists and `#item68` for
+    Replacements. We use those boundaries so replacements are excluded even when
+    the surrounding HTML heading structure changes.
+    """
     parser = _AnnouncementListParser()
     parser.feed(html)
     parser.close()
 
     if not parser.batch_date:
         raise RuntimeError("arXiv new-list page did not expose an announcement date")
-    if not parser.ids:
+    if not parser.all_ids:
+        raise RuntimeError(
+            f"arXiv announcement batch {parser.batch_date} contained no arXiv IDs"
+        )
+
+    replacement_start = parser.section_starts.get("replacement")
+    if replacement_start is None:
+        candidate_total = len(parser.all_ids)
+    else:
+        candidate_total = max(0, min(len(parser.all_ids), replacement_start - 1))
+
+    ids = parser.all_ids[:candidate_total]
+    if not ids:
         raise RuntimeError(
             f"arXiv announcement batch {parser.batch_date} contained no new/cross-list IDs"
         )
 
+    cross_start = parser.section_starts.get("cross")
+    if cross_start is None:
+        new_count = len(ids)
+    else:
+        new_count = max(0, min(len(ids), cross_start - 1))
+    cross_count = len(ids) - new_count
+
     counts = {
-        "new": parser.new_count,
-        "cross": parser.cross_count,
-        "total": len(parser.ids),
+        "new": new_count,
+        "cross": cross_count,
+        "total": len(ids),
     }
-    return parser.batch_date, parser.ids, counts
+    return parser.batch_date, ids, counts
 
 
 def fetch_announcement_manifest() -> tuple[str, list[str], dict[str, int]]:

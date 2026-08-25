@@ -1,8 +1,12 @@
 # coding: utf-8
-"""Fast regression checks for listing-defined arXiv announcement ingestion."""
+"""Regression checks for listing-defined arXiv announcement ingestion."""
 from __future__ import annotations
 
-from arxiv_batch import parse_announcement_manifest, parse_announcement_page
+from arxiv_batch import (
+    fetch_announcement_page,
+    parse_announcement_manifest,
+    parse_announcement_page,
+)
 
 
 def _item(paper_id: str, title: str, authors: str, subjects: str, abstract: str, version: str = "") -> str:
@@ -115,10 +119,26 @@ def test_missing_metadata_fails_closed() -> None:
         raise AssertionError("Missing abstract should fail closed")
 
 
+def test_live_announcement_page() -> None:
+    # Read-only production-shape check: one GET to the real daily listing, no SMTP,
+    # no sent marker, no GitHub issue, and no semantic model invocation here.
+    batch_date, papers, counts = fetch_announcement_page()
+    assert len(batch_date) == 10 and batch_date[4] == "-" and batch_date[7] == "-"
+    assert counts["total"] == len(papers)
+    assert counts["new"] + counts["cross"] == counts["total"]
+    assert counts["total"] > 0
+    assert all(p["id"] and p["title"] and p["abstract"] for p in papers)
+    print(
+        f"[OK] live arXiv listing parsed: {batch_date}, "
+        f"{counts['new']} new + {counts['cross']} cross-list"
+    )
+
+
 def main() -> None:
     test_complete_announcement_page()
     test_page_without_replacements()
     test_missing_metadata_fails_closed()
+    test_live_announcement_page()
     print("[OK] arXiv listing ingestion smoke test passed")
 
 

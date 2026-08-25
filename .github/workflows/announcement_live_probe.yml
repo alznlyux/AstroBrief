@@ -7,6 +7,7 @@ on:
       - '.github/workflows/announcement_live_probe.yml'
 
 # One-time production-ingestion validation; no SMTP and no repository secrets.
+# Re-run after switching section parsing to arXiv's #itemN boundaries.
 jobs:
   probe:
     runs-on: ubuntu-latest
@@ -27,34 +28,15 @@ jobs:
       - name: Read live arXiv announcement manifest
         run: |
           python - <<'PY'
-          import html as html_lib
           import json
-          import re
           from pathlib import Path
-          import requests
-          from arxiv_batch import ARXIV_NEW_LIST, _user_agent, fetch_announcement_manifest
+          from arxiv_batch import fetch_announcement_manifest
 
           batch_date, ids, counts = fetch_announcement_manifest()
-          raw = requests.get(
-              ARXIV_NEW_LIST,
-              params={'show': 2000},
-              headers={'User-Agent': _user_agent()},
-              timeout=120,
-          ).text
-          headings = []
-          for tag in ('h2', 'h3', 'h4'):
-              for body in re.findall(rf'<{tag}\\b[^>]*>(.*?)</{tag}>', raw, flags=re.I | re.S):
-                  text = re.sub(r'<[^>]+>', ' ', body)
-                  text = html_lib.unescape(re.sub(r'\\s+', ' ', text)).strip()
-                  headings.append({'tag': tag, 'text': text})
-          cross_at = raw.lower().find('cross-lists')
-          cross_fragment = raw[max(0, cross_at - 300): cross_at + 500] if cross_at >= 0 else ''
           result = {
               'batch_date': batch_date,
               'counts': counts,
               'first_ids': ids[:10],
-              'headings': headings,
-              'cross_fragment': cross_fragment,
           }
           Path('.ci').mkdir(exist_ok=True)
           Path('.ci/announcement_live_probe.json').write_text(

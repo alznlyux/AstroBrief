@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'daily.py'
+      - 'arxiv_batch*.py'
       - 'semantic_*.py'
       - 'semantic_topics.json'
       - 'github_issue.py'
@@ -14,6 +15,7 @@ on:
     branches: [main]
     paths:
       - 'daily.py'
+      - 'arxiv_batch*.py'
       - 'semantic_*.py'
       - 'semantic_topics.json'
       - 'github_issue.py'
@@ -46,7 +48,10 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Compile production code
-        run: python -m py_compile daily.py semantic_daily.py semantic_recommender.py semantic_smoke_test.py github_issue.py
+        run: python -m py_compile daily.py arxiv_batch.py arxiv_batch_smoke_test.py semantic_daily.py semantic_recommender.py semantic_smoke_test.py github_issue.py email_cleanup.py
+
+      - name: Run announcement-batch ingestion smoke test
+        run: python arxiv_batch_smoke_test.py
 
       - name: Run semantic smoke test
         run: python semantic_smoke_test.py

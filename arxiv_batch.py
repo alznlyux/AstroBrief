@@ -22,6 +22,8 @@ ARXIV_NEW_LIST = "https://arxiv.org/list/astro-ph/new"
 ARXIV_API = "https://export.arxiv.org/api/query"
 ATOM = "{http://www.w3.org/2005/Atom}"
 ARXIV = "{http://arxiv.org/schemas/atom}"
+_TRANSIENT_HTTP = {429, 500, 502, 503, 504}
+_BACKOFF_SECONDS = (15, 30, 60, 120)
 
 
 def _clean(text: str) -> str:
@@ -36,6 +38,58 @@ def _user_agent() -> str:
     if contact:
         return f"AstroBrief/1.0 ({contact})"
     return "AstroBrief/1.0"
+
+
+def _get_atom_with_backoff(params: dict, timeout: int = 120) -> requests.Response:
+    """GET the Atom API with bounded retries for transient rate/server errors."""
+    attempts = len(_BACKOFF_SECONDS) + 1
+    last_response: requests.Response | None = None
+
+    for attempt in range(attempts):
+        try:
+            response = requests.get(
+                ARXIV_API,
+                params=params,
+                headers={"User-Agent": _user_agent()},
+                timeout=timeout,
+            )
+        except requests.RequestException as exc:
+            if attempt >= attempts - 1:
+                raise
+            wait = _BACKOFF_SECONDS[attempt]
+            print(
+                f"[WARN] arXiv Atom request failed ({exc.__class__.__name__}); "
+                f"retrying in {wait}s ({attempt + 1}/{attempts - 1})"
+            )
+            time.sleep(wait)
+            continue
+
+        last_response = response
+        if response.status_code not in _TRANSIENT_HTTP:
+            response.raise_for_status()
+            return response
+
+        if attempt >= attempts - 1:
+            response.raise_for_status()
+
+        retry_after = response.headers.get("Retry-After", "").strip()
+        if retry_after:
+            try:
+                wait = max(3, min(180, int(float(retry_after))))
+            except ValueError:
+                wait = _BACKOFF_SECONDS[attempt]
+        else:
+            wait = _BACKOFF_SECONDS[attempt]
+
+        print(
+            f"[WARN] arXiv Atom API returned HTTP {response.status_code}; "
+            f"retrying in {wait}s ({attempt + 1}/{attempts - 1})"
+        )
+        time.sleep(wait)
+
+    if last_response is not None:
+        last_response.raise_for_status()
+    raise RuntimeError("arXiv Atom API request failed without a response")
 
 
 class _AnnouncementListParser(HTMLParser):
@@ -220,17 +274,13 @@ def fetch_metadata_for_ids(ids: list[str], chunk_size: int = 100) -> list[dict]:
     by_id: dict[str, dict] = {}
     for start in range(0, len(ids), chunk_size):
         chunk = ids[start : start + chunk_size]
-        response = requests.get(
-            ARXIV_API,
-            params={
+        response = _get_atom_with_backoff(
+            {
                 "id_list": ",".join(chunk),
                 "start": 0,
                 "max_results": len(chunk),
-            },
-            headers={"User-Agent": _user_agent()},
-            timeout=120,
+            }
         )
-        response.raise_for_status()
         by_id.update(_parse_atom_entries(response.content))
         if start + chunk_size < len(ids):
             time.sleep(3)

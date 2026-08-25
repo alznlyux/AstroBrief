@@ -2,12 +2,14 @@ name: AstroBrief Daily
 
 on:
   # Production timing is driven by the always-on Tsinghua server via
-  # workflow_dispatch.  Keep one deliberately late GitHub-native schedule only
+  # workflow_dispatch. Keep one deliberately late GitHub-native schedule only
   # as an emergency fallback in case the external trigger/token/server fails.
   schedule:
-    # Weekdays, Beijing 10:43 (UTC 02:43).  The batch-date sent marker prevents
-    # duplicate mail when the server-triggered run has already succeeded.
-    - cron: '43 2 * * 1-5'
+    # Weekdays, Beijing 13:43 (UTC 05:43). This is intentionally later than the
+    # server's DST-aware polling window (which may extend as late as 12:55 BJT in
+    # standard time). The batch-date sent marker prevents duplicate mail when the
+    # server-triggered run has already succeeded.
+    - cron: '43 5 * * 1-5'
   workflow_dispatch:
     inputs:
       force:

@@ -5,11 +5,11 @@ on:
   # workflow_dispatch.  Keep one deliberately late GitHub-native schedule only
   # as an emergency fallback in case the external trigger/token/server fails.
   schedule:
-    # Weekdays, Beijing 14:43 (UTC 06:43).  This stays after the server's
+    # Weekdays, Beijing 14:00 (UTC 06:00).  This stays after the server's
     # DST-aware polling window, which may extend as late as Beijing 13:55 in EST.
     # The batch-date sent marker prevents duplicate mail when the server-triggered
     # run has already succeeded.
-    - cron: '43 6 * * 1-5'
+    - cron: '0 6 * * 1-5'
   workflow_dispatch:
     inputs:
       force:

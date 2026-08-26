@@ -31,6 +31,9 @@ A_ACCENT = "#9B835F"  # muted antique gold / warm brass
 B_ACCENT = "#627C8A"  # muted blue-gray
 LINK = "#5F7889"
 
+_SUP_DIGITS_TO_ASCII = str.maketrans("⁰¹²³⁴⁵⁶⁷⁸⁹", "0123456789")
+_SUB_DIGITS_TO_ASCII = str.maketrans("₀₁₂₃₄₅₆₇₈₉", "0123456789")
+
 TOPIC_LABELS = {
     "atomic_ism": "Atomic ISM",
     "molecular_clouds": "Molecular clouds",
@@ -44,6 +47,16 @@ TOPIC_LABELS = {
     "halo_cgm": "Halo / CGM",
     "ism_methods": "ISM methods",
 }
+
+
+def _signed_script_decimal(match: re.Match) -> str:
+    """Render a partially Unicode-converted asymmetric decimal uncertainty."""
+    base, upper_sign, upper_int, upper_frac, lower_sign, lower_int, lower_frac = match.groups()
+    upper_sign = "+" if upper_sign == "⁺" else "−"
+    lower_sign = "+" if lower_sign == "₊" else "−"
+    upper_int = upper_int.translate(_SUP_DIGITS_TO_ASCII)
+    lower_int = lower_int.translate(_SUB_DIGITS_TO_ASCII)
+    return f"{base} ({upper_sign}{upper_int}.{upper_frac}/{lower_sign}{lower_int}.{lower_frac})"
 
 
 def _postprocess_email_math(text: str) -> str:
@@ -61,8 +74,16 @@ def _postprocess_email_math(text: str) -> str:
     """
     value = text
 
-    # After the generic TeX pass, a decimal asymmetric uncertainty degrades to
-    # forms such as 3.0^+1.1_-0.6. Convert the pair before replacing bare charges.
+    # The generic converter can partially consume decimal scripts, yielding e.g.
+    # 3.0⁺¹.1₋₀.6. Recover the complete asymmetric uncertainty first.
+    value = re.sub(
+        r"(\d+(?:\.\d+)?)([⁺⁻])([⁰¹²³⁴⁵⁶⁷⁸⁹]+)\.(\d+)([₊₋])([₀₁₂₃₄₅₆₇₈₉]+)\.(\d+)",
+        _signed_script_decimal,
+        value,
+    )
+
+    # Also handle a future/plain fallback where the decimal scripts remain as
+    # caret/underscore notation rather than being partially Unicode-converted.
     value = re.sub(
         r"(\d+(?:\.\d+)?)\^\+(\d+(?:\.\d+)?)_-(\d+(?:\.\d+)?)",
         lambda m: f"{m.group(1)} (+{m.group(2)}/−{m.group(3)})",

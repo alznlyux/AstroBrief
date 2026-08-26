@@ -1,5 +1,5 @@
 # coding: utf-8
-"""Regression checks for AstroBrief ingestion, semantic scope, and email UI."""
+"""Regression checks for AstroBrief ingestion, semantic scope, and email UI/math display."""
 from __future__ import annotations
 
 import datetime as dt

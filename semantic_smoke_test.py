@@ -156,7 +156,7 @@ def test_email_ui() -> None:
             **paper(
                 "2608.12345",
                 "Cold H I and Molecular Cloud Formation",
-                "This complete abstract must remain visible in the production email, including $N_{HI}$ and $10^{20}$ units.",
+                r"This complete abstract must remain visible, including $N_{HI}$, $10^{20}$, HCO$^+$, H$^{13}$CO$^+$, and $\sim$$3.0^{+1.1}_{-0.6} \times 10^{47}$ erg.",
                 "astro-ph.GA",
             ),
             "authors": ["A. Author", "B. Author"],
@@ -190,11 +190,18 @@ def test_email_ui() -> None:
     assert "Atomic ISM · Molecular clouds · Star formation" in rich
     assert "Magnetic fields · Turbulence" in rich
     assert "This complete abstract must remain visible" in rich
-    assert "N_HI" in rich or "N<" not in rich
+    assert "HCO⁺" in rich
+    assert "H¹³CO⁺" in rich
+    assert "≈3.0 (+1.1/−0.6) × 10⁴⁷" in rich
+    assert "^+" not in rich
+    assert "_-0.6" not in rich
     assert "Boundary control" not in rich
     assert "Why recommended" not in rich
     assert "Score:" not in plain
     assert "Matched topics:" in plain
+    assert "HCO⁺" in plain
+    assert "H¹³CO⁺" in plain
+    assert "3.0 (+1.1/−0.6) × 10⁴⁷" in plain
     assert "Boundary control" not in plain
     assert "#9B835F" in rich and "#627C8A" in rich
     assert "#806A75" not in rich

@@ -2,7 +2,7 @@
 """Quiet Academic HTML email presentation for AstroBrief.
 
 This module intentionally stays presentation-only: ranking, scope decisions,
-and archived score data remain owned by the semantic pipeline.  The email shows
+and archived score data remain owned by the semantic pipeline. The email shows
 only the final A/B priority, matched research topics, bibliographic metadata,
 full abstract, and arXiv/PDF links.
 """
@@ -11,6 +11,7 @@ from __future__ import annotations
 import datetime as dt
 import html
 import os
+import re
 import smtplib
 import ssl
 from email.message import EmailMessage
@@ -45,9 +46,44 @@ TOPIC_LABELS = {
 }
 
 
+def _postprocess_email_math(text: str) -> str:
+    """Clean residual script notation that Unicode-only TeX conversion cannot express.
+
+    `latex_to_email_text` deliberately handles simple integer scripts with Unicode.
+    Two common arXiv cases need one more presentation-only pass:
+
+    - ionic charges written as HCO$^+$ or H$^{13}$CO$^+$;
+    - asymmetric decimal uncertainties such as 3.0^{+1.1}_{-0.6}, for which
+      Unicode has no complete superscript/subscript decimal-point alphabet.
+
+    The latter is rendered as `3.0 (+1.1/−0.6)`, which is unambiguous and robust
+    across email clients instead of leaking half-converted TeX.
+    """
+    value = text
+
+    # After the generic TeX pass, a decimal asymmetric uncertainty degrades to
+    # forms such as 3.0^+1.1_-0.6. Convert the pair before replacing bare charges.
+    value = re.sub(
+        r"(\d+(?:\.\d+)?)\^\+(\d+(?:\.\d+)?)_-(\d+(?:\.\d+)?)",
+        lambda m: f"{m.group(1)} (+{m.group(2)}/−{m.group(3)})",
+        value,
+    )
+    value = re.sub(
+        r"(\d+(?:\.\d+)?)_-(\d+(?:\.\d+)?)\^\+(\d+(?:\.\d+)?)",
+        lambda m: f"{m.group(1)} (+{m.group(3)}/−{m.group(2)})",
+        value,
+    )
+
+    # Bare one-character ionic charges are common in molecular notation.
+    value = value.replace("^+", "⁺").replace("^-", "⁻")
+    value = value.replace("_+", "₊").replace("_-", "₋")
+    return value
+
+
 def _email_text(value: object) -> str:
     """Convert common arXiv TeX forms to email-safe Unicode/plain text."""
-    return latex_to_email_text(str(value or "")).strip()
+    converted = latex_to_email_text(str(value or "")).strip()
+    return _postprocess_email_math(converted)
 
 
 def _escape(value: object) -> str:

@@ -215,7 +215,7 @@ def _parse_listing_entries(soup: BeautifulSoup) -> list[dict]:
                 f"title={bool(title)} authors={bool(authors)} "
                 f"categories={bool(categories)} abstract={bool(abstract)}"
             )
-        if not any(cat.startswith("astro-ph.") for cat in categories):
+        if not any(cat == "astro-ph" or cat.startswith("astro-ph.") for cat in categories):
             raise RuntimeError(
                 f"Listing item {paper_id} has no astro-ph category: {categories}"
             )

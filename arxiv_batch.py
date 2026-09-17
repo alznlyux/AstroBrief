@@ -12,6 +12,7 @@ from __future__ import annotations
 import datetime as dt
 import os
 import re
+from urllib.parse import urlsplit
 
 import requests
 from bs4 import BeautifulSoup
@@ -101,6 +102,37 @@ def _extract_authors(authors_div) -> list[str]:
     return [part.strip() for part in text.split(",") if part.strip()]
 
 
+def _extract_arxiv_id_from_href(href: str) -> str | None:
+    """Extract a modern or legacy arXiv ID from an abstract URL.
+
+    arXiv still exposes legacy identifiers such as ``astro-ph/0601001`` in
+    replacement listings. Accept both those slash-containing identifiers and
+    modern ``YYMM.NNNNN`` IDs, for relative or canonical absolute URLs.
+    """
+    raw = (href or "").strip()
+    if not raw:
+        return None
+
+    parsed = urlsplit(raw)
+    if parsed.scheme and parsed.scheme.lower() not in {"http", "https"}:
+        return None
+    if parsed.netloc and parsed.netloc.lower() not in {"arxiv.org", "www.arxiv.org"}:
+        return None
+
+    if not parsed.path.startswith("/abs/"):
+        return None
+    paper_id = parsed.path.removeprefix("/abs/").strip("/")
+    paper_id = re.sub(r"v\d+$", "", paper_id)
+    if not paper_id:
+        return None
+
+    modern = re.fullmatch(r"\d{4}\.\d{4,5}", paper_id)
+    legacy = re.fullmatch(r"[A-Za-z0-9.-]+/\d{7}", paper_id)
+    if not (modern or legacy):
+        return None
+    return paper_id
+
+
 def _parse_listing_entries(soup: BeautifulSoup) -> list[dict]:
     """Parse every displayed article across New, Cross-list, and Replacement dl blocks."""
     content = soup.find("div", id="content") or soup
@@ -136,13 +168,28 @@ def _parse_listing_entries(soup: BeautifulSoup) -> list[dict]:
     entries: list[dict] = []
     for index, (dt_node, dd_node) in enumerate(pairs, start=1):
         abs_anchor = dt_node.find("a", attrs={"title": "Abstract"})
-        if abs_anchor is None:
-            abs_anchor = dt_node.find("a", href=re.compile(r"^/abs/"))
-        href = str(abs_anchor.get("href") or "") if abs_anchor is not None else ""
-        match = re.fullmatch(r"/abs/([^?#/]+)", href)
-        if not match:
-            raise RuntimeError(f"Could not parse arXiv ID for listing item {index}")
-        paper_id = re.sub(r"v\d+$", "", match.group(1))
+        paper_id = None
+        href = ""
+        if abs_anchor is not None:
+            href = str(abs_anchor.get("href") or "")
+            paper_id = _extract_arxiv_id_from_href(href)
+
+        # Be tolerant of harmless anchor-attribute changes while remaining
+        # fail-closed on malformed or non-arXiv abstract links.
+        if paper_id is None:
+            for anchor in dt_node.find_all("a", href=True):
+                candidate_href = str(anchor.get("href") or "")
+                candidate_id = _extract_arxiv_id_from_href(candidate_href)
+                if candidate_id is not None:
+                    href = candidate_href
+                    paper_id = candidate_id
+                    break
+
+        if paper_id is None:
+            raise RuntimeError(
+                f"Could not parse arXiv ID for listing item {index} "
+                f"(abstract href={href!r})"
+            )
 
         title_div = dd_node.select_one("div.list-title")
         authors_div = dd_node.select_one("div.list-authors")

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from arxiv_batch import (
+    _extract_arxiv_id_from_href,
     fetch_announcement_page,
     parse_announcement_manifest,
     parse_announcement_page,
@@ -26,8 +27,23 @@ def _item(paper_id: str, title: str, authors: str, subjects: str, abstract: str,
     """
 
 
+def test_arxiv_id_href_variants() -> None:
+    assert _extract_arxiv_id_from_href("/abs/2609.12345") == "2609.12345"
+    assert _extract_arxiv_id_from_href("/abs/2609.12345v2") == "2609.12345"
+    assert _extract_arxiv_id_from_href("/abs/astro-ph/0601001v3") == "astro-ph/0601001"
+    assert (
+        _extract_arxiv_id_from_href("https://arxiv.org/abs/astro-ph/0601001v3")
+        == "astro-ph/0601001"
+    )
+    assert _extract_arxiv_id_from_href("https://example.com/abs/2609.12345") is None
+    assert _extract_arxiv_id_from_href("/pdf/2609.12345") is None
+
+
 def test_complete_announcement_page() -> None:
     # Mirror the real arXiv page structure: each section has its own <dl>.
+    # The replacement deliberately uses a legacy slash-containing arXiv ID:
+    # such old IDs still appear on listing pages and must not break ingestion
+    # even though replacements are excluded from screening.
     html = f"""
     <html><body><div id="content">
       <ul>
@@ -48,7 +64,7 @@ def test_complete_announcement_page() -> None:
       </dl>
       <h3>Replacements</h3>
       <dl>
-        {_item('2608.10000', 'Replacement paper', 'Old Author', 'Astrophysics of Galaxies (astro-ph.GA)', 'This replacement must not enter screening.', version='v3')}
+        {_item('astro-ph/0601001', 'Legacy replacement paper', 'Old Author', 'Astrophysics of Galaxies (astro-ph.GA)', 'This replacement must not enter screening.', version='v3')}
       </dl>
     </div></body></html>
     """
@@ -62,7 +78,7 @@ def test_complete_announcement_page() -> None:
     assert papers[0]["primary_category"] == "astro-ph.GA"
     assert papers[2]["categories"] == ["physics.flu-dyn", "astro-ph.GA"]
     assert papers[2]["primary_category"] == "physics.flu-dyn"
-    assert "2608.10000" not in {p["id"] for p in papers}
+    assert "astro-ph/0601001" not in {p["id"] for p in papers}
 
     manifest_date, ids, manifest_counts = parse_announcement_manifest(html)
     assert manifest_date == batch_date
@@ -135,6 +151,7 @@ def test_live_announcement_page() -> None:
 
 
 def main() -> None:
+    test_arxiv_id_href_variants()
     test_complete_announcement_page()
     test_page_without_replacements()
     test_missing_metadata_fails_closed()

@@ -41,9 +41,10 @@ def test_arxiv_id_href_variants() -> None:
 
 def test_complete_announcement_page() -> None:
     # Mirror the real arXiv page structure: each section has its own <dl>.
-    # The replacement deliberately uses a legacy slash-containing arXiv ID:
-    # such old IDs still appear on listing pages and must not break ingestion
-    # even though replacements are excluded from screening.
+    # The replacement deliberately uses a legacy slash-containing arXiv ID and
+    # the old root category ``astro-ph``. Both still occur in replacement
+    # listings and must not break ingestion even though replacements are not
+    # included in production screening.
     html = f"""
     <html><body><div id="content">
       <ul>
@@ -64,7 +65,7 @@ def test_complete_announcement_page() -> None:
       </dl>
       <h3>Replacements</h3>
       <dl>
-        {_item('astro-ph/0601001', 'Legacy replacement paper', 'Old Author', 'Astrophysics of Galaxies (astro-ph.GA)', 'This replacement must not enter screening.', version='v3')}
+        {_item('astro-ph/0601001', 'Legacy replacement paper', 'Old Author', 'Astrophysics (astro-ph)', 'This replacement must not enter screening.', version='v3')}
       </dl>
     </div></body></html>
     """

@@ -1,74 +1,55 @@
-# AstroBrief — Latest astro-ph submissions for 2026-10-09
+# AstroBrief — Latest astro-ph submissions for 2026-10-12
 
 Semantic ISM / star-formation screening: **SPECTER2 + domain evidence + local zero-shot NLI**.
 No paid model API is used.
 
-### Today: 4 recommended papers
+### Today: 3 recommended papers
 - Priority A: **1**
-- Priority B: **3**
-- Boundary C (archive only): **22**
-- Screened astro-ph candidates: **107**
-#### [A] Isotopic ratios as probes of star formation and the origin of molecular gas in the Central Molecular Zone
-- **Score:** 92.2  
-- **Topics:** astrochemistry, molecular_clouds, galactic_ism  
-- **Authors:** Laura Colzi  
-- **Subjects:** astro-ph.GA; astro-ph.SR  
-- **arXiv:** [https://arxiv.org/abs/2610.11541](https://arxiv.org/abs/2610.11541)  
-- **PDF:** [https://arxiv.org/pdf/2610.11541.pdf](https://arxiv.org/pdf/2610.11541.pdf)  
-- **Abstract:** The Central Molecular Zone (CMZ) contains most of the dense molecular gas in the Milky Way but forms stars at a surprisingly low rate. Isotopic ratios provide a unique tool to investigate both the local physical conditions and the nucleosynthetic history of this gas. I summarize recent isotopic studies toward the molecular cloud G$+$0.693$-$0.027. Deuterium fractionation (D/H ratios) reveals a cold ($T_{\rm kin}\lesssim30$ K), relatively quiescent gas component embedded within the otherwise warm and turbulent CMZ, indicating that the earliest stages of star formation can survive in this extreme environment. I also present new $^{12}$C/$^{13}$C measurements from HC$_3$N and HC$_5$N, including the first constraints from doubly substituted $^{13}$C isotopologues. After accounting for isotopic fractionation with astrochemical models, the inferred elemental ratio ($\sim37$--48) exceeds the canonical CMZ assumed value ($\sim$20), supporting a scenario in which the Galactic center is replenished by less chemically processed gas flowing inward along the Galactic bar.
-
-#### [B] Modeling CO Line Luminosity Using FIRE Simulations: I. Methodology and Validation of Molecular Gas and CO Abundance
-- **Score:** 71.1  
-- **Topics:** molecular_clouds, astrochemistry, turbulence  
-- **Authors:** Doğa Tolgay, Norman W. Murray, Dongwoo Chung, J. Richard Bond, Nathan J. Carlson, Robert Feldmann, Andrew Wetzel, Guochao Sun  
-- **Subjects:** astro-ph.GA; astro-ph.CO  
-- **arXiv:** [https://arxiv.org/abs/2610.12159](https://arxiv.org/abs/2610.12159)  
-- **PDF:** [https://arxiv.org/pdf/2610.12159.pdf](https://arxiv.org/pdf/2610.12159.pdf)  
-- **Abstract:** We present a post-processing pipeline that predicts CO line luminosities, molecular hydrogen masses, and CO abundances for galaxies in the Feedback in Realistic Environments (FIRE-2) simulations, as a first step toward CO response functions for line intensity mapping mocks. SKIRT gives the radiation field reaching each gas cell. CLOUDY, tabulated on a five-parameter grid (metallicity, density, turbulent velocity, radiation field, cloud scale) and interpolated, gives $L'_{\rm CO(1-0)}$ and the $\rm H_2$ and CO masses. In this first of three papers we validate the pipeline against observations. For Milky Way (MW) molecular clouds, the predicted $L'_{\rm CO(1-0)}$ rises sharply at $A_V\sim1$ and matches the observed values above that column. For a uniform $3\,Z_\odot$ the summed luminosity is within 35\% of the observed total. A factor of three increase in metallicity changes the total $L'_{\rm CO(1-0)}$ by an order of magnitude. Along MW sight lines, the predicted $N_{\rm CO}/N_{\rm H_2}$ reproduces the observed upturn within 0.3 dex in $N_{\rm H_2}$ but falls below the data at higher columns. At $z=0$ our molecular gas masses agree with xCOLD GASS for ${\rm SFR}\gtrsim0.3\,M_\odot\,yr^{-1}$ and are converged across our simulation resolutions. At $z\gtrsim1$ observed gas masses exceed ours at fixed stellar mass, though selection effects and conversion-factor assumptions limit this comparison. CO luminosities are compared with extragalactic observations in Paper II. Capturing the metallicity-dependent dust shielding of CO from photodissociation is essential for modeling CO emission in low-mass and high-redshift galaxies.
-
-#### [B] NGC 4936: abundant multi-phase medium in the central weak X-ray cool core and optically dark H I clouds in the group
-- **Score:** 68.0  
-- **Topics:** astrochemistry, molecular_clouds, atomic_ism  
-- **Authors:** Prathamesh Tamhane, Ming Sun, Hao Chen, Thomas Connor, Megan Donahue, Mark Voit, Mpati Ramatsoku, Kokoro Hosogi, Tim Edge  
+- Priority B: **2**
+- Boundary C (archive only): **12**
+- Screened astro-ph candidates: **64**
+#### [A] Turbulence modes in molecular clouds in M33: a challenging test of the Brunt-Federrath framework
+- **Score:** 70.2  
+- **Topics:** turbulence, ism_methods, halo_cgm  
+- **Authors:** Raffaele Rani, Ayu Konishi, Kazuyuki Muraoka, Toby J. T. Moore, David J. Eden, Karan Fernandes, Yueh-Ning Lee, Shih-Ping Lai  
 - **Subjects:** astro-ph.GA  
-- **arXiv:** [https://arxiv.org/abs/2610.10721](https://arxiv.org/abs/2610.10721)  
-- **PDF:** [https://arxiv.org/pdf/2610.10721.pdf](https://arxiv.org/pdf/2610.10721.pdf)  
-- **Abstract:** We present a multiwavelength analysis of NGC 4936, the central galaxy of a weak cool-core group hosting an unusually large cold/warm gas reservoir. NGC 4936 contains $\sim2\times10^8$ M$_\odot$ of molecular gas in a rotating disk of radius $\sim1$ kpc, but no detected H I, with a $3\sigma$ upper limit of $1.13\times10^7$ M$_\odot$ within $\sim2.5$ kpc. The resulting $H_2$/H I mass ratio $>17$ is consistent with a predominantly molecular medium in the high-pressure environments of central galaxies. SOAR imaging and MUSE spectroscopy reveal ionised gas extending to $\sim15$ kpc in a complex filamentary morphology that broadly follows the molecular gas kinematics while extending well beyond the CO disk. Dust filaments similarly extend to $\sim14$ kpc and appear to interact with a companion galaxy located only $\sim2.5$ kpc away in projection. NGC 4936 has a star formation rate of $0.29$ M$_\odot$ yr$^{-1}$, and its AGN shows sub-mm and X-ray variability. We favour atmospheric condensation as the primary origin of the molecular gas, although externally acquired gas may contribute. Our recalculated thermodynamic profiles reach $t_{\rm cool}/t_{\rm ff}\sim25$ in the innermost region, placing the system near the threshold for multiphase condensation. The ongoing interaction may perturb the atmosphere and promote condensation while shaping the morphology and kinematics of the multiphase medium, rather than directly supplying most of the central cold gas. We additionally detect 20 H I structures in the surrounding group environment, with masses of $\sim10^7$--$10^8$ M$_\odot$, including several with no obvious optical counterparts.
+- **arXiv:** [https://arxiv.org/abs/2610.13726](https://arxiv.org/abs/2610.13726)  
+- **PDF:** [https://arxiv.org/pdf/2610.13726.pdf](https://arxiv.org/pdf/2610.13726.pdf)  
+- **Abstract:** Understanding the turbulent structure of molecular clouds is essential for linking galactic environment to the regulation of star formation. Although Galactic molecular clouds have been studied extensively, extending turbulence-mode analysis beyond the Milky Way remains challenging because of the limited spatial resolution and dynamic range of extragalactic observations. We assess the applicability of the Brunt \& Federrath (2014; BF14) framework to molecular clouds in M33. We apply BF14 to 128 $^{13}$CO(2-1) clouds, selecting a primary quality-controlled sample of 54 clouds and a more restrictive 25-cloud subsample defined using a stricter extraction-padding criterion (PAD=2) for quantitative this http URL of cloud and noise power spectra, Fourier-space cutoffs, extraction padding, and Monte Carlo uncertainties demonstrate that the retained spatial frequencies are dominated by astrophysical signal and that the inferred turbulence-mode fractions are robust against reasonable analysis choices. Both samples yield consistent distributions of the solenoidal fraction, with mean values of $R \simeq 0.22$ for both samples and median values of $R \simeq 0.18$ and $0.17$, respectively, indicating that compressive motions dominate the turbulent energy budget. No strong systematic variations of $R$ are found with galactocentric distance or tracers of recent star formation. These results demonstrate that, despite the challenging spatial resolution of current extragalactic molecular-line observations, the BF14 framework can be applied reliably to nearby galaxies using spectroscopic observations alone. To our knowledge, this constitutes the first application of the full BF14 formalism to extragalactic molecular-cloud observations.
 
-#### [B] Global and Local Infall in the ASHES Sample (GLASHES). III. Physical Parameters of Contracting Motion onto Dense Cores in 70 $μ$m Dark Massive Clumps
-- **Score:** 64.8  
-- **Topics:** astrochemistry, turbulence, halo_cgm  
-- **Authors:** Kaho Morii, Patricio Sanhueza, Qizhou Zhang, Philip C. Myers, James M. Jackson, Fumiaki Yoshida  
+#### [B] Bridging Theory and Observation: Synthetic Far-infrared Insights into Star Formation Efficiency
+- **Score:** 69.3  
+- **Topics:** astrochemistry, massive_star_formation, ism_methods  
+- **Authors:** Alexander Escamilla, Michael Y. Grudić, Anna L. Rosen  
 - **Subjects:** astro-ph.GA; astro-ph.SR  
-- **arXiv:** [https://arxiv.org/abs/2610.10676](https://arxiv.org/abs/2610.10676)  
-- **PDF:** [https://arxiv.org/pdf/2610.10676.pdf](https://arxiv.org/pdf/2610.10676.pdf)  
-- **Abstract:** Core growth is a key process in high-mass star formation. As part of the GLASHES (Global and Local Infall in the ASHES Sample) survey, we present infall velocities and mass infall rates derived from blue-asymmetric line profiles toward cores embedded in massive 70 \textmu m-dark clumps. Robust Hill5 model fits were obtained for 70 of the 135 cores exhibiting blue-asymmetric profiles, yielding infall velocities of 0.11--1.60 km s$^{-1}$ and mass infall rates ranging from $\sim$10$^{-5}$ to $5\times10^{-3}\,M_\odot\,{\rm yr}^{-1}$. Both quantities increase systematically from prestellar candidates to warm cores and outflow-associated cores. The inferred infall velocities are close to the cores' free-fall velocities (mean $v_{\rm in}/v_{\rm ff}\sim0.75$) and $t_{\rm in}=R/v_{\rm in}$ is comparable to the free-fall time, indicating dynamical fast contraction. Hill5 infall velocity correlates moderately with the non-thermal velocity dispersion and Mach number measured from optically thin tracers, indicating that organized infall contributes to the observed line widths. The mass infall rate follows a power-law relation with core mass, $\dot{M}=1.3\times10^{-4}\,(M/M_\odot)^{0.83\pm 0.06}\,M_\odot\,{\rm yr}^{-1}$, across $0.1\,M_\odot \lesssim M \lesssim 30\,M_\odot$. The power-law index increases from $\sim$0.65 for prestellar cores to $\sim$1.10 for outflow-associated cores, likely tracing an evolution in the dominant physical process. The Hill5 infall velocities and mass infall rates for the GLASHES cores are larger than those of cores in nearby low-mass star forming regions but smaller than those of larger scale high-mass clumps. These results provide the first statistical constraints on core-scale mass accumulation during the earliest stages of high-mass star formation.
+- **arXiv:** [https://arxiv.org/abs/2610.12729](https://arxiv.org/abs/2610.12729)  
+- **PDF:** [https://arxiv.org/pdf/2610.12729.pdf](https://arxiv.org/pdf/2610.12729.pdf)  
+- **Abstract:** The star formation efficiency per free-fall time ($\epsilon_{\rm ff}$) quantifies how efficiently giant molecular clouds (GMCs) convert gas into stars and is often observed to be orders of magnitude lower than expected for free-fall collapse. Observers typically estimate $\epsilon_{\rm ff}$ by mapping far-infrared (FIR) dust emission to infer gas surface densities ($\Sigma_{\rm gas}$) and counting embedded protostars, assuming simplified lifetimes and masses. Using the fiducial STARFORGE radiation-magnetohydrodynamics simulation of an $M_{\rm cl} = 2\times10^4 M_\odot$ GMC that self-consistently models star cluster formation and stellar feedback, we generate synthetic FIR observations and apply the same methodologies used in GMC surveys to investigate this discrepancy. We present the first $\epsilon_{\rm ff}-\Sigma_{\rm gas}$ analysis in a fully feedback-regulated GMC simulation that resolves the formation of stellar systems. Our synthetic measurements reproduce the low observationally inferred efficiencies, showing that feedback-regulated star formation naturally produces $\epsilon_{\rm ff} \sim 1-3\%$ without requiring extreme initial conditions. We also find that $\epsilon_{\rm ff}$ varies strongly over a GMC's lifetime, suggesting that much of the observed scatter reflects evolutionary sampling rather than intrinsic cloud-to-cloud differences. Finally, by comparing observational and simulation definitions, we show that methodological assumptions introduce systematic biases, with a transition near $\log \Sigma_{\rm gas} \approx 2.3 M_\odot {\rm pc}^{-2}$ that depends on resolution. Above this threshold, the smoothing of dense structure increases both the inferred free-fall time and enclosed gas, with the latter dominating and suppressing $\epsilon_{\rm ff}$. Below the threshold, the discrepancies are primarily driven by star formation rate assumptions.
+
+#### [B] X-Shooter view of planetary nebulae microstructures I: The case of NGC 7009 knots
+- **Score:** 64.0  
+- **Topics:** molecular_clouds, astrochemistry, massive_star_formation  
+- **Authors:** L. Konstantinou, S. Akras, K. Bouvis, P. Boumis, J. Garcia-Rojas, D.R. Gonçalves, K.N. Gourgouliatos  
+- **Subjects:** astro-ph.SR; astro-ph.GA  
+- **arXiv:** [https://arxiv.org/abs/2610.13587](https://arxiv.org/abs/2610.13587)  
+- **PDF:** [https://arxiv.org/pdf/2610.13587.pdf](https://arxiv.org/pdf/2610.13587.pdf)  
+- **Abstract:** The properties of NGC 7009 knots are investigated by employing UV-to-near-infrared data from the X-Shooter spectrograph. These structures belong to the category of low-ionization structures (LISs), which are characterized by enhanced emission from low-ionization species and whose origin remains enigmatic. Our main goal is to conduct the first dedicated spectroscopic study of LISs using X-Shooter, that covers a wide spectral range from the UV to the near-IR, simultaneously. As a pilot study, we focus on NGC 7009 to investigate its ionized, atomic, and molecular gas, aiming to better characterize the physical properties of its LISs and explore their largely unexplored molecular content. The spectrum was processed through the ESO Reflex pipeline, and the physical properties of LISs were derived with the latest version of PyNeb. More than 250 emission lines were detected in the spectra of NGC 7009 LISs, including rare, forbidden transitions from low- ionization species such as Fe+ and Ni+, as well as two transitions from P+, identified here for the first time in LISs. The detection of multiple shock tracers, together with the shock excitation of [Fe II] and [O I], as revealed by emission-line diagnostics, supports the presence of shocks at LISs. The richness of the spectrum allowed us to derive electron temperatures and densities at the LISs using both collisionally excited and optical recombination lines. In the near-IR spectrum of the LISs, nine ro-vibrational H2 emission lines were detected, seven of which were reported here for the first time. These lines were used to construct the H2 excitation diagram, providing new insights into the physical conditions of the nebular gas. The excitation of molecular hydrogen is most likely dominated by collisional processes through shocks.
 
 
-Generated by AstroBrief on 2026-10-09.
+Generated by AstroBrief on 2026-10-12.
 
 
 ### Boundary candidates (C; not emailed as recommendations)
 
-- **The Binary Fraction of Milky Way Field Stars in DESI: Dependence on Chemical Abundance** — `astrochemistry` — [2610.11102](https://arxiv.org/abs/2610.11102)
-- **Measuring radial flows in disc galaxies** — `turbulence` — [2610.11588](https://arxiv.org/abs/2610.11588)
-- **Oxygen isotopic ratio in open cluster RGB stars: A new method for accurate mass and age estimations** — `astrochemistry` — [2610.11404](https://arxiv.org/abs/2610.11404)
-- **Binding Energies of Astrophysically Relevant Molecules on CO$_2$ Clusters: Benchmarking and the Donor-Acceptor Origin of Surface-Dependent Binding** — `astrochemistry` — [2610.12055](https://arxiv.org/abs/2610.12055)
-- **A "universal" supernova efficiency to drive the HI turbulence in nearby star-forming galaxies** — `astrochemistry` — [2610.10698](https://arxiv.org/abs/2610.10698)
-- **HI intensity mapping with MeerKAT: A measurement of the 21-cm auto-spectrum on cosmological scales** — `astrochemistry` — [2610.12158](https://arxiv.org/abs/2610.12158)
-- **Direct Numerical Comparison of Data Driving Strategies for Solar Flux Emergence in Magnetohydrodynamics: B-driving vs E-driving** — `magnetic_fields` — [2610.11182](https://arxiv.org/abs/2610.11182)
-- **The Hand of God Revisited: Revealing the Shell Structure and Jet-Supernova Remnant Interaction in MSH 15-52** — `astrochemistry` — [2610.11813](https://arxiv.org/abs/2610.11813)
-- **Kinematic and Dynamical Properties of Solar Neighborhood White Dwarfs from SDSS DR19 and Gaia DR3** — `astrochemistry` — [2610.10675](https://arxiv.org/abs/2610.10675)
-- **The progenitor galaxies of the intracluster light** — `turbulence` — [2610.10785](https://arxiv.org/abs/2610.10785)
-- **First uGMRT Constraints on Rotation Measure in the Radio-Quiet Seyfert Galaxy NGC 4235** — `magnetic_fields` — [2610.10726](https://arxiv.org/abs/2610.10726)
-- **Neutrino flavor conversion alters the lepton-emission self-sustained asymmetry in core-collapse supernovae** — `turbulence` — [2610.10685](https://arxiv.org/abs/2610.10685)
-- **Evidence for orbital eccentricity supports a hierarchical origin for GW231123** — `turbulence` — [2610.12205](https://arxiv.org/abs/2610.12205)
-- **An analytical model for non-local stochastic field-level galaxy bias on the sphere** — `turbulence` — [2610.12259](https://arxiv.org/abs/2610.12259)
-- **Exemplary Merging Clusters II: XMM-Newton and Chandra X-ray Observations of MACS J1752.0+4440 and ZwCl 1856.8+6616** — `halo_cgm` — [2610.10680](https://arxiv.org/abs/2610.10680)
-- **NGC 6426: Colour-Magnitude diagram and variable star population as indicators of metallicity, distance, and age** — `astrochemistry` — [2610.11016](https://arxiv.org/abs/2610.11016)
-- **A New Era for Supernova Science with the James Webb Space Telescope** — `astrochemistry` — [2610.12100](https://arxiv.org/abs/2610.12100)
-- **EK Cha b: multi-tracer detection of a protoplanet candidate in a gas-rich environment** — `astrochemistry` — [2610.10701](https://arxiv.org/abs/2610.10701)
-- **JWST CAPERS: Spectroscopic evaluation of very high redshift galaxy candidates** — `massive_star_formation` — [2610.12322](https://arxiv.org/abs/2610.12322)
-- **Autocorrelation in black hole flare movies: Departures from Kerr** — `turbulence` — [2610.12199](https://arxiv.org/abs/2610.12199)
-- **The Origin of the Fermi Halo-like Emission: A New Model of the Fermi Bubbles** — `halo_cgm` — [2610.10695](https://arxiv.org/abs/2610.10695)
-- **Prevalence of radio Active Galactic Nuclei in galaxy groups since z=3.5 in the COSMOS-Web field** — `astrochemistry` — [2610.10719](https://arxiv.org/abs/2610.10719)
+- **Predicted state-to-state collisional rate coefficients from neural networks** — `turbulence` — [2610.12743](https://arxiv.org/abs/2610.12743)
+- **High Resolution Spectro-Polarimetric Observations of the Optical Filaments surrounding NGC 1275 with ESPaDOnS** — `astrochemistry` — [2610.13719](https://arxiv.org/abs/2610.13719)
+- **Exploring Case B I: The Footprints of Hidden Radiation Fields in H I Balmer Decrements** — `astrochemistry` — [2610.12715](https://arxiv.org/abs/2610.12715)
+- **Decomposing the Kinematics of SNR G180.0-01.7 with Medium-Resolution Spectra** — `turbulence` — [2610.12880](https://arxiv.org/abs/2610.12880)
+- **Redshifted Cool Gas in the Disturbed HI Disk of the Starburst Dwarf NGC 4214** — `astrochemistry` — [2610.13039](https://arxiv.org/abs/2610.13039)
+- **Insights from the stability of methanol maser flare properties I: G9.62+0.20E** — `astrochemistry` — [2610.13774](https://arxiv.org/abs/2610.13774)
+- **A Comprehensive JWST Slitless Spectroscopic Census of $\sim$12,000 Emission-Line Galaxies at Redshift $0\sim9$ in COSMOS** — `astrochemistry` — [2610.13920](https://arxiv.org/abs/2610.13920)
+- **Magnetic connectivity from the Sun to the Earth with MHD models II. Impact of input magnetic maps** — `magnetic_fields` — [2610.13620](https://arxiv.org/abs/2610.13620)
+- **A dust-reddened quasar in a [C II]-luminous host at z=6.55** — `astrochemistry` — [2610.13758](https://arxiv.org/abs/2610.13758)
+- **Star Cluster Ecology VIII. -- Dynamically Forming S-Type and $α$Centauri-like Systems** — `massive_star_formation` — [2610.13127](https://arxiv.org/abs/2610.13127)
+- **A strategy for astrometric quasar selection with Gaia DR3 and its application to discover new luminous $z>2$ quasars** — `astrochemistry` — [2610.13742](https://arxiv.org/abs/2610.13742)
+- **Nailing down the Hubble constant value through time delay cosmography: A 3% measurement from SN Refsdal** — `astrochemistry` — [2610.12595](https://arxiv.org/abs/2610.12595)

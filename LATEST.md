@@ -1,89 +1,93 @@
-# AstroBrief — Latest astro-ph submissions for 2026-10-19
+# AstroBrief — Latest astro-ph submissions for 2026-10-20
 
 Semantic ISM / star-formation screening: **SPECTER2 + domain evidence + local zero-shot NLI**.
 No paid model API is used.
 
 ### Today: 6 recommended papers
-- Priority A: **3**
-- Priority B: **3**
-- Boundary C (archive only): **19**
-- Screened astro-ph candidates: **96**
-#### [A] Isomer-resolved ion-molecule reaction kinetics of HCO+ and HOC+
-- **Score:** 76.1  
+- Priority A: **2**
+- Priority B: **4**
+- Boundary C (archive only): **23**
+- Screened astro-ph candidates: **120**
+#### [A] The Central Molecular Zone of our Galaxy, a chemical complexity factory: first interstellar detections of molecules towards G+0.693
+- **Score:** 76.5  
 - **Topics:** astrochemistry, molecular_clouds, turbulence  
-- **Authors:** Miguel Jiménez-Redondo, Olli Sipilä, Petr Dohnal, Robin Dahl, Paola Caselli, Pavol Jusko  
-- **Subjects:** astro-ph.GA; physics.chem-ph  
-- **arXiv:** [https://arxiv.org/abs/2610.23452](https://arxiv.org/abs/2610.23452)  
-- **PDF:** [https://arxiv.org/pdf/2610.23452.pdf](https://arxiv.org/pdf/2610.23452.pdf)  
-- **Abstract:** The HCO$^+$/HOC$^+$ abundance ratio has been observed to vary significantly in different astrophysical environments, making it an important diagnostic tool for exploring the interstellar medium. However, uncertainties in the reaction rates and branching ratios of key chemical reactions involving these ions affect the conclusions drawn from observations of either these species or other species that are derived on their basis. Here, we present isomer-resolved ion-molecule reaction rate coefficients of reactions involving HCO$^+$ and HOC$^+$ using a cryogenic ion trap experiment. We measured the rate coefficients of the isomerization reaction of HOC$^+$ to HCO$^+$ with H$_2$ and CO, as well as three different reactions producing both isomers: CO$^+$ + H$_2$ , H$_3^+$ + CO, and ArH$^+$ + CO. Our results show that the reaction of CO$^+$ with H$_2$ predominantly produces HCO$^+$ with a negligible yield of HOC$^+$ . This result is in agreement with recent theoretical predictions, but in major contrast to the generally accepted branching ratio based on previous experimental results. We also find that the isomerization reaction of HOC$^+$ to HCO$^+$ is efficient with both H2 and CO. We were able to assess the impact of our new measured reaction rate coefficients on the predicted HCO$^+$/HOC$^+$ abundance ratio using a state-of-the-art astrochemical model.
-
-#### [A] The Magnetized Universe: From planet-forming disks to the high-redshift universe
-- **Score:** 70.6  
-- **Topics:** magnetic_fields, astrochemistry, turbulence  
-- **Authors:** Josep M Girart, Gary Fuller, Wouter Vlemmings, Jianhang Chen, Tom Bakx, Maria T. Beltrán, Henrik Beuther, Leindert Boogaard, Tao-Chung Ching, Paulo Cortes, Maryvonne Gerin, Bo Huang, Woojin Kwon, Shih-Ping Lai, Valentin Le Gouellec, Hauyu Baobab Liu, Junhao Liu, Enrique Lopez-Rodriguez, Frédérique Motte, Rosita Paladino, Aina Palau, Kate Pattle, Gergo Popping, Keping Qiu, Ramprasad Rao, Víctor Revilla, Sarah Sadavoy, Raghvendra Sahai, Álvaro Sánchez-Monge, Patricio Sanhueza, Asako Sato, Kei Tanaka, Maxime Tanious, Fengwei Xu, Qizhou Zhang  
-- **Subjects:** astro-ph.GA; astro-ph.IM  
-- **arXiv:** [https://arxiv.org/abs/2610.22598](https://arxiv.org/abs/2610.22598)  
-- **PDF:** [https://arxiv.org/pdf/2610.22598.pdf](https://arxiv.org/pdf/2610.22598.pdf)  
-- **Abstract:** The interstellar medium (ISM) is magnetized at all scales and phases in our Galaxy and other galaxies across the Universe. Spectro-polarimetric millimetre observations are essential to probe the role of the interstellar magnetic fields in the dynamics of the cold universe, and how this affects the star formation process, and planet formation in nearby star forming regions. Such observations are also essential for understanding magnetic fields in active stars and the shaping and evolution of the circumstellar environments of evolved stars. While ALMA has been revolutionary in advancing our knowledge about magnetic fields in the ISM, the limitations in calibration, especially for circular polarization, and sensitivity for large samples, have hindered robust measurements of field strengths, which are essential for fully assessing their role in ISM dynamics. An ALMA2040 that broadens spectro-polarimetric capabilities to include robust circular calibration and increases sensitivity with more collecting area will enable crucial observations of magnetic fields across the Universe and over a wide range of spatial scales to fully ascertain the influences of magnetic fields from galaxy assembly to forming planets.
-
-#### [A] The coordinated radio and infrared survey for high-mass star formation - VI. Higher-resolution follow-up of point-like northern ultra-compact H II regions
-- **Score:** 67.1  
-- **Topics:** astrochemistry, atomic_ism, molecular_clouds  
-- **Authors:** Ivayla E. Kalcheva, Melvin G. Hoare  
+- **Authors:** Víctor M. Rivilla  
 - **Subjects:** astro-ph.GA  
-- **arXiv:** [https://arxiv.org/abs/2610.23258](https://arxiv.org/abs/2610.23258)  
-- **PDF:** [https://arxiv.org/pdf/2610.23258.pdf](https://arxiv.org/pdf/2610.23258.pdf)  
-- **Abstract:** The CORNISH survey provided the most complete sample of ultra-compact H II (UCHII) regions in the northern Galactic plane to date, but at its 1.5 arcsec resolution the most compact, and plausibly youngest, members of the sample could not be morphologically classified. We present Karl G. Jansky Very Large Array (JVLA) A-configuration observations at 10 GHz of 69 such CORNISH UCHII regions, reaching an angular resolution of ~0.2-0.3 arcsec and a typical rms noise of ~10 microJy/beam. All but two of the imaged targets are detected; the two non-detections lie in fields that are dynamic-range limited by bright neighbours. Six targets (~9 per cent) are resolved into pairs of sources, and a further 15 CORNISH UCHII regions detected within the fields reveal complex, multi-component structure. We also report candidate massive young stellar object (MYSO) jet knots and a row of three compact sources coincident with a previously unresolved infrared-dark H II region. The targets have a median deconvolved angular diameter of ~0.9 arcsec and physical diameters of 0.004-0.17 pc (median ~0.03 pc), with no correlation between angular size and distance, consistent with a population of intrinsically compact, young regions. Spectral indices between 1.4 and 10 GHz place ~32 per cent of the targets below the thermal free-free limit, possibly indicating non-thermal emission or variability. These data enable morphological classification of nearly the entire CORNISH UCHII sample, which will be presented in a forthcoming paper.
+- **arXiv:** [https://arxiv.org/abs/2610.26308](https://arxiv.org/abs/2610.26308)  
+- **PDF:** [https://arxiv.org/pdf/2610.26308.pdf](https://arxiv.org/pdf/2610.26308.pdf)  
+- **Abstract:** The Central Molecular Zone (CMZ) of our Galaxy is a prime laboratory for interstellar chemistry because of its extreme conditions, such as shocks and high cosmic-ray ionisation rates. It is an efficient factory of molecules, with many species first discovered in CMZ sources. This document reviews key results from the study of the CMZ G+0.693-0.027 molecular cloud. Using ultra-sensitive broadband spectral surveys together with laboratory spectroscopy, more than 140 molecules have been identified, including 28 detected for the first time in the interstellar medium (ISM). These discoveries include prebiotic precursors of biomolecules, increasingly complex members of known molecular families, molecules containing periodic third-row elements (S, P, Na, Mg), high-energy stereo- and structural isomers, and new cations. Overall, these findings extend the known limits of interstellar chemical complexity and highlight the CMZ's potential to provide the molecular ingredients for prebiotic chemistry.
 
-#### [B] The bar-driven central complex of NGC 6946: A panchromatic and spatially resolved view of its star formation history and interstellar medium
-- **Score:** 70.6  
-- **Topics:** astrochemistry, molecular_clouds, massive_star_formation  
-- **Authors:** Santiago Álvarez-Córdoba, Jacopo Fritz, M. A. Lara-López, Bernardo Cervantes Sodi, L. S. Pilyugin, Viviana Casasola, Sami Dib, Omar López-Cruz, L. E. Garduño, G. Valé, I. A. Zinchenko, M. E. De Rossi, M. M. Puebla, Vidhi Tailor, Gustavo Bruzual, J. Zaragoza-Cardiel, Margarita Rosado  
+#### [A] A high-Galactic-altitude scattering screen: scintillation from Globular Cluster pulsar M53A
+- **Score:** 67.9  
+- **Topics:** galactic_ism, turbulence, astrochemistry  
+- **Authors:** Qiuyi He, Xun Shi, Dejiang Yin, Di Li  
 - **Subjects:** astro-ph.GA  
-- **arXiv:** [https://arxiv.org/abs/2610.22483](https://arxiv.org/abs/2610.22483)  
-- **PDF:** [https://arxiv.org/pdf/2610.22483.pdf](https://arxiv.org/pdf/2610.22483.pdf)  
-- **Abstract:** We present a multi-wavelength analysis of the nearby spiral galaxy NGC 6946, combining optical IFS, infrared, and radio observations. We aim to characterise both the integrated and spatially resolved properties of the stellar populations and ISM, and to interpret them in the context of bar-driven galaxy evolution. We used the SED fitting code SINOPSIS to derive stellar population properties, and different prescriptions to derive ISM properties including atomic and molecular gas masses and the dust mass,temperature, and emissivity index. We find that the central 2.6 kpc hosts $40\%$ of the stellar mass, as well as the bulk of the molecular gas and dust, and has sustained enhanced star formation over cosmic time. A major star formation episode occurred 0.6 Gyr ago. The spatially resolved KS relation shows that molecular gas alone explains only part of the current SFR variance, while alternative prescriptions incorporating stellar mass and dynamical equilibrium pressure yield only modest improvements. We also find radial enhancements in the effective oxygen yield and gas mass fraction relative to surrounding regions, consistent with sustained gas accumulation. Together with the molecular gas streaming motions previously detected kinematic studies, our results are consistent with, and provide independent support for, the inward transport of gas driven by a system of nested bars and with a scenario in which a recent episode of bar-driven gas inflow enhanced the central molecular gas reservoir and sustained elevated star formation. These findings point to efficient HI-to-H$_2$ conversion, likely promoted by the combined effect of the secondary bar and the large dust content, ultimately regulating star formation. We also find indications consistent with a young stellar bar. The current decline in star formation despite large gas reservoirs suggests recent bar-driven quenching.
+- **arXiv:** [https://arxiv.org/abs/2610.25895](https://arxiv.org/abs/2610.25895)  
+- **PDF:** [https://arxiv.org/pdf/2610.25895.pdf](https://arxiv.org/pdf/2610.25895.pdf)  
+- **Abstract:** While known interstellar scattering screens are largely confined to the Galactic disk, the scattering properties of the circumgalactic medium (CGM) in the deep Galactic halo have remained unexplored. Using observations from the Five-hundred-meter Aperture Spherical radio Telescope (FAST), we report the first detection of scintillation arcs in the secondary spectra of the high-latitude pulsar J1312+1810A (M53A). Under the 1D anisotropic and 2D isotropic thin-screen models considered here, the inferred scintillation screen distances are $12.8_{-3.5}^{+2.6}$ and $11.7_{-3.5}^{+2.8}$\,kpc, respectively. These model-dependent estimates correspond to Galactic heights of $12.6_{-3.5}^{+2.6}$ and $11.5_{-3.5}^{+2.7}$\,kpc, placing the candidate screen among the highest-altitude scattering structures inferred to date. The strong, time-variable scintillation asymmetry suggests substantial electron-density inhomogeneity within the screen. We speculate that this screen is associated with small-scale structures near the shock boundary of the northern eROSITA bubble. These results support the presence of discrete, inhomogeneous scattering structures deep within the Galactic halo, far beyond the regions where localized stellar feedback is typically concentrated, and highlight pulsar scintillation as a promising probe of small-scale ionized structures in the CGM.
 
-#### [B] A new submillimeter Class I methanol maser at 345.903 GHz near the massive protostar S255IR NIRS3
-- **Score:** 64.0  
-- **Topics:** atomic_ism, massive_star_formation, molecular_clouds  
-- **Authors:** Svetlana Salii, Igor Zinchenko, Andrej Sobolev  
+#### [B] Probing the Interstellar Medium towards the Double Pulsar and the Gum Nebula using Low-Frequency Pulse Broadening Measurements
+- **Score:** 68.2  
+- **Topics:** turbulence, magnetic_fields, astrochemistry  
+- **Authors:** C. P. Lee, N. D. R. Bhat, B. W. Meyers, W. van Straten  
+- **Subjects:** astro-ph.HE  
+- **arXiv:** [https://arxiv.org/abs/2610.26141](https://arxiv.org/abs/2610.26141)  
+- **PDF:** [https://arxiv.org/pdf/2610.26141.pdf](https://arxiv.org/pdf/2610.26141.pdf)  
+- **Abstract:** Long-term timing of the double pulsar system (PSR J0737-3039A/B) has enabled some of the most stringent constraints on strong-field gravity. Yet, despite the system's high profile, there have been very few observations at frequencies below 300 MHz, where pulse broadening due to interstellar scattering becomes significant. Measurements of the pulse broadening timescale and its frequency scaling, $\tau_\mathrm{s}\propto\nu^\alpha$ (where $\alpha$ is the scattering spectral index), provide valuable constraints on the structure of the scattering medium. Here we report on simultaneous observations of J0737-3039A and five other nearby pulsars (J0630-3824, J0742-2822, J0820-4114, J0835-4510, J0837-4135) in the frequency range 109-231 MHz using the Murchison Widefield Array (MWA). These observations have enabled the highest-quality detections ever published for these pulsars at low frequencies. For J0737-3039A, J0742-2822, and J0837-4135, we measure $\alpha$ to be -4.1(1), -3.8(1), and -4.1(1), respectively. These measurements provide new constraints on the density and turbulence parameters of the Gum Nebula region, and we discuss implications for models of the Galactic electron density distribution. Our current data yield a dispersion measure (DM) precision of ~4 x 10^-4 pc/cm^-3 for J0737-3039A, which can be further improved with the MWA Phase III to reach ~1 x 10^-4 pc/cm^-3, far exceeding the precision of previous studies. The prospects for precisely constraining temporal variations in the DM and pulse broadening timescale strengthen the importance of regular monitoring of J0737-3039A at low frequencies, with the eventual goal of contributing to long-term timing studies.
+
+#### [B] Competitive roles of turbulence and magnetic field on the formation of unipolar outflows in isolated molecular cloud cores
+- **Score:** 64.1  
+- **Topics:** turbulence, halo_cgm, massive_star_formation  
+- **Authors:** Daisuke Takaishi, Yusuke Tsukamoto, Miyu Kido, Shigehisa Takakuwa, Yoshiaki Misugi, Yuki Kudoh, Yasushi Suto  
+- **Subjects:** astro-ph.SR; astro-ph.EP; astro-ph.GA  
+- **arXiv:** [https://arxiv.org/abs/2610.26176](https://arxiv.org/abs/2610.26176)  
+- **PDF:** [https://arxiv.org/pdf/2610.26176.pdf](https://arxiv.org/pdf/2610.26176.pdf)  
+- **Abstract:** We investigate the impact of turbulence and magnetic field on the formation of unipolar outflows in the gravitational collapse of isolated low-mass cloud cores using three-dimensional non-ideal magnetohydrodynamics simulations. In the models explored in this study, we find that unipolar outflows are formed in cloud cores with the super-Alfvénic turbulence of $M_{\rm{A}}>1$, where $M_{\rm{A}}$ is the Alfvén Mach number of the initial cloud core. In contrast, bipolar outflows are formed in cloud cores with $M_{\rm{A}}\lesssim1$. Our results suggest that the relative strength of the turbulence to the magnetic field in the initial cloud core plays a key role in the formation of unipolar outflows. We also find that no outflow is formed in cloud cores with the strong magnetic field of the dimensionless mass-to-flux ratio $\mu=2$. The outflow morphologies can be used as tracers to indirectly estimate the relative strengths of the turbulence and magnetic field of the parent cloud cores.
+
+#### [B] The Solar System through dust maps. Encounter statistics with interstellar gas
+- **Score:** 62.2  
+- **Topics:** galactic_ism, astrochemistry, magnetic_fields  
+- **Authors:** E. Maconi, J. Alves, S. Hutschenreuter, S. Ratzenböck, M. Pantaleoni, C. Zucker, C. Levy, G. Edenhofer  
 - **Subjects:** astro-ph.GA  
-- **arXiv:** [https://arxiv.org/abs/2610.23187](https://arxiv.org/abs/2610.23187)  
-- **PDF:** [https://arxiv.org/pdf/2610.23187.pdf](https://arxiv.org/pdf/2610.23187.pdf)  
-- **Abstract:** We present results of further investigation of radio emission from the remarkable molecular core S255IR-SMA1 harboring a \(\sim\) 20 Msun young stellar object NIRS3 which exhibited a disk-mediated accretion burst in 2015. Our study is based on observations of this object with ALMA in Band 7 with the longest baselines, which provide an angular resolution of \(\sim\)15 mas. The obtained data reveal several spots in the bright and narrow methanol 16(1) \(-\) 15(2) A\(-\) line emission at 345.903 GHz. These spots are located close to H_2O masers, knots in the jet and arc-like structures seen in submillimeter continuum. At the same time, they are far away from the peaks of the Class II methanol maser spots. High brightness temperatures and small line widths of the 345.903 GHz line emission indicate that this emission has a maser nature. Association with the shock tracers tells that these masers belong to Class I methanol maser category. Non-LTE analysis of the physical parameters which lead to population inversion of 16(1) \(-\) 15(2) A\(-\) transition shows that some known rare Class I methanol maser transitions are also inverted under these conditions.
+- **arXiv:** [https://arxiv.org/abs/2610.26063](https://arxiv.org/abs/2610.26063)  
+- **PDF:** [https://arxiv.org/pdf/2610.26063.pdf](https://arxiv.org/pdf/2610.26063.pdf)  
+- **Abstract:** During its orbit around the Milky Way, the Solar System crosses different environments, including dense ISM regions. These encounters increase dust influx, leave geological signatures, and affect the heliosphere. For the local ISM, we estimate crossing frequencies and durations, the fraction of time spent above gas density thresholds, and how Solar vertical motion and ISM stratification influence these statistics. We quantify gas influx and dust exposure. We use Gaia-based 3D dust maps of the Solar neighborhood, sampled by integrating the Solar System along its Galactic orbit while rigidly translating the maps. From the resulting density time series, encounter statistics and fluxes are derived. We find that the Solar System spends most of its time in low density environments, while crossings of dense gas become rarer with increasing density threshold. For nH>=1cm^-3, the crossing frequency is above 600Gyr^-1, whereas thresholds around 200cm^-3 are crossed once per Gyr. Individual crossings last tens of kyr and become shorter at higher density thresholds. The inferred durations soon become nearly constant, reflecting the finite spatial resolution of the maps. The Sun spends 18 to 47% of the sampled time above 1cm^-3, and 1 to 10% above 10cm^-3. The residence fraction can be reproduced by combining the vertical volume filling factor of gas with the fraction of time spent by the Sun at each height. Within the current vertical range sampled by the Sun, we find no clear enhancement of crossing statistics during midplane passages, suggesting that these do not necessarily lead to periodic perturbations of the Solar System. About 50% of the gas influx is contributed by gas with nH<=3-4cm^-3, and about 90% by gas with nH<=48cm^-3. Our results provide a first order, data driven estimate of ISM encounter statistics, gas influx, and dust exposure along the Solar System's Galactic orbit.
 
-#### [B] Resolving the AGN Feeding and Feedback Cycle with ALMA2040
-- **Score:** 63.2  
-- **Topics:** turbulence, astrochemistry, molecular_clouds  
-- **Authors:** Ilaria Ruffa, Francesco Salvestrini, Almudena Alonso Herrero, Anelise Audibert, Elena Bertola, Viviana Casasola, Roberto Decarli, Daniel Espada, Umberto Maio, Dieu D. Nguyen, Mamta Pandey-Pommier, Miguel Pereira-Santaella, Francesca Pozzi, Jahang Prathap, Sabine Thater, Maria Vittoria Zanchettin  
-- **Subjects:** astro-ph.IM; astro-ph.GA  
-- **arXiv:** [https://arxiv.org/abs/2610.22449](https://arxiv.org/abs/2610.22449)  
-- **PDF:** [https://arxiv.org/pdf/2610.22449.pdf](https://arxiv.org/pdf/2610.22449.pdf)  
-- **Abstract:** Understanding how supermassive black holes (SMBHs) grow and regulate the growth of their host galaxies requires tracing the cold molecular interstellar medium (ISM) throughout the full AGN feeding-feedback cycle. Molecular gas constitutes both the primary fuel for star formation and black-hole accretion and one of the ISM phases most directly affected by AGN-driven radiation, winds, and radio jets. Over the past decade, ALMA has resolved circumnuclear molecular discs, rings, spirals, tori, and jet-driven outflows on scales of tens of parsecs in nearby AGN. These studies have demonstrated that combining spatially resolved gas kinematics with multi-line diagnostics is essential for disentangling the physical processes underlying the observed gas conditions. However, our current picture remains largely based on a limited number of exceptionally nearby systems. Most local AGN have instead been observed with ALMA in a single transition at moderate or low angular resolution, preventing a systematic characterisation of both the dynamics and physical state of the gas. Moreover, existing studies have largely overlooked kinetic-mode AGN hosted by massive early-type galaxies, despite their central importance for understanding maintenance-mode feedback. In this White Paper, we argue that ALMA2040 should transform these detailed case studies into a statistical framework. A $\sim10\times$ improvement in line sensitivity relative to the current ALMA, together with fast mosaicking, ultra-wide instantaneous bandwidth, and longer baselines (resolving up to $\sim9$ mas at 230 GHz), will enable homogeneous, multi-line mapping of the molecular ISM on giant molecular clouds scales across statistically significant samples of both radiative- and kinetic-mode AGN out to $z\lesssim0.1$.
+#### [B] The Local Star Formation Environment Predicts Young Star Cluster Radii: Evidence from PHANGS-MUSE H-alpha Maps
+- **Score:** 56.2  
+- **Topics:** astrochemistry, halo_cgm, atomic_ism  
+- **Authors:** Michelle Sebastian  
+- **Subjects:** astro-ph.GA  
+- **arXiv:** [https://arxiv.org/abs/2610.23876](https://arxiv.org/abs/2610.23876)  
+- **PDF:** [https://arxiv.org/pdf/2610.23876.pdf](https://arxiv.org/pdf/2610.23876.pdf)  
+- **Abstract:** The effective radii of young star clusters correlate with cluster mass, but the large scatter about that relation is not well understood. Theory predicts that a cluster's initial radius depends on the gas surface density of its natal environment, so the star formation environment should leave a measurable imprint on cluster structure. In a companion analysis of 5,105 clusters across 31 LEGUS galaxies, we found that galaxy-wide specific star formation rate (sSFR) carries no predictive power for cluster radius. Here we test whether that null result reflects the spatial scale on which the environment was measured. We cross-match the LEGUS cluster catalog of Brown & Gnedin with H-alpha maps from the PHANGS-MUSE survey in the four galaxies common to both surveys, and measure the local star formation rate surface density, Sigma_SFR, at the position of every cluster by aperture photometry. For the 325 clusters younger than 10 Myr with reliable radius and mass measurements, local Sigma_SFR significantly predicts effective radius (beta = 0.079, p = 2 x 10^-4) in a model containing mass and age, while the host galaxy's sSFR does not (beta = 0.042, p = 0.40) for those same clusters. The local model generalizes nearly three times better under cross-validation (CV R^2 = 0.061 versus 0.022). The effect operates among clusters within a single galaxy: it survives galaxy fixed effects (beta = 0.068, p = 0.001) and appears independently in each of the two galaxies large enough to fit alone. Including local Sigma_SFR also reduces the mass coefficient by 26%. The birth environment measurably shapes cluster structure, but only when it is measured on the scale on which clusters actually form.
 
 
-Generated by AstroBrief on 2026-10-19.
+Generated by AstroBrief on 2026-10-20.
 
 
 ### Boundary candidates (C; not emailed as recommendations)
 
-- **Inferring the delay time distribution of type Ia supernovae with CAALAM I: SED modelling choices and their effect on the delay time distribution** — `astrochemistry` — [2610.23340](https://arxiv.org/abs/2610.23340)
-- **Seeing Through the RFI Mask: DT-FISTA Inpainting of Pulsar Dynamic Spectra via Fourier Sparsity** — `turbulence` — [2610.23140](https://arxiv.org/abs/2610.23140)
-- **Let Sleeping Stars Li: Mapping Turnoff Lithium, the Lithium Dip, & Testing Standard Model Predictions in GALAH DR4 Subgiants** — `astrochemistry` — [2610.22492](https://arxiv.org/abs/2610.22492)
-- **Possible detection of Baryon Acoustic Oscillations imprinted in the HI sources from the FASHI catalog** — `astrochemistry` — [2610.23564](https://arxiv.org/abs/2610.23564)
-- **Survey of Orion Disks with ALMA (SODA) IV: Millimeter variability of protoplanetary disks** — `astrochemistry` — [2610.23640](https://arxiv.org/abs/2610.23640)
-- **The environments forming stellar and planetary systems** — `astrochemistry` — [2610.22462](https://arxiv.org/abs/2610.22462)
-- **A precessing AGN with S-shaped morphology discovered in MALS** — `molecular_clouds` — [2610.23738](https://arxiv.org/abs/2610.23738)
-- **Milky Way Near Twins (MWNeTs). II. Applications of a Hierarchical Framework to NGC 3521, NGC 2903, UGC 11487, and CGCG 047-026** — `astrochemistry` — [2610.23327](https://arxiv.org/abs/2610.23327)
-- **Comparing Infrared & X-ray-selected Active Galactic Nuclei host galaxy star formation rates to the galaxy main sequence** — `astrochemistry` — [2610.23349](https://arxiv.org/abs/2610.23349)
-- **An ALMA view on molecular complexity: water, methanol, and methyl formate in the HD 100546 and IRS 48 disks** — `molecular_clouds` — [2610.22503](https://arxiv.org/abs/2610.22503)
-- **Multi-modal transmission forecasting for the Vera C. Rubin Observatory** — `turbulence` — [2610.22725](https://arxiv.org/abs/2610.22725)
-- **Dust in Galaxies at $z=10-15$: Attenuation and Re-emission Predictions from the FirstLight Simulations** — `galactic_ism` — [2610.22766](https://arxiv.org/abs/2610.22766)
-- **Relations between optical spectral parameters and the (far-)infrared continuum in Type~1 active galactic nuclei** — `astrochemistry` — [2610.23200](https://arxiv.org/abs/2610.23200)
-- **Observational Signatures of Kerr Black Hole Lensing** — `turbulence` — [2610.22470](https://arxiv.org/abs/2610.22470)
-- **Resolving the heart of the Wolf-Rayet binary Apep with ALMA** — `turbulence` — [2610.22406](https://arxiv.org/abs/2610.22406)
-- **SN 2025wiu: A Type Ib Supernova with Post-Peak Optical Rebrightening** — `astrochemistry` — [2610.23414](https://arxiv.org/abs/2610.23414)
-- **Analytic and numerical study of dark matter halos in the Horndeski theory** — `halo_cgm` — [2610.22819](https://arxiv.org/abs/2610.22819)
-- **A Unified Solution to the Low-Mass X-ray Binary Diversity Puzzle: Saturated Magnetic Braking Coupled with Irradiation-Driven Winds** — `astrochemistry` — [2610.22816](https://arxiv.org/abs/2610.22816)
-- **$N$-body simulations of the open cluster M67 -- I: global cluster properties** — `massive_star_formation` — [2610.22946](https://arxiv.org/abs/2610.22946)
+- **Low-mass and High-sSFR H$α$ Emitters at $z \sim 2$ in the ZFOURGE-COSMOS Field** — `astrochemistry` — [2610.26788](https://arxiv.org/abs/2610.26788)
+- **Beyond the dust: JWST reveals extinction and ice content in local (U)LIRGs** — `astrochemistry` — [2610.24069](https://arxiv.org/abs/2610.24069)
+- **Gravitational filtering, magnetic-field inhomogeneity and Coulomb collisions in a kinetic model of a plasma atmosphere with stochastic heating at its base** — `turbulence` — [2610.24678](https://arxiv.org/abs/2610.24678)
+- **Star formation history of Draco revealed by DESI DR1: suppressed early star formation efficiency for Milky Way dwarf galaxies** — `astrochemistry` — [2610.26375](https://arxiv.org/abs/2610.26375)
+- **V347 Aurigae: from Peak to Quiescence** — `astrochemistry` — [2610.24765](https://arxiv.org/abs/2610.24765)
+- **The Milky Way's Early Disk Was Built in Bursts. I. Evidence from Low-angular-momentum, High-$α$ Stars Scattered Out of the Protodisk by Merger Events** — `astrochemistry` — [2610.26374](https://arxiv.org/abs/2610.26374)
+- **Magnetic-field constraints for four magnetic cataclysmic variables from simultaneous continuum and cyclotron modeling** — `astrochemistry` — [2610.24330](https://arxiv.org/abs/2610.24330)
+- **A Two-Population von Mises--Fisher Distribution of the Magnetic Field Direction in the Young Solar Wind** — `magnetic_fields` — [2610.24057](https://arxiv.org/abs/2610.24057)
+- **Forecasting the Resolvability of Stellar Velocity Dispersions in Ultra-faint Dwarf Galaxies** — `astrochemistry` — [2610.24563](https://arxiv.org/abs/2610.24563)
+- **Effect of galaxy mergers on dust masses** — `astrochemistry` — [2610.26166](https://arxiv.org/abs/2610.26166)
+- **Probing the Assembly of Triangulum: Precision Metallicities and $α$ Abundances of M33's Star Clusters from APOGEE Integrated-Light Spectroscopy** — `astrochemistry` — [2610.26565](https://arxiv.org/abs/2610.26565)
+- **The Star Formation Histories of Different Components of M31's Halo from Photometric Estimates of Fe and $α$ Abundances** — `astrochemistry` — [2610.24915](https://arxiv.org/abs/2610.24915)
+- **The accretion flow and jet of M87: broadband modelling across spatial scales** — `halo_cgm` — [2610.26434](https://arxiv.org/abs/2610.26434)
+- **Velocity-resolved Ionization Mapping of the Broad-line Region. II. Signatures of Eccentric Broad-line Regions from a Quantitative Photoionization-Based Model** — `astrochemistry` — [2610.25718](https://arxiv.org/abs/2610.25718)
+- **The DARWIN Project: Cosmological Simulations of Galaxy Formation down to Dwarf Scales in Diverse Environments** — `astrochemistry` — [2610.25786](https://arxiv.org/abs/2610.25786)
+- **Extending the M33 Extinction Map with Radio and Far-Infrared Gas Observations** — `astrochemistry` — [2610.26571](https://arxiv.org/abs/2610.26571)
+- **Multiline Spectropolarimetric Evidence for Photospheric Reconnection in Ellerman Bombs from DKIST** — `magnetic_fields` — [2610.24049](https://arxiv.org/abs/2610.24049)
+- **Mode power and stability in radial post-AGB pulsations** — `turbulence` — [2610.25166](https://arxiv.org/abs/2610.25166)
+- **A DECADE of Giants: A catalog of 42,000 optically identified galaxy clusters from 13,000 $\mathrm{deg}^2$ of the sky** — `massive_star_formation` — [2610.24104](https://arxiv.org/abs/2610.24104)
+- **Extending SOMPZ beyond Spectroscopic Coverage for Roman Weak Lensing** — `astrochemistry` — [2610.24066](https://arxiv.org/abs/2610.24066)
+- **The Next Generation Virgo Cluster Survey (NGVS). XXIX. Demography of Nuclear Star Clusters** — `turbulence` — [2610.25527](https://arxiv.org/abs/2610.25527)
+- **Mass-loss Rates of 74 Bow Shock OB Stars: No Evidence for Bi-stability Behavior** — `astrochemistry` — [2610.24276](https://arxiv.org/abs/2610.24276)
+- **Environmental dependence in the halo model informed by the FLAMINGO simulations** — `turbulence` — [2610.23997](https://arxiv.org/abs/2610.23997)

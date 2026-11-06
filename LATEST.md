@@ -1,61 +1,74 @@
-# AstroBrief — Latest astro-ph submissions for 2026-11-05
+# AstroBrief — Latest astro-ph submissions for 2026-11-06
 
 Semantic ISM / star-formation screening: **SPECTER2 + domain evidence + local zero-shot NLI**.
 No paid model API is used.
 
-### Today: 3 recommended papers
-- Priority A: **3**
-- Priority B: **0**
-- Boundary C (archive only): **18**
-- Screened astro-ph candidates: **100**
-#### [A] Magnetic Properties of Galactic Molecular Clouds
-- **Score:** 82.3  
-- **Topics:** magnetic_fields, halo_cgm, turbulence  
-- **Authors:** Philip C. Myers, Ian W. Stephens, Simon Coudé, Nicole Karnath, Howard A. Smith  
+### Today: 5 recommended papers
+- Priority A: **4**
+- Priority B: **1**
+- Boundary C (archive only): **13**
+- Screened astro-ph candidates: **106**
+#### [A] First Results from JACKS: A VLA Ammonia View of Gas Heating and Star-forming Cores in the Central Molecular Zone
+- **Score:** 79.5  
+- **Topics:** molecular_clouds, astrochemistry, atomic_ism  
+- **Authors:** Xu Zhang, Xing Lu, Elisabeth A. C. Mills, Qizhou Zhang, Daniel L. Walker, Natalie O. Butterfield, Namitha Issac, Annika Schmiedeke, Suinan Zhang, JACKS collaborations  
+- **Subjects:** astro-ph.GA; astro-ph.SR  
+- **arXiv:** [https://arxiv.org/abs/2611.07522](https://arxiv.org/abs/2611.07522)  
+- **PDF:** [https://arxiv.org/pdf/2611.07522.pdf](https://arxiv.org/pdf/2611.07522.pdf)  
+- **Abstract:** The Central Molecular Zone (CMZ) combines warm molecular gas, strong turbulence, and a star-formation rate below that expected from its dense-gas reservoir. The JVLA Ammonia C-configuration K-band Survey (JACKS) is designed to connect these environmental conditions to the thermal and kinematic structure of compact, potentially star-forming gas. JACKS follows the footprint of the ALMA Central Molecular Zone Exploration Survey (ACES) with 31 Very Large Array mosaic fields. Its K-band setup covers the metastable NH$_3$ $(1,1)$--$(5,5)$ inversion transitions, five non-metastable NH$_3$ lines, the 22-GHz H$_2$O maser transition, H64$\alpha$ and H66$\alpha$, and broad continuum windows. The nominal resolutions are approximately $1.5''$ ($0.06$ pc at the Galactic Centre) and $0.4$ km s$^{-1}$ for the NH$_3$ lines. We present preliminary imaging products that demonstrate water-maser self-calibration, compact and extended continuum emission, filamentary NH$_3$ structure, and complex compact sources with multiple velocity components. Tests that combine JACKS with the SWAG and HOPS ammonia surveys recover progressively larger angular scales. These early products establish the survey's ability to connect core-scale gas heating and kinematics to the cloud-scale CMZ environment; quantitative temperature, opacity, and core-population measurements will follow from the uniformly reduced data set.
+
+#### [A] Probing Dark Matter-Electron Scattering with the Central Molecular Zone
+- **Score:** 73.9  
+- **Topics:** astrochemistry, massive_star_formation, galactic_ism  
+- **Authors:** Thong T.Q. Nguyen, Shyam Balaji, Carlos Blanco, Pedro De la Torre Luque  
+- **Subjects:** hep-ph; astro-ph.GA; astro-ph.HE  
+- **arXiv:** [https://arxiv.org/abs/2611.07008](https://arxiv.org/abs/2611.07008)  
+- **PDF:** [https://arxiv.org/pdf/2611.07008.pdf](https://arxiv.org/pdf/2611.07008.pdf)  
+- **Abstract:** The Central Molecular Zone, a dense and gas-rich region surrounding the Galactic Center, hosts numerous dense molecular gas cores that provide unique environments to probe dark matter interactions. Among these, the IRS 13E3 cluster is one of the closest to the Galactic Center and one of the most extensively studied. We show that dark matter-electron scattering can substantially ionize molecular hydrogen (H$_2$) in the IRS 13E3 core, contributing to the ionization rate in conjunction with standard cosmic rays. Using the ionization rate inferred from H$_3^+$ observations of the central parsecs, we derive constraints on heavy and ultralight dark photon mediators, a heavy leptophilic mediator, and electric dipole moment interactions in the strongly interacting regime, where terrestrial searches are limited by the overburden problem. Our results highlight the potential of dense molecular cores near the Galactic Center as promising targets for constraining dark matter interactions with future observations.
+
+#### [A] Feedback-Driven Star Formation and YSO Distribution around H II Regions Sh2-140 and Sh2-145
+- **Score:** 72.8  
+- **Topics:** astrochemistry, massive_star_formation, feedback_bubbles  
+- **Authors:** C Rishi, Neelam Panwar, Ajay Kumar Singh  
 - **Subjects:** astro-ph.GA  
-- **arXiv:** [https://arxiv.org/abs/2611.06792](https://arxiv.org/abs/2611.06792)  
-- **PDF:** [https://arxiv.org/pdf/2611.06792.pdf](https://arxiv.org/pdf/2611.06792.pdf)  
-- **Abstract:** The earliest studies of molecular clouds (MCs) showed scaling relations between mass and radius M$\sim$R^s with exponent s $\approx$ 2, known as the third Larson relation. More recent CO surveys indicate 2 < s < 3 in the inner Milky Way (MW) and nearby galaxies. These observations appear consistent with the virial equilibrium (VE) of magnetically subcritical clouds, bound by the pressure Pe of the midplane ISM. The VE equations for such clouds are consistent with 2 < s < 3 for magnetically subcritical clouds, but not for magnetically critical, supercritical, or nonmagnetic clouds. We fit the subcritical VE equations to M-R trends observed in CO surveys of $\sim$1500 clouds, with correlation coefficients 0.8 - 1. The fits indicate median mass-to-flux ratio lambda $\approx$ 0.7, magnetic field strength Btot $\approx$ 60$\mathrm{\mu G}$, and Pe/k $\approx$ 5 x 10^5 cm^-3 K in the inner MW, with lesser values in M33 and M31. For 18 MW "bones," VE analysis assuming likely values of Pe also indicates subcritical values of lambda, as found from polarization observations. These results indicate that many giant molecular clouds (GMCs) are consistent with pressure-bound magnetically subcritical virial equilibrium. If so, GMCs may have low star formation efficiency (SFE) because their relatively strong fields cause filaments, clumps and cores to form slowly, while feedback and turbulence disperse them rapidly. The fields in their clumps and cores are likely weak enough to allow star-forming collapse, according to Zeeman and DCF observations, and according to MHD simulations which predict SFE $\approx$ 0.5-2%.
+- **arXiv:** [https://arxiv.org/abs/2611.07092](https://arxiv.org/abs/2611.07092)  
+- **PDF:** [https://arxiv.org/pdf/2611.07092.pdf](https://arxiv.org/pdf/2611.07092.pdf)  
+- **Abstract:** OB2 associations are ideal sites for studying various star-formation processes. Here, we study the region containing the bright-rimmed cloud (BRC) 44 and the dark cloud LDN 1204, which lies between two H II regions, Sh2-140 and Sh2-145. The region is a part of a larger Cepheus OB2 association. Our previous study on BRC 44 suggests a scenario of triggered star formation through radiative feedback. Using the infrared data from the Spitzer Space Telescope and the Wide-field Infrared Survey Explorer, we find a spatial correlation between the locations of massive stars and the distribution of young stellar objects, indicating a possible sequential pattern of star formation across the region. These results indicate the role of massive-star feedback in shaping the star-formation history of the complex
 
-#### [A] Gaia DR3 Reveals the Kinematics of Young Stellar Objects in the Carina Nebula: Peripheral Expansion and Central Rotation
-- **Score:** 75.5  
-- **Topics:** astrochemistry, molecular_clouds, halo_cgm  
-- **Authors:** Xinyu Yang, Yuxin He, Chaojie Hao, Yiwei Dong, Y. Xu, Yingjie Li, ZeHao Lin, DeJian Liu, Jarken Esimbek, Jianjun Zhou, Gang Wu, Xindi Tang, Dalei Li  
+#### [A] G92.4+5.0: A Perseus Arm superbubble associated with the H II region CTB 102
+- **Score:** 61.9  
+- **Topics:** astrochemistry, massive_star_formation, galactic_ism  
+- **Authors:** Rebecca A. Booth, Jo-Anne Brown, Tom Landecker, Roland Kothes, Tyler Foster, Anna Ordog, Alex Schwaner Hill  
 - **Subjects:** astro-ph.GA  
-- **arXiv:** [https://arxiv.org/abs/2611.06488](https://arxiv.org/abs/2611.06488)  
-- **PDF:** [https://arxiv.org/pdf/2611.06488.pdf](https://arxiv.org/pdf/2611.06488.pdf)  
-- **Abstract:** We investigate the kinematics of the Carina Nebula using a sample of young stellar objects (YSOs) cross-matched with Gaia DR3, together with $^{12}\mathrm{CO}\,(1\mbox{--}0)$ molecular gas observations and APOGEE radial-velocity data. The results show that the proper motions of the YSOs in the four peripheral subregions of Carina display a systematic outward expansion, and that the two-dimensional expansion velocities of the subregions are approximately $0.57\mbox{--}4.56~\mathrm{km\,s^{-1}}$. The YSOs in the Central Region exhibit ordered rotation around an axis at a position angle of $86.9\pm1.5^\circ$, with a rotation velocity of $1.75\pm0.03~\mathrm{km\,s^{-1}}$. Further momentum estimates suggest that the current expansion in the peripheral regions may result from the combined effects of feedback from massive OB stars and possible past supernova explosions. These results indicate that feedback from massive stars plays a dominant role in the dynamical evolution of the giant molecular cloud in the Carina Nebula.
+- **arXiv:** [https://arxiv.org/abs/2611.08181](https://arxiv.org/abs/2611.08181)  
+- **PDF:** [https://arxiv.org/pdf/2611.08181.pdf](https://arxiv.org/pdf/2611.08181.pdf)  
+- **Abstract:** Superbubbles are vast hot cavities carved out by the stellar winds and supernovae of clusters of high-mass stars. We investigate G92.4+5.0 (the CTB 102 superbubble), a Perseus Arm superbubble associated with the HII region CTB 102. We use new and archival radio observations (total intensity, rotation measure, and HI spectral line) from the Dominion Radio Astrophysical Observatory Synthesis Telescope, combined with single-antenna data from the Effelsberg Medium Latitude Survey, the Global Magneto-Ionic Medium Survey, and the HI4PI survey to provide data on large structures. The upper region of the superbubble is faint in HI. In order to detect its full extent, we supplement our observations with H-alpha data from the Wisconsin H-Alpha Mapper Survey and the Ziegenbalg Survey, and observe H-alpha emission in the upper region. We measure the CTB 102 superbubble to be at least ~170 pc wide and ~420 pc tall, with an expansion rate of ~12 km/s in the lower regions of the superbubble and ~22.5 km/s in the upper regions. The elongated structure and increasing expansion rate with height are consistent with the evolutionary properties of a superbubble described by the Kompaneets model. We fit the Kompaneets model to the CTB 102 superbubble and obtain an estimated age of 1-6 Myr. This supports a possible scenario in which the stellar cluster currently ionizing CTB 102 is the expansion energy source for the superbubble. Alternatively, if the superbubble expanded under the power of a previous generation of stars, the current CTB 102 stellar cluster may have formed in the walls of the superbubble.
 
-#### [A] Primary and Secondary Star Formation in the Spiral Waves of NGC 628
-- **Score:** 64.9  
-- **Topics:** turbulence, astrochemistry, massive_star_formation  
-- **Authors:** Bruce G. Elmegreen, Sean T. Linden, Kelsey E. Johnson, Angela Adamo, Daniela Calzetti, Varun Bajaj, Giacomo Bortolini, Matteo Correnti, Ana Duarte-Cabral, Kathryn Grasha, Goran Ostlin, Alex Pedrini, Jenna Ryon, Linda J. Smith  
+#### [B] SDSS-V LVM: Spatial Resolution Effects on Diagnostic Diagrams in the Magellanic Clouds
+- **Score:** 62.8  
+- **Topics:** galactic_ism, halo_cgm, astrochemistry  
+- **Authors:** A. Z. Lugo-Aranda, Lesly C. Castañeda, H. J. Ibarra-Medel, C. Román-Zúñiga, J. E. Méndez-Delgado, Sebastián F. Sánchez, Rodolfo de J. Zermeño, Mónica A. Villa-Durango, Irene Cruz-González, Aida Wofford, Oskar Aranguré, G. A. Blanc, Priyanka Chakraborty, Evgeniya Egorova, Oleg V. Egorov, Thomas Hilder, Evelyn J. Johnston, Amy M. Jones, P. Jiménez-Hernández, K. Kreckel, Alfredo J. Mejía-Narváez, Christophe Morisset, Rogelio Orozco-Duarte, Alexandre Roman-Lopes, José G. Fernández-Trincado  
 - **Subjects:** astro-ph.GA  
-- **arXiv:** [https://arxiv.org/abs/2611.06516](https://arxiv.org/abs/2611.06516)  
-- **PDF:** [https://arxiv.org/pdf/2611.06516.pdf](https://arxiv.org/pdf/2611.06516.pdf)  
-- **Abstract:** To determine the role of spiral arms and stellar feedback on the formation of stars, we examine the positions of optically identified and emerging star clusters in NGC 628. We find that the youngest clusters extend further into the spiral arms at small radii than at large radii, as expected when the angular flow rate through a wave-like arm increases with greater distance from corotation. The embedded or emerging star clusters (eYSCs) are identified relative to four distinct morphological features in the 7.7 micron image: spiral arm filaments, spiral arm spurs, spiral interarm feathers, and bubbles. Spiral arm-related eYSCs are presumably first-generation stars made from interstellar gas that was directly compressed by the density wave, while clusters along the rims of bubbles are secondary generations produced by feedback compression. The mass functions of the first and second generations differ: eYSCs in spiral arm filaments extend to significantly higher masses than eYSCs in bubbles. Secondary star formation continues downstream from primary star formation, removing the expected age gradient through the arms. Bubble eYSCs account for approximately one-third of all the emerging cluster mass. The outer arms have a more mixed distribution of spiral- and bubble-related eYSCs than the inner arms, potentially providing a way to distinguish wave and material arms and to find corotation in wave-like arms. Among the 17 most massive clusters with log M(Msun)>4, eight of them are in four tight pairs; in at least one case, the dynamical time for the pair is comparable to the cluster ages.
+- **arXiv:** [https://arxiv.org/abs/2611.08336](https://arxiv.org/abs/2611.08336)  
+- **PDF:** [https://arxiv.org/pdf/2611.08336.pdf](https://arxiv.org/pdf/2611.08336.pdf)  
+- **Abstract:** We investigate how spatial resolution affects emission-line diagnostics in the interstellar medium (ISM) of the Small and Large Magellanic Clouds (SMC and LMC) using SDSS Local Volume Mapper (LVM) data obtained at and degraded to 19, 42, 170 pc (for the SMC) and 17, 68, 272 pc (for the LMC), respectively. We compare the distributions of strong emission-line ratios through 1D and 2D Kolmogorov Smirnov tests. We deduced that diagnostics involving ionization and density sensitive ratios such as [OIII]{\lambda}5007/H\b{eta}, [SII]{\lambda}{\lambda}6717+6731/H{\alpha} and [NII]{\lambda}6584/H{\alpha} are the most strongly impacted by resolution loss in this order. The SMC shows significant deviations even from intermediate scales (42 pc), whereas for the LMC, the coarsest resolution (272 pc) remains relatively stable, indicating that the SMC is intrinsically more affected by spatial mixing. Resolution degradation produces a marked homogenization effect: extreme values present at the finest scales are progressively diluted, causing diagnostic diagrams to converge toward their mean loci. Diffuse ionized gas is particularly sensitive to this mixing, while H{\alpha} selected ionized regions exhibit more robust behavior across resolutions. The sensitivity of diagnostic diagrams involving emission-line ratios, equivalent widths, and kinematic properties varies with both spatial resolution and galaxy, with the SMC generally showing stronger changes than the LMC. Our results demonstrate that sub-50 pc resolution is required to resolve the detailed structure of low-metallicity galaxies, and they highlight at least the need for careful interpretation of line-ratio diagnostics in extragalactic studies where coarse spatial resolution is unavoidable.
 
 
-Generated by AstroBrief on 2026-11-05.
+Generated by AstroBrief on 2026-11-06.
 
 
 ### Boundary candidates (C; not emailed as recommendations)
 
-- **A distribution-function estimate of the Milky Way mass profile from outer halo stars in DESI DR2** — `astrochemistry` — [2611.05521](https://arxiv.org/abs/2611.05521)
-- **A brief overview of the baryon cycle in galaxies** — `halo_cgm` — [2611.06264](https://arxiv.org/abs/2611.06264)
-- **Constraining the Milky Way Mass profile with data driven distribution function using DESI DR2 halo stars** — `astrochemistry` — [2611.05520](https://arxiv.org/abs/2611.05520)
-- **DESI DR2 Results III: The Mass of the Milky Way** — `astrochemistry` — [2611.05518](https://arxiv.org/abs/2611.05518)
-- **Quiescent galaxies at cosmic noon: from individual element abundances to star formation histories** — `astrochemistry` — [2611.06331](https://arxiv.org/abs/2611.06331)
-- **Magnetism among the oldest white dwarfs in the solar neighbourhood** — `magnetic_fields` — [2611.06548](https://arxiv.org/abs/2611.06548)
-- **ReveaLLAGN 2: Exploring the Nuclear Gas and Stellar Kinematics of Nearby LLAGNs with JWST/NIRSpec IFU** — `astrochemistry` — [2611.05496](https://arxiv.org/abs/2611.05496)
-- **The formation and evolution of Wolf-Rayet stars with temperature-dependent winds** — `halo_cgm` — [2611.06650](https://arxiv.org/abs/2611.06650)
-- **Searching for Signatures of i-process Nucleosynthesis in Metal-Rich, Lead-rich Barium Stars** — `astrochemistry` — [2611.05470](https://arxiv.org/abs/2611.05470)
-- **Euclid: Forecasting the number counts of bright line emitters in the Euclid Wide Survey and Euclid Deep fields** — `astrochemistry` — [2611.05484](https://arxiv.org/abs/2611.05484)
-- **Mock catalogues for the DESI DR2 Milky Way mass modeling effort** — `astrochemistry` — [2611.05519](https://arxiv.org/abs/2611.05519)
-- **A high-frequency turnover in the persistent radio source of FRB20201124A** — `molecular_clouds` — [2611.05694](https://arxiv.org/abs/2611.05694)
-- **The dwarf galaxy NGC 185: the flagship of Andromeda's dwarf galaxies for the study of evolved multiple stellar populations** — `astrochemistry` — [2611.06547](https://arxiv.org/abs/2611.06547)
-- **The spatial structure of solar magnetoconvection at scales up to $60$~Mm** — `turbulence` — [2611.05674](https://arxiv.org/abs/2611.05674)
-- **Euclid. Predicting scaling relations for emission-line galaxies using simulated data** — `astrochemistry` — [2611.05482](https://arxiv.org/abs/2611.05482)
-- **Pushing the frontiers of low-frequency radio astronomy: An ultra-deep sub-arcsecond LOFAR image of ELAIS-N1** — `magnetic_fields` — [2611.06152](https://arxiv.org/abs/2611.06152)
-- **Living near filaments: How environment shapes age profiles in low-mass galaxies** — `halo_cgm` — [2611.06632](https://arxiv.org/abs/2611.06632)
-- **ReveaLLAGN 3: Revealing the Infrared Spectral Energy Distributions of Low Luminosity AGN** — `galactic_ism` — [2611.06916](https://arxiv.org/abs/2611.06916)
+- **Multi-layer magnetic structure toward NGC 1333 revealed by a square-degree optical polarimetric survey** — `magnetic_fields` — [2611.07839](https://arxiv.org/abs/2611.07839)
+- **Dust Survival in Lensed Quiescent Galaxies at $z>1$ Depends on How They Quench** — `galactic_ism` — [2611.07237](https://arxiv.org/abs/2611.07237)
+- **The Pristine survey XXXI. A stream offset from the Stream: very metal-poor stellar debris trailing 100$^{\circ}$ from the LMC-SMC system** — `massive_star_formation` — [2611.07563](https://arxiv.org/abs/2611.07563)
+- **CosmicGrain: An On-the-fly Dust Physics Module** — `galactic_ism` — [2611.07190](https://arxiv.org/abs/2611.07190)
+- **Systematic Study of Cosmic Rays in Star-Forming and Starburst Galaxies using Fermi-LAT and Multiwavelength Data** — `astrochemistry` — [2611.07189](https://arxiv.org/abs/2611.07189)
+- **The obscured nucleus of NGC3256 S. I. Anisotropic AGN near-IR radiation field traced by CO v=1-0 with JWST/NIRSpec** — `massive_star_formation` — [2611.07020](https://arxiv.org/abs/2611.07020)
+- **Coordinated Space and Ground Monitoring of Accretion Bursts in a Protoplanetary Disk: MIRI and iSHELL observe the long-term modulation of gas within a small inner disk cavity** — `astrochemistry` — [2611.07253](https://arxiv.org/abs/2611.07253)
+- **Thorium and Europium production in the early Galaxy: Implications for nucleocosmochronology** — `astrochemistry` — [2611.07697](https://arxiv.org/abs/2611.07697)
+- **Systematic Search for Cataclysmic Variables in Radio Surveys: First Radio Detection of IX Velorum** — `astrochemistry` — [2611.07448](https://arxiv.org/abs/2611.07448)
+- **High precision timing of seven binary millisecond pulsars with the European Pulsar Timing Array** — `turbulence` — [2611.07363](https://arxiv.org/abs/2611.07363)
+- **Octavius: A High-Performance Analysis Toolkit for Galaxy Simulations** — `astrochemistry` — [2611.08115](https://arxiv.org/abs/2611.08115)
+- **A multi-epoch VLBI study of compact symmetric objects as contaminants in the search for milli-lenses** — `massive_star_formation` — [2611.07029](https://arxiv.org/abs/2611.07029)
+- **The Milky Way-like radial structure in nearby galaxies** — `galactic_ism` — [2611.07338](https://arxiv.org/abs/2611.07338)

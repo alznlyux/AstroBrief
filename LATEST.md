@@ -1,84 +1,62 @@
-# AstroBrief — Latest astro-ph submissions for 2026-11-20
+# AstroBrief — Latest astro-ph submissions for 2026-11-23
 
 Semantic ISM / star-formation screening: **SPECTER2 + domain evidence + local zero-shot NLI**.
 No paid model API is used.
 
-### Today: 6 recommended papers
-- Priority A: **4**
+### Today: 3 recommended papers
+- Priority A: **1**
 - Priority B: **2**
-- Boundary C (archive only): **14**
-- Screened astro-ph candidates: **104**
-#### [A] Neutral hydrogen in the Shapley Supercluster core II. Gas content and star formation in the filaments connecting the core
-- **Score:** 73.1  
-- **Topics:** astrochemistry, galactic_ism, atomic_ism  
-- **Authors:** Lwandile Gwebushe, Tiziana Venturi, Paola Merluzzi, Giovanni Busarello, Oleg Smirnov, Viviana Casasola, Francesco La Barbera, Mpati Ramatsoku, James Dawson  
-- **Subjects:** astro-ph.GA; astro-ph.CO  
-- **arXiv:** [https://arxiv.org/abs/2611.25871](https://arxiv.org/abs/2611.25871)  
-- **PDF:** [https://arxiv.org/pdf/2611.25871.pdf](https://arxiv.org/pdf/2611.25871.pdf)  
-- **Abstract:** We investigate the neutral atomic hydrogen (HI) content of galaxies across the Shapley Supercluster (SSC) at z = 0.048 by combining new deep MeerKAT L band observations of five filament pointings with archival MeerKAT Galaxy Cluster Legacy Survey observations of the supercluster core. Together with optical data from the Shapley Supercluster Survey, these observations provide a homogeneous view of galaxy evolution from the virialised cluster environment to the surrounding filaments. We compare the HI content, star formation activity, gas depletion timescales, and morphological properties of galaxies relative to the gas fraction and star forming main sequences. The global HI detection fraction increases from 30 per cent in the cluster centre to 45 per cent in the filaments. While HI detected galaxies in the cluster centre are dominated by transition zone systems, the filament population is shared nearly equally between star forming main sequence and transition zone detections, indicating ongoing environmental transformation. Their gas properties also differ: cluster galaxies exhibit progressively depleted HI reservoirs towards the red sequence, whereas filament galaxies remain primarily gas rich. Within the filaments, long HI depletion timescales exceeding the Hubble time are concentrated in specific populations, notably 71 per cent of transition zone and 57 per cent of gas rich detections, indicating the inefficient conversion of atomic gas into stars. The HI detected filament population is dominated by late type galaxies, while the underlying non detected population is primarily composed of early type systems, consistent with environmental pre processing before cluster infall.
-
-#### [A] From a mass invariant in a gravo-turbulent medium to the characteristic mass of the star-forming cores
-- **Score:** 71.8  
-- **Topics:** turbulence, halo_cgm, galactic_ism  
-- **Authors:** Pierre Dumond, Gilles Chabrier, Jérémy Fensch, Etienne Jaupart  
+- Boundary C (archive only): **19**
+- Screened astro-ph candidates: **80**
+#### [A] The relation between DCN/DNC ratios and gas temperature in late-stage massive star-forming regions using Yebes observations
+- **Score:** 85.3  
+- **Topics:** astrochemistry, massive_star_formation, atomic_ism  
+- **Authors:** Yuqiang Li, Junzhi Wang, Aran Lyo, Juan Li, Siqi Zheng, Woojin Kwon, Seokho Lee, Jongsoo Kim, Huangxue Feng, Miguel Santander-García, José Jairo Díaz-Luis, Shaoyuan Lu, Fu Mo  
 - **Subjects:** astro-ph.GA  
-- **arXiv:** [https://arxiv.org/abs/2611.26162](https://arxiv.org/abs/2611.26162)  
-- **PDF:** [https://arxiv.org/pdf/2611.26162.pdf](https://arxiv.org/pdf/2611.26162.pdf)  
-- **Abstract:** The origin of the observed universality, or, say, the limited variations, of the stellar initial mass function (IMF) and its precursor, the prestellar core mass function (CMF), and thus of the characteristic mass of stars and cores, across a wide range of different galactic environments remains an open, fundamental problem in astrophysics. In this paper, we demonstrate that we can explain this property from gravity and turbulence only, using a mass time-invariant that remains valid for a broad class of turbulent flows throughout the star formation process. This mass invariant is entirely determined by the large-scale normalisation of the field of density fluctuations in the Galactic Interstellar Medium (ISM), induced by turbulence. Using high-resolution numerical simulations, we first verify that the temporal invariance of this quantity is preserved in a self-gravitating turbulent medium. Then, introducing a self-consistent model of the statistical properties of the density field in the self-gravitating multiphase turbulent ISM, we show that the universality of the characteristic mass of star-forming cores is imposed by this invariant together with the scaling of the Larson relations. Our model successfully predicts the characteristic mass of the cores in Milky Way-like star-forming regions, as well as in more extreme environments such as high-mass star-forming regions and massive early-type galaxies. This scenario suggests that the characteristic mass of the CMF, and then probably the characteristic stellar mass, originates from a universal, fundamental property of turbulence and is imprinted both by the very early stages of the star formation process in the gravo-turbulent interstellar medium, when the dynamics of the medium are still dominated by turbulence, and by the statistical properties of small-scale self-gravitating structures.
+- **arXiv:** [https://arxiv.org/abs/2611.27118](https://arxiv.org/abs/2611.27118)  
+- **PDF:** [https://arxiv.org/pdf/2611.27118.pdf](https://arxiv.org/pdf/2611.27118.pdf)  
+- **Abstract:** Deuterated molecules probe the physical and chemical evolution of molecular clouds and star-forming regions. Their abundances depend on temperature, density, and evolutionary stage. DCN and DNC are relatively abundant deuterated isomers that probe temperature-dependent deuterium chemistry. Although [HCN]/[HNC] is often thought to increase in warmer gas, the temperature dependence of [DCN]/[DNC] remains less well constrained. To investigate how [DCN]/[DNC] depends on the gas kinetic temperature, we observed the $J$=1-0 transitions of DCN, DNC, H$^{13}$CN, HN$^{13}$C, HC$^{15}$N, and H$^{15}$NC toward 101 late-stage massive star-forming regions using the Yebes 40m telescope. Gas kinetic temperatures were estimated from CH$_3$CCH 5-4, whose rotation temperature is closely related to the kinetic temperature of dense gas. These temperatures were adopted in the column density calculations and in the analysis of temperature-dependent abundance ratios. We find a moderate positive correlation between the abundance ratio [DCN]/[DNC] and kinetic temperature, which is statistically significant and indicates that DCN becomes progressively more abundant relative to DNC in warmer gas. A weak negative correlation with temperature is observed for $D_{\rm frac}({\rm HNC})$, whereas no statistically significant correlation is found for $D_{\rm frac}({\rm HCN})$. The [HCN]/[HNC] ratios show substantial scatter and no statistically significant correlation with temperature, possibly due in part to optical-depth effects in the $^{13}$C isotopologues and the limited sensitivity of the $^{15}$N isotopologue observations. These results suggest that [DCN]/[DNC] may be governed not only by HCN/HNC isomeric chemistry but also by temperature-dependent deuterium fractionation pathways and the chemical evolution of dense gas.
 
-#### [A] Kinetic Tomography with Diffuse Interstellar Bands in APOGEE DR17
-- **Score:** 68.8  
-- **Topics:** galactic_ism, astrochemistry, turbulence  
-- **Authors:** Philipp Frank, Andrew K. Saydjari, Catherine Zucker, Susan E. Clark, Douglas Finkbeiner, Torsten Enßlin, Andrew R. Casey, Alexandre Roman-Lopes, José G. Fernández-Trincado, Dhanesh Krishnarao, John C. Wilson  
+#### [B] Blowing star formation away in AGN Hosts (BAH) - VI. Warm Molecular Outflows Driven by the Low-Luminosity AGN in NGC 3884
+- **Score:** 66.2  
+- **Topics:** astrochemistry, atomic_ism, galactic_ism  
+- **Authors:** José Henrique Costa-Souza, Rogemar A. Riffel, Nadia L. Zakamska, Marina Bianchin, Maitê S. Z. de Mellos, Rogério Riffel, Gabriel L. Souza-Oliveira, Thaisa Storchi-Bergmann  
 - **Subjects:** astro-ph.GA  
-- **arXiv:** [https://arxiv.org/abs/2611.25084](https://arxiv.org/abs/2611.25084)  
-- **PDF:** [https://arxiv.org/pdf/2611.25084.pdf](https://arxiv.org/pdf/2611.25084.pdf)  
-- **Abstract:** Context: Mapping gas flows in the interstellar medium is key to understanding the formation of structure in our Milky Way. Methods that simultaneously reconstruct clouds' distances and line-of-sight velocities are called kinetic tomography (KT). Diffuse interstellar bands (DIBs) are powerful tracers for such maps because they trace the integrated dust density and the dust-weighted velocity. Previous DIB-KT works had small samples with coarse kpc-scale resolution and could not capture vertical disk structure. Aims: Make 4D (3D position + radial velocity) maps of the Milky Way from new, high-quality 15,273 Å DIB detections in APOGEE DR17. Methods: We combine variational inference and Gaussian processes with a mixture likelihood for low signal-to-noise detections and marginalization over distance uncertainties. We calibrate the model on mock fields and spectral injection tests and validate the map against independent tracers of the dust density (3D dust maps) and velocity substructure (masers and young stellar clusters). Results: We recover a posterior distribution over 3D maps of the density and velocity structure of the 15,273 Å DIB within 6 kpc of the Sun. We measure the large-scale structure of the DIB disk (scale length, height and flare) and detect vertical distortions consistent with the warp. On smaller scales, the map resolves distance ambiguities in gas longitude-velocity diagrams. From the second-order velocity structure function, we measure a slope (0.64 $\pm$ 0.04) consistent with Kolmogorov turbulence, amplitude consistent with expectations for molecular clouds, and a preliminary ratio of compressive-to-solenoidal modes. Conclusions: With larger DIB catalogs expected from SDSS-V, this framework should resolve kinematic substructure at the scales needed to constrain the formation and dynamics of individual clouds and voids. (abridged)
+- **arXiv:** [https://arxiv.org/abs/2611.27530](https://arxiv.org/abs/2611.27530)  
+- **PDF:** [https://arxiv.org/pdf/2611.27530.pdf](https://arxiv.org/pdf/2611.27530.pdf)  
+- **Abstract:** We use the James Webb Space Telescope (JWST) Mid-Infrared Instrument (MIRI) Medium Resolution Spectrograph (MRS) to investigate the warm molecular and low ionization gas outflows driven by the low-luminosity Active Galactic Nucleus (AGN) in NGC 3884. By decomposing the emission-line profiles into multiple Gaussian components, we detect both ionized and warm molecular outflows, traced by [Ar ii] 6.99 um and H2 0-0 S(5), respectively. The ionized and warm molecular components both extend to similar distances from the nucleus, reaching approximately ~1.2 kpc. In addition to an outflow component, we detect a double narrow emission component in both ionized and molecular lines, clearly observed along the minor axis with similar amplitudes, while their intensity ratio varies systematically along the major axis. Both components exhibit similar line widths and centroid velocity distributions, indicating that they are not associated with outflows, but instead arise from gas in the galaxy disk. We estimate that the outflow injects momentum into the interstellar medium (ISM) at a rate corresponding to ~0.015 percent of the AGN bolometric luminosity, consistent with a radiation-driven origin. Assuming a constant outflow rate, the gas reservoir would be depleted on a timescale of ~26 Myr, potentially suppressing nuclear star formation in the host galaxy.
 
-#### [A] Magnolia: a highly magnetized galaxy at redshift $z\simeq9$
-- **Score:** 65.6  
-- **Topics:** magnetic_fields, astrochemistry, turbulence  
-- **Authors:** Evangelia Ntormousi, Andrea Pallottini, Mahsa Kohandel, Fabio Del Sordo  
-- **Subjects:** astro-ph.GA  
-- **arXiv:** [https://arxiv.org/abs/2611.25937](https://arxiv.org/abs/2611.25937)  
-- **PDF:** [https://arxiv.org/pdf/2611.25937.pdf](https://arxiv.org/pdf/2611.25937.pdf)  
-- **Abstract:** The theory of galactic magnetic field growth via dynamo action predicts that the interstellar medium (ISM) of early galaxies would remain virtually unmagnetized on large scales. However, recent observations of strong dust polarization in galaxies at redshifts $z\simeq2.6$ and $z\simeq5.6$ challenge this paradigm. If galaxies indeed host strong, large-scale, coherent magnetic fields at high-$z$, then galaxy evolution and current theories of magnetic field amplification in galaxies should be revisited. To address the full physical complexity of early magnetic field growth in galaxies, we have designed MAGNA SERRA, a suite of radiation-magneto-hydrodynamical (RMHD) cosmological zoom-in simulations with non-equilibrium chemistry. In this first paper from the MAGNA SERRA suite, we present Magnolia, a galaxy hosted in a $\simeq 10^{11}~\mathrm{M}_\odot$ dark matter halo simulated with RAMSES-RT with a $\simeq 10^4~\mathrm{M}_\odot$ mass ($\simeq 10 \,\mathrm{pc}$ spatial) resolution. We find that, at $z\simeq9$, Magnolia has a stellar mass of a few times $10^8~\mathrm{M}_\odot$ and is strongly magnetized, reaching a magnetic field of a few $\mu G$ and a plasma beta $\beta\simeq 0.1$ in the densest regions. This strong amplification occurs over a timescale of about 40~Myrs due to the highly dynamical nature of the galaxy, which creates strong compressions and shear. The power spectra of the magnetic and kinetic energies and the spectral energy transfer functions do not suggest dynamo action, but rather an initial magnetic field amplification through a large-scale compression, and a later re-organization of this field from small to large scales. Our findings show that strong galactic magnetization is possible at very high redshifts, which means that magnetic fields can play a dominant role throughout a galaxy's evolutionary history. (abridged)
-
-#### [B] Ram Pressure Is Unable to Strip All Phases of the Interstellar Medium out of Spirals Falling into Galaxy Clusters
-- **Score:** 69.9  
-- **Topics:** turbulence, halo_cgm, galactic_ism  
-- **Authors:** Guillermo Tenorio-Tagle, Sergio Martínez-González  
-- **Subjects:** astro-ph.GA  
-- **arXiv:** [https://arxiv.org/abs/2611.25049](https://arxiv.org/abs/2611.25049)  
-- **PDF:** [https://arxiv.org/pdf/2611.25049.pdf](https://arxiv.org/pdf/2611.25049.pdf)  
-- **Abstract:** Following the expansion of the Universe, spiral galaxies may fall at large speeds into galaxy clusters. Their interaction with the intracluster medium (ICM) may remove part of their gas and reduce their capacity for making new stars, as envisaged by Gunn & Gott. Ram pressure stripping (RPS) is commonly invoked to explain this gas loss and the wakes or tails left behind in-falling galaxies. Here we revise the impact of RPS on individual dense clouds and particularly focus on turbulent viscous stripping (TVS), driven by Kelvin-Helmholtz instabilities at the cloud-ICM interface, that affects the high-density and low-temperature molecular gas. For an extended gaseous body to decelerate, momentum from its exposed surface must be communicated into the gas by a hydrodynamic disturbance able to propagate through it. Three-dimensional hydrodynamic calculations follow this interaction with dense clouds. At cloud number densities $n_{\mathrm{cl}}=10^2$ cm$^{-3}$, ram pressure acting through the transmitted shock strongly compresses and deforms the cloud and produces only a small deceleration; at $n_{\mathrm{cl}}=10^3$ cm$^{-3}$, the slower transmitted shock produces much weaker deformation. At both cloud densities, TVS continuously removes gas from the cloud surface and forms qualitatively indistinguishable trailing wakes, with comparable mass-loss rates, suggesting that TVS acting on individual dense clouds can generate filamentary substructure within jellyfish-galaxy tails.
-
-#### [B] A novel pathway to stellar-mass black hole growth: Re-accretion of gas from stellar wind bubbles
-- **Score:** 65.1  
-- **Topics:** turbulence, halo_cgm, massive_star_formation  
-- **Authors:** D. Kománek, R. Wünsch, S. Martínez-González, S. Jiménez, D. Szécsi  
-- **Subjects:** astro-ph.GA  
-- **arXiv:** [https://arxiv.org/abs/2611.25110](https://arxiv.org/abs/2611.25110)  
-- **PDF:** [https://arxiv.org/pdf/2611.25110.pdf](https://arxiv.org/pdf/2611.25110.pdf)  
-- **Abstract:** The formation of high-mass stellar black holes (BHs) observed in mergers by gravitational wave observatories remains difficult to explain using standard models of stellar evolution. We investigate whether newly formed stellar-mass BHs in dense molecular clouds can significantly increase their final mass by accreting gas from pre-existing, wind-blown interstellar bubbles produced by their progenitor stars. We performed 1D and 3D hydrodynamic simulations of interstellar bubbles driven by stellar feedback, incorporating thermal conduction, radiative cooling, gravity, ionizing radiation, stellar winds, and supernova (SN) explosions. We modeled the subsequent accretion onto the central BH for two formation scenarios: core-collapse SN and direct collapse. Our parameter space study encompasses over 500 1D simulations, varying initial cloud densities, gravitational binding energies, progenitor masses ($40-257\,M_\odot$), and metallicities ($0.66\,Z_\odot$ and $0.016\,Z_\odot$), and tracks the bubble evolution for millions of years post-BH formation. Scenarios exhibiting significant re-accretion were further validated using high-resolution 3D simulations. Our simulations show that BHs formed via direct collapse from low-metallicity progenitors can accrete up to $6.9\,M_\odot$ of gas from massive inner shells formed by late-stage slow winds, resulting in final BH masses of up to $93\,M_\odot$. Conversely, we find no significant re-accretion in scenarios involving an SN explosion or high-metallicity progenitors; in these cases, fast winds or SN ejecta efficiently evacuate dense structures from the bubble interior, leaving behind a hot, low-density medium. [abridged] This mechanism may help explain the unexpectedly high masses of BHs observed in gravitational wave events.
+#### [B] Charge Exchange Illuminates Turbulent Cold-Hot Interfaces
+- **Score:** 64.6  
+- **Topics:** astrochemistry, halo_cgm, turbulence  
+- **Authors:** Yizhan Zhang, Suoqing Ji, Guiyun Liang, Shuinai Zhang, Zhijie Qu  
+- **Subjects:** astro-ph.GA; astro-ph.HE  
+- **arXiv:** [https://arxiv.org/abs/2611.26684](https://arxiv.org/abs/2611.26684)  
+- **PDF:** [https://arxiv.org/pdf/2611.26684.pdf](https://arxiv.org/pdf/2611.26684.pdf)  
+- **Abstract:** Cold-hot interfaces are ubiquitous in the multiphase circumgalactic medium (CGM), galactic winds, and the Galactic Center (GC), yet their microscopic contact regions are difficult to observe. Charge exchange (CX), in which a highly ionized metal ion captures an electron from a neutral donor and emits soft X-ray lines, directly probes these interfaces. We develop a subgrid CX model coupled to a nonequilibrium ionization (NEI) network in hydrodynamic simulations of radiative turbulent mixing layers. CX soft X-rays are confined to a thin, highly corrugated cold-hot interface (corrugation factor $\sim10$), whereas thermal emission fills the hot phase. Turbulent transport sustains high-charge ions at $T\sim 10^4$-$10^5$ K, where they encounter neutral donors. The low-temperature O VIII fraction exceeds that in a uniformly cooling isobaric parcel, demonstrating the importance of mixing to the ionization history. CX depletes this cool ion population, while continued entrainment maintains the supply. Including a metagalactic ionizing background changes the ion distribution and enhances CX surface brightness by a factor of a few in our CGM comparison, but preserves the cool origin of most CX emission. In the limit of sufficient neutral column, CX surface brightness is ion-supply limited: higher donor density increases local emissivity but shortens the reaction layer. The system-wide CX-to-thermal soft X-ray ratio also depends on the volume-to-interface scale $V/A_{\rm int}$, making CX a potential probe of multiphase structure in the CGM, galactic winds, and the GC.
 
 
-Generated by AstroBrief on 2026-11-20.
+Generated by AstroBrief on 2026-11-23.
 
 
 ### Boundary candidates (C; not emailed as recommendations)
 
-- **On the feasibility of using [Eu/$α$] to identify accreted and in-situ extragalactic globular clusters** — `astrochemistry` — [2611.26424](https://arxiv.org/abs/2611.26424)
-- **Multiphase Gas in High-$z$ Cosmic Sheets** — `turbulence` — [2611.25220](https://arxiv.org/abs/2611.25220)
-- **Connecting Coronal Loop Scaling Laws and Kink Wave Heating: An Analytical and Numerical Study** — `turbulence` — [2611.26202](https://arxiv.org/abs/2611.26202)
-- **Eos: a merger-induced starburst at the dawn of Galactic low-$α$ disc formation** — `astrochemistry` — [2611.25023](https://arxiv.org/abs/2611.25023)
-- **Disentangling star formation rate indicators in H-ATLAS galaxies: UV, FIR and radio diagnostics from energy-balance SED fitting** — `astrochemistry` — [2611.26260](https://arxiv.org/abs/2611.26260)
-- **Tracing Magnetic Helicity in Interplanetary Space. A Multi-Spacecraft Analysis of the 2024 March 23 ICME** — `magnetic_fields` — [2611.26455](https://arxiv.org/abs/2611.26455)
-- **Twisted resonant orbits: Quantifying the deceleration of the Galactic bar** — `halo_cgm` — [2611.25039](https://arxiv.org/abs/2611.25039)
-- **Sherlock 'Chrones: The Curious Case of NGC 6791 and Asteroseismic Targets Therein Reveals Mixing Length Dependence on Evolutionary Stage** — `astrochemistry` — [2611.25306](https://arxiv.org/abs/2611.25306)
-- **False Periodicities in Repeating Fast Radio Bursts Caused by Burst Clustering** — `halo_cgm` — [2611.25704](https://arxiv.org/abs/2611.25704)
-- **Every galaxy is a radio source: a stellar-mass dependent minimum 150 MHz luminosity identified in the LoTSS Deep Fields** — `turbulence` — [2611.26618](https://arxiv.org/abs/2611.26618)
-- **The HI Mass Fractions of Milky Way Analog Samples** — `atomic_ism` — [2611.25221](https://arxiv.org/abs/2611.25221)
-- **Gamma-Ray Pulsar Discovery Using a Lattice-Based Method** — `turbulence` — [2611.26425](https://arxiv.org/abs/2611.26425)
-- **Splitting the action: A fully nonlinear fluid method for clustering dark energy** — `turbulence` — [2611.26461](https://arxiv.org/abs/2611.26461)
-- **3D Binary Evolution of a Merging Binary Black Hole Progenitor** — `halo_cgm` — [2611.25310](https://arxiv.org/abs/2611.25310)
+- **Predicting HCN, HCO$^{+}$, multi-transition CO, and dust emission of star-forming galaxies** — `astrochemistry` — [2611.27419](https://arxiv.org/abs/2611.27419)
+- **An ALMA Survey of Molecular Gas in the Host Galaxies of Fast Radio Bursts** — `molecular_clouds` — [2611.26660](https://arxiv.org/abs/2611.26660)
+- **Water-ice formation in Ophiuchus follows the local irradiation** — `astrochemistry` — [2611.26683](https://arxiv.org/abs/2611.26683)
+- **The MURALES survey. IX. MUSE observations and results for 3C radio sources at 0.3 < z < 0.82** — `galactic_ism` — [2611.26689](https://arxiv.org/abs/2611.26689)
+- **Nearly pristine gas and hard ionizing radiation one billion years after the Big Bang** — `astrochemistry` — [2611.27979](https://arxiv.org/abs/2611.27979)
+- **Machine learning reveals new Galactic C-rich and O-rich AGB sources** — `astrochemistry` — [2611.26701](https://arxiv.org/abs/2611.26701)
+- **Accretor Luminosity as Probe of Orbital Evolution and Magnetic Braking in AM CVn Binaries** — `halo_cgm` — [2611.26973](https://arxiv.org/abs/2611.26973)
+- **Interstellar extinction estimates for nearly 90 million stars based on synthetic photometry from Gaia XP spectra** — `astrochemistry` — [2611.27303](https://arxiv.org/abs/2611.27303)
+- **WISDOM Project -- XXIX. Catalogue of CO observations of nearby galaxies and the CO Tully-Fisher relation** — `astrochemistry` — [2611.27551](https://arxiv.org/abs/2611.27551)
+- **Magnetic vector potentials and helicity in periodic domains** — `magnetic_fields` — [2611.26901](https://arxiv.org/abs/2611.26901)
+- **Atmospheric parameters and chemical abundances of young stars with APOGEE -- II. Carbon, Nitrogen, Oxygen, and Sulphur abundances in Orion** — `astrochemistry` — [2611.27952](https://arxiv.org/abs/2611.27952)
+- **Baryon-Enhanced Strong Lensing Signatures of Self-Interacting Dark Matter Subhalos** — `halo_cgm` — [2611.27249](https://arxiv.org/abs/2611.27249)
+- **Fast and accurate large-volume Lyman-$α$ forest mocks with three-dimensional U-Net trained on IllustrisTNG and FLAMINGO** — `turbulence` — [2611.27151](https://arxiv.org/abs/2611.27151)
+- **Revisiting the Double Cluster in Perseus: Are NGC 869 and NGC 884 a true binary system?** — `astrochemistry` — [2611.27262](https://arxiv.org/abs/2611.27262)
+- **Disrupted stars and captured compact objects: Combining observations from multiple messengers to infer the population of massive black holes** — `turbulence` — [2611.27742](https://arxiv.org/abs/2611.27742)
+- **Little Red Dots at Cosmic Noon: Spectroscopy Reveals Declining Abundance but a Non-Evolving Luminosity Function Shape** — `astrochemistry` — [2611.26685](https://arxiv.org/abs/2611.26685)
+- **The role of gas on the collisional runaway path to supermassive black hole seeds** — `halo_cgm` — [2611.26885](https://arxiv.org/abs/2611.26885)
+- **Information-Criterion-Driven, Non-linear Deprojection of Angular Imaging Systematics for the SPHEREx Galaxy Clustering Sample** — `astrochemistry` — [2611.26864](https://arxiv.org/abs/2611.26864)
+- **A High-Resolution Stellar Extinction Map of M31 from PHAT and PHAST Photometry** — `astrochemistry` — [2611.26952](https://arxiv.org/abs/2611.26952)

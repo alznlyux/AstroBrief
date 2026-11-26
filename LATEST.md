@@ -1,55 +1,74 @@
-# AstroBrief — Latest astro-ph submissions for 2026-11-25
+# AstroBrief — Latest astro-ph submissions for 2026-11-26
 
 Semantic ISM / star-formation screening: **SPECTER2 + domain evidence + local zero-shot NLI**.
 No paid model API is used.
 
-### Today: 3 recommended papers
-- Priority A: **1**
+### Today: 4 recommended papers
+- Priority A: **2**
 - Priority B: **2**
-- Boundary C (archive only): **12**
-- Screened astro-ph candidates: **98**
-#### [A] The hot circumgalactic medium: implications of mixing and resolution at the disk-halo interface
-- **Score:** 72.8  
-- **Topics:** halo_cgm, galactic_ism, astrochemistry  
-- **Authors:** Omry Ginzburg, Jonathan Stern, Drummond B. Fielding, Claude-André Faucher-Giguère  
+- Boundary C (archive only): **22**
+- Screened astro-ph candidates: **107**
+#### [A] The role of hierarchy in Galactic molecular clouds
+- **Score:** 79.4  
+- **Topics:** massive_star_formation, astrochemistry, halo_cgm  
+- **Authors:** Kotora Sasaki, Nario Kuno, Hajime Fukushima, Shingo Nozaki  
 - **Subjects:** astro-ph.GA  
-- **arXiv:** [https://arxiv.org/abs/2611.31387](https://arxiv.org/abs/2611.31387)  
-- **PDF:** [https://arxiv.org/pdf/2611.31387.pdf](https://arxiv.org/pdf/2611.31387.pdf)  
-- **Abstract:** We demonstrate that microphysical processes at the disk--halo interface, typically unresolved in circumgalactic medium (CGM) simulations, strongly affect the thermodynamic structure and observational signatures of an inflowing hot ($\sim10^6\,{\rm K}$) CGM. If the hot gas is pulled through the interface faster than it can cool, e.g.\ by turbulent mixing with the ISM or fountain flows, the hot CGM approaches an isentropic state. If instead the interface is regulated by radiative cooling on the hot gas cooling time, the hot CGM develops an outward-increasing entropy profile akin to a classic cooling flow. The two regimes differ by a factor of $\sim\!10$ in the predicted hot gas density above the disk near the rotation axis, and consequently by a factor of $\sim100$ in the predicted X-ray emission measure. We show that an isentropic CGM is produced in idealized CGM simulations that fail to resolve the pc-scale disk--halo interface, as numerical mixing drives artificially rapid cooling at the interface. A similar isentropic structure is found along the rotation axis in FIRE zoom-in simulations of $z\sim0$ Milky-Way-mass galaxies, where the cooling layer is likewise unresolved, raising the possibility that numerical mixing contributes to the isentropic structure. In contrast, an outward-increasing entropy profile forms in our idealized simulations when we replace the unresolved interface with an inner boundary that enforces a slow inflow. This outward-increasing entropy profile is likely also present in the Milky Way hot CGM, inferred from comparing density estimates at $\sim100\,{\rm kpc}$ with the entropy of the eROSITA bubbles.
+- **arXiv:** [https://arxiv.org/abs/2611.33956](https://arxiv.org/abs/2611.33956)  
+- **PDF:** [https://arxiv.org/pdf/2611.33956.pdf](https://arxiv.org/pdf/2611.33956.pdf)  
+- **Abstract:** To probe the role of hierarchical gas structures in massive star formation, we statistically analyzed 13 Galactic massive star-forming regions using FUGIN CO survey data. Applying a non-binary dendrogram to the position-position-velocity data, we classified the extracted structures into trunks, internal leaves (the densest substructures within trunks), and isolated structures, and compared their properties with an analysis of variance controlling for regional differences. In representative regions, the trunks correspond to morphologies such as filaments and hub-filament systems, or to kinematic signatures of structure-forming events such as cloud-cloud collisions. Across the sample, the trunks are extended, massive, and strongly bound reservoirs, while the leaves are significantly more massive, denser, and more tightly bound than isolated structures of similar spatial scale. Using YSOs and Hi-GAL clumps, we find that the leaves have a lower low-mass star formation efficiency than isolated structures, whereas their clump formation efficiency is comparable. At a fixed gas mass, the leaves show no higher low-mass star formation efficiency than isolated structures but convert a larger fraction of their gas into dense clumps. We interpret these contrasts, together with inward gas motions in the position-velocity diagrams, as indicating that the deep potential of the trunks sustains continuous accretion onto the leaves and promotes mutual interactions among them. These processes may raise the characteristic fragmentation mass, as theoretically expected for a dynamically accreting medium, so that a larger fraction of the gas forms massive clumps without a corresponding increase in low-mass star formation. Our single-epoch data constrain only these structural contrasts, but indicate that the gas available for massive star formation is organized on scales larger than a single core.
 
-#### [B] H$_3^+$ forbidden rotational lines in a planetary nebula: JWST/MIRI detection in the Ring Nebula and ionization by the central star
-- **Score:** 68.0  
-- **Topics:** astrochemistry, molecular_clouds, turbulence  
-- **Authors:** David A. Neufeld, Paule Sonnentrucker, Joel D. Green  
-- **Subjects:** astro-ph.GA; astro-ph.SR; physics.chem-ph  
-- **arXiv:** [https://arxiv.org/abs/2611.31633](https://arxiv.org/abs/2611.31633)  
-- **PDF:** [https://arxiv.org/pdf/2611.31633.pdf](https://arxiv.org/pdf/2611.31633.pdf)  
-- **Abstract:** We report the detection of the forbidden pure rotational spectrum of H$_3^+$ in the Ring Nebula (NGC 6720), to our knowledge the first detection of H$_3^+$ in a planetary nebula. In JWST/MIRI spectra obtained toward the inner edge of the main ring, 0.1 pc in projection from the central star, the $(J,K) = (5,0)\to(4,3)$ line at 16.325 $\mu$m is detected at $32\sigma$, along with nine further unblended lines. The H$_3^+$ emission spatially follows the H$_2$ emission, whose rotational lines show warm (660 K) and hot (1700 K) components. A statistical-equilibrium model at these temperatures reproduces the subthermal H$_3^+$ line pattern, with much of the emission arising in the hot H$_2$. The emission requires an H$_2$ ionization rate of $\sim 3\times 10^{-12}\,{\rm s^{-1}}$ in the hot H$_2$ for an electron fraction of $2\times 10^{-4}$. The rate is $\sim 2\times 10^4$ times the cosmic-ray ionization rate in diffuse clouds. The extreme-ultraviolet and soft X-ray radiation (54-300 eV) of the 135 kK central star supplies this rate if the hot H$_2$ lies within an H-nucleus column density of (4-8)$\times 10^{19}\,{\rm cm^{-2}}$ of the ionization front of the dense globules. Static photoionization models, however, place the H$_2$ in gas too cold to excite the H$_3^+$ lines. The warm molecular gas and its H$_3^+$ thus suggest dynamical effects, most plausibly the advection of H$_2$ through a photoevaporation front into gas heated by the star. H$_3^+$ provides a new probe of the photoionization of molecular gas by very hot stars.
-
-#### [B] Low-excitation molecular gas in a Ly$α$-associated companion of the $z=4.7$ quasar in BR1202-0725
-- **Score:** 64.2  
-- **Topics:** molecular_clouds, astrochemistry, massive_star_formation  
-- **Authors:** C. Yang, S. Muller, M. D. Lehnert, T. J. L. C. Bakx, P. Cox, G. C. Jones, K. Knudsen, C. Mazzucchelli, A. Omont, Zhi-Yu Zhang  
+#### [A] First detection of s-cis-acroleine (sc-CH2CHCHO) in the interstellar medium
+- **Score:** 71.8  
+- **Topics:** astrochemistry, ism_methods, molecular_clouds  
+- **Authors:** Germán Molpeceres, Marcelino Agúndez, Carlos Cabezas, Nuria Marcelino, Gisela Esplugues, Belén Tercero, José Cernicharo  
 - **Subjects:** astro-ph.GA  
-- **arXiv:** [https://arxiv.org/abs/2611.31382](https://arxiv.org/abs/2611.31382)  
-- **PDF:** [https://arxiv.org/pdf/2611.31382.pdf](https://arxiv.org/pdf/2611.31382.pdf)  
-- **Abstract:** Quasar companions at high redshifts are usually gas-rich star-forming galaxies whose molecular gas masses ($M_{\mathrm{mol}}$) are estimated from [C II], dust emission or a single mid-$J$ CO line. We detect CO(5-4) and [C I](1-0) with ALMA in LAE-2, a Ly$\alpha$-associated companion of the $z=4.7$ quasar in BR1202-0725, and CO(5-4) at the location near LAE-1, the Ly$\alpha$ emitter between the quasar and the submillimeter galaxy (SMG). With the CO(2-1) flux from the literature, LAE-2 has an $L'_{\mathrm{CO(5-4)}}/L'_{\mathrm{CO(2-1)}}$ ratio of $0.22\pm0.04$, as in high-redshift main-sequence galaxies but four times lower than in the quasar host and the SMG. A non-LTE model places the CO(5-4) excitation temperature only 4 K above the cosmic microwave background (CMB), yet the same gas would show an even lower ratio against the $z=0$ CMB. The CMB-corrected $M_{\mathrm{mol}}$ from [C I], $\approx9\times10^{10} M_{\odot}$, agrees with the independent [C II] estimate, whereas CO(5-4) gives a four times lower mass if assumed thermalized at 40 K with the same CO-to-H$_2$ conversion factor. Combining our 3 mm measurement with archival far-infrared photometry, we find cold ($\approx25$ K) dust and main-sequence star formation, with a gas-to-stellar mass ratio of $\approx4$ and a depletion time of $\approx0.7$ Gyr. Its star formation can supply the far-ultraviolet field that the [C I], [C II], and CO lines require. Quasar companions can thus retain massive, weakly excited molecular gas reservoirs that mid-$J$ CO surveys can miss.
+- **arXiv:** [https://arxiv.org/abs/2611.34691](https://arxiv.org/abs/2611.34691)  
+- **PDF:** [https://arxiv.org/pdf/2611.34691.pdf](https://arxiv.org/pdf/2611.34691.pdf)  
+- **Abstract:** We report the first interstellar detection of the higher-energy $s$-cis conformer of acrolein (CH2CHCHO) toward TMC-1 using the Quijote line survey. Local thermodynamic equilibrium modeling, assuming a rotational temperature of 7.5 K, yields a column density of $(1.0\pm0.2)\times10^{11}$~cm$^{-2}$ when fitting the observed lines. The s-cis/s-trans abundance ratio is $0.45\pm0.11$, despite an energy separation of approximately 1025~K, indicating a strongly nonequilibrium conformational distribution. An exploratory gas--grain chemical model identifies C3H5 + O as the dominant acrolein formation route, pointing to this reaction as a first entry to consider when explaining the isomeric ratios. The observed ratio provides a new constraint on conformer-specific formation, destruction, and interconversion processes in cold interstellar clouds.
+
+#### [B] A comparison of two- and one-fluid dust solvers for dusty, supersonic turbulence
+- **Score:** 73.0  
+- **Topics:** turbulence, molecular_clouds, astrochemistry  
+- **Authors:** Narges Vadood, Terrence S. Tricco  
+- **Subjects:** astro-ph.GA; astro-ph.IM  
+- **arXiv:** [https://arxiv.org/abs/2611.34910](https://arxiv.org/abs/2611.34910)  
+- **PDF:** [https://arxiv.org/pdf/2611.34910.pdf](https://arxiv.org/pdf/2611.34910.pdf)  
+- **Abstract:** We model 3 and 10 $\mu$m dust grains in supersonic, turbulent molecular cloud conditions to compare two different numerical methods solving dust coupled to gas through a drag term. One method models dust and gas as two separate species (two fluid) and the other the combination of dust and gas as a single mixture (one fluid) using the diffusion approximation. Simulations are performed in a 3D periodic box using the Phantom code. The gas probability distributions are consistent with a lognormal distribution for both methods and grain sizes. The dust distributions are different in the two methods, showing discrepancies particularly in regions of low density. The most significant difference between the two methods is in the dust-to-gas ratio distributions. Both methods peak at the mean dust-to-gas ratio of 0.01, but the two-fluid method has wider distributions than the one-fluid method suggesting excess dust concentration in dense filaments. Filaments are where the one-fluid method results are most accurate. The narrowing of the one-fluid distribution is also caused by the stopping time limiter used to maintain the terminal velocity approximation. This artificially makes the mixture more coupled in low-density regions. Our overall conclusion is that both methods are viable for the study of dust in molecular clouds, but that the correct method should be chosen based on the numerical Stokes number regime of the calculation to avoid numerical artifacts.
+
+#### [B] A Chandra X-Ray Survey of the Middle-aged Supernova Remnant G22.7-0.2 Interacting with Molecular Clouds
+- **Score:** 66.7  
+- **Topics:** halo_cgm, massive_star_formation, astrochemistry  
+- **Authors:** Harry Van Der Ark, Kaya Mori, Charles J. Hailey  
+- **Subjects:** astro-ph.HE; astro-ph.GA  
+- **arXiv:** [https://arxiv.org/abs/2611.34404](https://arxiv.org/abs/2611.34404)  
+- **PDF:** [https://arxiv.org/pdf/2611.34404.pdf](https://arxiv.org/pdf/2611.34404.pdf)  
+- **Abstract:** G22.7$-$0.2 is a middle-aged supernova remnant (SNR; $\tau \sim 3\times10^4$ yr) interacting with the nearby giant molecular cloud GMC 23.3$-$0.4. A handful of X-ray sources have been identified within the SNR radio shell by previous XMM-Newton and NuSTAR observations. In particular, three of those X-ray sources (N1, N2, and N3) have been detected above 10 keV, indicating that they are either X-ray point sources, or molecular cloud clumps heated by SNR blast waves. In the latter case, non-thermal bremsstrahlung or synchrotron radiation from shock-heated molecular clouds may appear as extended X-ray sources. We conducted an X-ray survey of the SNR-cloud interaction region with Chandra and detected 23 X-ray sources with $> 5\sigma$ significance using wavdetect, 20 of which were previously uncataloged. The sub-arcsecond angular resolution of Chandra allowed us to spatially resolve these X-ray sources. After accounting for point spread function (PSF) smearing and dust scattering effects, we determine that two NuSTAR hard X-ray sources (N1 and N2) are extended, whereas the other Chandra sources are point sources. While N1 may be a compact filament or a synchrotron-emitting clump with $r\sim0.018$ pc, our analysis suggests that N2 is likely a compact cloud clump shock-heated by the SNR and emitting non-thermal bremsstrahlung or synchrotron X-rays, with $r\sim0.052$ pc and $M\approx0.6$ $M_\odot$ under the non-thermal bremsstrahlung model.
 
 
-Generated by AstroBrief on 2026-11-25.
+Generated by AstroBrief on 2026-11-26.
 
 
 ### Boundary candidates (C; not emailed as recommendations)
 
-- **Clumping Factor in the Mix: Incomplete Mixing Suppresses Turbulent Reaction Boost** — `turbulence` — [2611.31785](https://arxiv.org/abs/2611.31785)
-- **The Alma catalog of OB stars. IV. A massive star census of the Magellanic Clouds System** — `astrochemistry` — [2611.32808](https://arxiv.org/abs/2611.32808)
-- **Multi-vantage SO/PHI and SDO/HMI magnetic field observations of active region NOAA 13465** — `magnetic_fields` — [2611.31704](https://arxiv.org/abs/2611.31704)
-- **The ALMA REBELS Survey: multi-band dust continuum observations reveal heavily obscured starbursts among UV-bright galaxies at $z\sim7$** — `astrochemistry` — [2611.32342](https://arxiv.org/abs/2611.32342)
-- **AGN feedback in the multiphase inner intracluster medium of a cosmological super-resolved galaxy cluster** — `turbulence` — [2611.31367](https://arxiv.org/abs/2611.31367)
-- **MINDS: The mid-infrared spectrum of the disk, jets, and winds of DG Tau** — `astrochemistry` — [2611.32856](https://arxiv.org/abs/2611.32856)
-- **JWST/NIRSpec observations of AMORE6 suggest active Pop~III star formation in a self-polluted galaxy** — `astrochemistry` — [2611.31355](https://arxiv.org/abs/2611.31355)
-- **Euclid: Discovery of a quasar at z = 8.13 hosting a 360-million-solar-mass black hole** — `astrochemistry` — [2611.31385](https://arxiv.org/abs/2611.31385)
-- **Hesperos & Eosphoros: A Coupled Differentiable Forced-Photometry Operator and Forward Model for SPHEREx Spectrophotometry** — `astrochemistry` — [2611.33092](https://arxiv.org/abs/2611.33092)
-- **VENUS: A Census of Strong Lensing in a 60-Cluster JWST Survey** — `massive_star_formation` — [2611.33142](https://arxiv.org/abs/2611.33142)
-- **Spectroscopic identification of z>7 quasars with Roman Space Telescope** — `astrochemistry` — [2611.31352](https://arxiv.org/abs/2611.31352)
-- **Probing the X-Ray Structure of the $z = 2.38$ Strongly Lensed Quasar J1721+8842, the First Einstein Zig-Zag Lens, Down to $140\ \mathrm{pc}$** — `galactic_ism` — [2611.31386](https://arxiv.org/abs/2611.31386)
+- **Directional Statistics of Synchrotron Polarization in Mixed Emitting and Faraday-Rotating Turbulence** — `turbulence` — [2611.33899](https://arxiv.org/abs/2611.33899)
+- **X-ray Polarization of the Western Lobe of SS 433** — `magnetic_fields` — [2611.34592](https://arxiv.org/abs/2611.34592)
+- **Horizontal velocity eigenfunctions of solar inertial modes using local correlation tracking of magnetic features** — `turbulence` — [2611.34365](https://arxiv.org/abs/2611.34365)
+- **State of the UNIONS: Four Milky Way companions discovered in a systematic search for northern Local Group satellites** — `astrochemistry` — [2611.34775](https://arxiv.org/abs/2611.34775)
+- **The tangled warp of the Milky Way II: The red clump** — `halo_cgm` — [2611.34625](https://arxiv.org/abs/2611.34625)
+- **Beyond the blur: Radial binning trumps stellar migration in resolved star formation histories** — `astrochemistry` — [2611.33326](https://arxiv.org/abs/2611.33326)
+- **Bar Kinematics in Paired and Isolated Galaxies: Slow Bars Are More Likely Found in Paired Galaxies** — `astrochemistry` — [2611.34198](https://arxiv.org/abs/2611.34198)
+- **The THESAN-ZOOM project: interpreting candidate Population III-enriched absorption line systems during reionization** — `astrochemistry` — [2611.34789](https://arxiv.org/abs/2611.34789)
+- **Multiwavelength Analysis of the Merging Cluster RM J121917.6+505432.8: A Three-way Merger in Disguise?** — `massive_star_formation` — [2611.33941](https://arxiv.org/abs/2611.33941)
+- **An oxygen-rich supernova remnant in NGC 253 with narrow [N II] emission lines** — `astrochemistry` — [2611.34127](https://arxiv.org/abs/2611.34127)
+- **The Splash population confined to the Milky Way bar region** — `astrochemistry` — [2611.34890](https://arxiv.org/abs/2611.34890)
+- **Halo spin-axis correlations in IllustrisTNG: Lagrangian-to-Eulerian separation mapping, baryonic effects, and redshift-space distortions** — `turbulence` — [2611.34111](https://arxiv.org/abs/2611.34111)
+- **Tipping the scales in Blue Jay: Dust energy balance overpredicts IR luminosity in galaxies at $z\sim2$** — `galactic_ism` — [2611.34802](https://arxiv.org/abs/2611.34802)
+- **RIFT for the O4 era: operating points, calibration marginalization, and cross-code validation** — `turbulence` — [2611.33239](https://arxiv.org/abs/2611.33239)
+- **RR Lyrae stars as distance indicators I. Sample selection and characterisation** — `astrochemistry` — [2611.33269](https://arxiv.org/abs/2611.33269)
+- **Evolutionary Map of the Universe (EMU): the fraction of radio-detected quasi-stellar objects at high redshift** — `halo_cgm` — [2611.34149](https://arxiv.org/abs/2611.34149)
+- **Physical quasar pairs in DESI DR1 as tracers of protoclusters at $z\approx2$** — `astrochemistry` — [2611.34350](https://arxiv.org/abs/2611.34350)
+- **Galaxy cluster thermodynamic profiles beyond self-similarity** — `turbulence` — [2611.34405](https://arxiv.org/abs/2611.34405)
+- **3D Shape Recovery of Human-Made Space Objects from Light Curves with Image Denoisers as Priors** — `ism_methods` — [2611.33520](https://arxiv.org/abs/2611.33520)
+- **A search and multi-frequency study of curved parsec-scale jets in active galaxies** — `turbulence` — [2611.34496](https://arxiv.org/abs/2611.34496)
+- **NuSrcAgent: An AI Agent for High-Energy Neutrino Source Searches** — `astrochemistry` — [2611.33324](https://arxiv.org/abs/2611.33324)
+- **A Tale of Two Type IIb Supernovae: Radio-loud and Radio-silent Candidate Counterparts to Sub-solar Mass Gravitational-wave Triggers** — `turbulence` — [2611.33319](https://arxiv.org/abs/2611.33319)
